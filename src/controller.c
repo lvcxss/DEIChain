@@ -1,28 +1,43 @@
+#include "miner.h"
+#include "transaction.h"
+#include <fcntl.h>
+#include <semaphore.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <unistd.h>
+#include <wait.h>
 #define BUFFER_SIZE 256
 
 void init();
+void terminate(int shmid);
 void processFile(int **arr, char *filename);
-
-int shmid;
-
-int main() {
-  init();
-  return 0;
-}
+sem_t *logfilesem;
 
 void init() {
   char *filename = "config.cfg";
   int num_miners, pool_size, blockchain_blocks, transaction_pool_size;
   int *ar[] = {&num_miners, &pool_size, &blockchain_blocks,
                &transaction_pool_size};
+  // read file info
   processFile(ar, filename);
   printf("%d %d %d %d\n", num_miners, pool_size, blockchain_blocks,
          transaction_pool_size);
+
+  // semaphores
+  sem_unlink("LOGFILE");
+  logfilesem = sem_open("LOGFILE", O_CREAT | O_EXCL, 0700, 1);
+  int shmid = shmget(IPC_PRIVATE, sizeof(Transaction) * transaction_pool_size,
+                     IPC_CREAT | 0700);
+  // create miner process and its threads
+  if (fork() == 0) {
+    initminers(num_miners);
+  } else {
+    wait(NULL);
+    terminate(shmid);
+  }
 }
 
 void processFile(int **arr, char *filename) {
@@ -65,4 +80,10 @@ void processFile(int **arr, char *filename) {
 
   fclose(config);
   return;
+}
+
+void terminate(int shmid) {
+  sem_close(logfilesem);
+  sem_unlink("LOGFILE");
+  shmctl(shmid, IPC_RMID, NULL);
 }
