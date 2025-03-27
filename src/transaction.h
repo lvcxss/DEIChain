@@ -1,8 +1,7 @@
 #ifndef TRANSACTION_H
 #define TRANSACTION_H
 #include <time.h>
-
-typedef struct transaction {
+typedef struct {
   int id;
   int val;
   int sender;
@@ -10,6 +9,6 @@ typedef struct transaction {
   int value;
   time_t timestamp;
 
-} Transaction;
+} transaction;
 
 #endif
