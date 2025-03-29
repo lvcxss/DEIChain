@@ -1,6 +1,6 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
 
-void printStatistics(unsigned int *arr, unsigned int size);
+void print_statistics();
 
 #endif // !DEBUG

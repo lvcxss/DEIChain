@@ -1,0 +1,33 @@
+
+[INIT] (1743263420) O programa foi iniciado
+[INIT] (1743263420) Started reading configuration file
+[INFO] (1743263420) Configuration loaded :
+   Number of Miners: 5 
+   Transaction pool size: 3
+   Maximum number of blocks in the block chain: 2
+   Number of Transacions in a block: 3
+
+[INIT] (1743263420) Miner process created
+[INIT] (1743263420) Statistics process created
+[INIT] (1743263420) Miner 1 created
+[INFO] (1743263420) im statistics!!!
+
+[INFO] (1743263420) IM MINING (id : 1) 
+
+[INIT] (1743263420) Miner 2 created
+[INFO] (1743263420) IM MINING (id : 2) 
+
+[INIT] (1743263420) Miner 3 created
+[INFO] (1743263420) IM MINING (id : 3) 
+
+[INIT] (1743263420) Miner 4 created
+[INIT] (1743263420) Miner 5 created
+[INFO] (1743263420) IM MINING (id : 4) 
+
+[INFO] (1743263420) IM MINING (id : 5) 
+
+[TERMINATE] (1743263421) Destroying mutex
+[TERMINATE] (1743263421) Detaching shared memory
+[TERMINATE] (1743263421) Removing shared memory
+[TERMINATE] (1743263421) Finished terminating
+[INFO] (1743263421) Closing program

@@ -1,5 +1,4 @@
 #include "transaction.h"
-#include "controller.h"
 #include <pthread.h>
 #include <semaphore.h>
 #include <stdio.h>
@@ -7,18 +6,26 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-transaction *create_transaction(int val, int sender, int receiver, int value) {
-  transaction *t;
-  t->val = val;
-  t->sender = sender;
-  t->receiver = receiver;
-  t->value = value;
-  t->timestamp = time(NULL);
+int main(int argc, char *argv[]) {
+  if (argc != 3) {
+    printf("Usage: %s <reward> <sleep time>\n", argv[0]);
+    return 1;
+  }
 
-  pthread_mutex_lock(&transactionidmutex);
-  printf("id atual: %d", *transactionid);
-  t->id = *transactionid;
-  *transactionid = *transactionid + 1;
-  pthread_mutex_unlock(&transactionidmutex);
-  return t;
+  int reward = atoi(argv[1]);
+  int sleepTime = atoi(argv[2]);
+
+  if (reward > 3 || reward < 1) {
+    printf("Reward must be between 1 and 3\n");
+    exit(1);
+  }
+
+  if (sleepTime > 3000 || sleepTime < 200) {
+    printf("Sleep time must be between 200 and 3000\n");
+    exit(1);
+  }
+
+  printf("Transaction Created\n");
+
+  return 0;
 }
