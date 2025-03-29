@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <time.h>
 
-void write_log(char *message, char *typemsg);
+void write_logfile(char *message, char *typemsg);
 // data strutcutes usued in the project
 typedef struct {
   unsigned int num_miners;
@@ -49,6 +49,7 @@ extern int shmidblockindex;
 extern int *transactionid;
 extern int *transactions_pool_index;
 extern int *block_index;
+extern Config config;
 extern pthread_mutex_t logfilemutex;
 extern TransactionPool *transcations_pool;
 extern BlockchainLedger *block_ledger;

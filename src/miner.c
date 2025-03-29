@@ -6,9 +6,9 @@
 void *mine(void *idp) {
   int mine_id = *(int *)idp;
   char msg[256];
-  sprintf(msg, "IM MINING (id : %d) \n", mine_id);
+  sprintf(msg, "IM MINING (id : %d)", mine_id);
   write_logfile(msg, "INFO");
-  printf("%s", msg);
+  printf("%s\n", msg);
   return NULL;
 }
 

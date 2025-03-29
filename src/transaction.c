@@ -1,4 +1,5 @@
 #include "transaction.h"
+#include "controller.h"
 #include <pthread.h>
 #include <semaphore.h>
 #include <stdio.h>
@@ -24,8 +25,9 @@ int main(int argc, char *argv[]) {
     printf("Sleep time must be between 200 and 3000\n");
     exit(1);
   }
-
-  printf("Transaction Created\n");
-
+  char msg[256];
+  sprintf(msg, "Transaction with reward %d and sleep time %d pid: %d", reward,
+          sleepTime, getpid());
+  printf("%s\n", msg);
   return 0;
 }

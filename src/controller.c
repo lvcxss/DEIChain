@@ -2,6 +2,8 @@
 #include "deichain.h"
 #include "miner.h"
 #include "statistics.h"
+#include "transaction.h"
+#include "validator.h"
 #include <fcntl.h>
 #include <pthread.h>
 #include <semaphore.h>
@@ -24,7 +26,28 @@ pthread_mutex_t logfilemutex = PTHREAD_MUTEX_INITIALIZER;
 int shmid, shmid_ledger, shmid_transaction_pool_index;
 int *index_transaction_pool;
 TransactionPool *transactions_pool;
+Config config;
 BlockchainLedger *block_ledger;
+
+void testDataStructures() {
+  Transaction t, t1;
+  t.transaction_id = 1;
+  t.reward = 2;
+  t.sender_id = getpid();
+  t.receiver_id = 3;
+  t.value = 13;
+  t.timestamp = time(NULL);
+  t1.transaction_id = 2;
+  t1.reward = 3;
+  t1.sender_id = getpid();
+  t1.receiver_id = 6;
+  t1.value = 15;
+  t1.timestamp = time(NULL);
+
+  transactions_pool->current_block_id = 0;
+  transactions_pool->transactions[0] = t;
+  transactions_pool->transactions[1] = t1;
+}
 
 void quiter(int sig) {
   if (sig == 2) {
@@ -36,12 +59,14 @@ void quiter(int sig) {
 }
 
 void init() {
+
   signal(SIGINT, quiter);
 
   transactionid = 0;
   char *filename = "config.cfg";
   // read file info
-  Config config = processFile(filename);
+  config = processFile(filename);
+
   printf("num_miners : %d  pool_size : %d blockchain_blocks : %d "
          "transaction_pool_size : %d\n",
          config.num_miners, config.tx_pool_size, config.blockchain_blocks,
@@ -88,7 +113,7 @@ void init() {
     perror("shmget");
     exit(1);
   }
-  block_ledger = (BlockchainLedger *)shmat(shmid, NULL, 0);
+  block_ledger = (BlockchainLedger *)shmat(shmid_ledger, NULL, 0);
   if (block_ledger == (void *)-1) {
     write_logfile("Error attaching shared memory for block ledger (shmat)",
                   "ERROR");
@@ -96,6 +121,21 @@ void init() {
     exit(1);
   }
 
+  memset(transactions_pool, 0,
+         sizeof(*transactions_pool) +
+             sizeof(Transaction) * config.transactions_per_block);
+  memset(block_ledger, 0,
+         sizeof(*block_ledger) + sizeof(Block) * config.blockchain_blocks +
+             sizeof(Transaction) * config.transactions_per_block *
+                 config.blockchain_blocks);
+
+  testDataStructures();
+  print_transaction(transactions_pool->transactions[0]);
+  print_transaction(transactions_pool->transactions[1]);
+  // DONT REMOVE THIS LINE !!!
+  // problem : whenever a child process is created, the son gets a copy of the
+  // parent's stdout
+  fflush(stdout);
   // create miner process and its threads
   if (fork() == 0) {
     write_logfile("Miner process created", "INIT");
@@ -108,15 +148,20 @@ void init() {
 
       print_statistics();
     } else {
-      wait(NULL);
-      while (1) {
+      if (fork() == 0) {
+        write_logfile("Validator process created", "INIT");
+        printf("Validator process created\n");
+        validator();
+      } else {
+        wait(NULL);
+        while (1) {
+        }
       }
     }
   }
 }
 
 Config processFile(char *filename) {
-  // arr to optimize
   Config cfg;
   FILE *config;
   char buffer[BUFFER_SIZE];
@@ -141,6 +186,16 @@ Config processFile(char *filename) {
     if (num == 0 && buffer[0] != '0') {
       printf("Erro ao ler o ficheiro, deveria ter 4 linhas separadas com "
              "inteiros.\n");
+      exit(1);
+    }
+
+    if (num <= 0) {
+
+      write_logfile("O numero presente na configuracao e muito pequeno por "
+                    "favor corrija.",
+                    "ERROR");
+      printf("O numero presente na configuracao e muito pequeno por favor "
+             "corrija.\n");
       exit(1);
     }
     switch (found) {
@@ -187,5 +242,5 @@ void terminate() {
   shmctl(shmid_ledger, IPC_RMID, NULL);
   shmctl(shmid, IPC_RMID, NULL);
   write_logfile("Finished terminating", "TERMINATE");
-  printf("Finished terminating\n");
+  printf("\nFinished terminating\n");
 }
