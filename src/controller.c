@@ -43,10 +43,17 @@ void testDataStructures() {
   t1.receiver_id = 6;
   t1.value = 15;
   t1.timestamp = time(NULL);
+  TransactionPoolEntry tp1, tp2;
+  tp1.transaction = t;
+  tp1.age = 0;
+  tp1.empty = 0;
+  tp2.transaction = t1;
+  tp2.age = 0;
+  tp2.empty = 0;
 
   transactions_pool->current_block_id = 0;
-  transactions_pool->transactions[0] = t;
-  transactions_pool->transactions[1] = t1;
+  transactions_pool->transactions[0] = tp1;
+  transactions_pool->transactions[1] = tp2;
 }
 
 void quiter(int sig) {
@@ -82,8 +89,8 @@ void init() {
   // init shared memory
   // transaction pool
   shmid = shmget(IPC_PRIVATE,
-                 sizeof(TransactionPool) +
-                     sizeof(Transaction) * config.transactions_per_block,
+                 sizeof(TransactionPool) + sizeof(TransactionPoolEntry) *
+                                               config.transactions_per_block,
                  IPC_CREAT | 0700);
   if (shmid == -1) {
     perror("shmget");

@@ -25,11 +25,11 @@ Transaction create_transaction(int reward, int value) {
   return t;
 }
 
-void print_transaction(Transaction t) {
-  printf("Transaction ID : %d\n", t.transaction_id);
-  printf("Sender ID : %d\n", t.sender_id);
-  printf("Receiver ID : %d\n", t.receiver_id);
-  printf("Value : %f\n", t.value);
-  printf("Reward : %d\n", t.reward);
-  printf("Timestamp : %ld\n", t.timestamp);
+void print_transaction(TransactionPoolEntry t) {
+  printf("Transaction ID : %d\n", t.transaction.transaction_id);
+  printf("Sender ID : %d\n", t.transaction.sender_id);
+  printf("Receiver ID : %d\n", t.transaction.receiver_id);
+  printf("Value : %f\n", t.transaction.value);
+  printf("Reward : %d\n", t.transaction.reward);
+  printf("Timestamp : %ld\n", t.transaction.timestamp);
 }

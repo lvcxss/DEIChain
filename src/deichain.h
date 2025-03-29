@@ -24,10 +24,15 @@ typedef struct {
 } Transaction;
 
 typedef struct {
-  int current_block_id;
-  Transaction transactions[];
-} TransactionPool;
+  int empty;
+  int age;
+  Transaction transaction;
+} TransactionPoolEntry;
 
+typedef struct {
+  int current_block_id;
+  TransactionPoolEntry transactions[];
+} TransactionPool;
 typedef struct {
   int block_id;
   time_t timestamp;

@@ -3,5 +3,5 @@
 #include "controller.h"
 #include <time.h>
 Transaction create_transaction(int reward, int value);
-void print_transaction(Transaction transaction);
+void print_transaction(TransactionPoolEntry transaction);
 #endif
