@@ -1,8 +1,8 @@
+// Código da autoria de Lucas Oliveira (2023219472) e Dinis Silva
 #include "controller.h"
 #include "deichain.h"
 #include "miner.h"
 #include "statistics.h"
-#include "transaction.h"
 #include "validator.h"
 #include <fcntl.h>
 #include <pthread.h>
@@ -29,32 +29,6 @@ int *index_transaction_pool;
 TransactionPool *transactions_pool;
 Config config;
 BlockchainLedger *block_ledger;
-void testDataStructures() {
-  Transaction t, t1;
-  t.transaction_id = 1;
-  t.reward = 2;
-  t.sender_id = getpid();
-  t.receiver_id = 3;
-  t.value = 13;
-  t.timestamp = time(NULL);
-  t1.transaction_id = 2;
-  t1.reward = 3;
-  t1.sender_id = getpid();
-  t1.receiver_id = 6;
-  t1.value = 15;
-  t1.timestamp = time(NULL);
-  TransactionPoolEntry tp1, tp2;
-  tp1.transaction = t;
-  tp1.age = 0;
-  tp1.empty = 0;
-  tp2.transaction = t1;
-  tp2.age = 0;
-  tp2.empty = 0;
-
-  transactions_pool->current_block_id = 0;
-  transactions_pool->transactions[0] = tp1;
-  transactions_pool->transactions[1] = tp2;
-}
 
 void quiter(int sig) {
   if (sig == 2) {
@@ -100,7 +74,10 @@ void init() {
     perror("shmat");
     exit(1);
   }
-  // index transaction pool
+  // index transaction pool (unused by now but the logic would be something like
+  // fill the transaction pool and iterate throw it from
+  // 0-TRANSACTION_POOL_SIZE, and repeat => index= ++index %
+  // TRANSACTION_POOL_SIZE)
   shmid_transaction_pool_index =
       shmget(IPC_PRIVATE, sizeof(int), IPC_CREAT | 0700);
   index_transaction_pool = (int *)shmat(shmid_transaction_pool_index, NULL, 0);
@@ -135,9 +112,6 @@ void init() {
              sizeof(Transaction) * config.transactions_per_block *
                  config.blockchain_blocks);
 
-  testDataStructures();
-  print_transaction(transactions_pool->transactions[0]);
-  print_transaction(transactions_pool->transactions[1]);
   // DONT REMOVE THIS LINE !!!
   // problem : whenever a child process is created, the son gets a copy of the
   // parent's stdout
@@ -159,6 +133,7 @@ void init() {
   }
 }
 
+// function for creating the miner process
 int create_miner_process(int nt) {
   pid_t pid = fork();
   if (pid < 0) {
@@ -177,6 +152,7 @@ int create_miner_process(int nt) {
   return 0;
 }
 
+// function for creating the statistics process
 int create_statistics_process() {
   pid_t pid = fork();
   if (pid < 0) {
@@ -194,6 +170,7 @@ int create_statistics_process() {
   return 0;
 }
 
+// function to create the validator process
 int create_validator_process() {
   pid_t pid = fork();
   if (pid < 0) {
@@ -210,6 +187,7 @@ int create_validator_process() {
   return 0;
 }
 
+// function to process the configuration file
 Config processFile(char *filename) {
   Config cfg;
   FILE *config;
@@ -224,6 +202,7 @@ Config processFile(char *filename) {
   }
   int num;
   while (fgets(buffer, BUFFER_SIZE - 1, config)) {
+    // if file has >4 lines, quit
     if (found >= 4) {
       write_logfile("O ficheiro tem mais de 4 linhas", "ERROR");
       printf("O ficheiro tem mais de 4 linhas por favor corrija.\n");
@@ -232,14 +211,14 @@ Config processFile(char *filename) {
     slen = strlen(buffer);
     buffer[slen] = '\0';
     num = atoi(buffer);
+    // check if it is a number
     if (num == 0 && buffer[0] != '0') {
       printf("Erro ao ler o ficheiro, deveria ter 4 linhas separadas com "
              "inteiros.\n");
       exit(1);
     }
-
+    // the numbers must be valid
     if (num <= 0) {
-
       write_logfile("O numero presente na configuracao e muito pequeno por "
                     "favor corrija.",
                     "ERROR");
@@ -247,6 +226,7 @@ Config processFile(char *filename) {
              "corrija.\n");
       exit(1);
     }
+    // filling the config struct
     switch (found) {
     case 0:
       cfg.num_miners = num;
@@ -263,6 +243,7 @@ Config processFile(char *filename) {
     }
     found++;
   }
+  // the file must have 4 lines
   if (found != 4) {
     write_logfile("O ficheiro tem menos de 4 linhas", "ERROR");
     printf("Erro: O ficheiro de configuração tem menos de 4 linhas.\n");
@@ -273,23 +254,25 @@ Config processFile(char *filename) {
 }
 
 void terminate() {
+
   write_logfile("Destroying mutex", "TERMINATE");
+  // destroy mutex
+  // NOTE: professor said the pthread_mutex_destroy is enough
   pthread_mutex_destroy(&logfilemutex);
   write_logfile("Detaching shared memory", "TERMINATE");
+  // detach shared memory
   if (shmdt(transactions_pool) == -1)
     perror("shmdt transactions_pool");
   if (shmdt(index_transaction_pool) == -1)
     perror("shmdt index_transaction_pool");
-
   if (shmdt(block_ledger) == -1)
     perror("shmdt block_ledger");
   write_logfile("Removing shared memory", "TERMINATE");
+  // remove shared memory (flag : IPC_RMID)
   if (shmctl(shmid_transaction_pool_index, IPC_RMID, NULL) == -1)
     perror("shmctl transaction_pool_index");
-
   if (shmctl(shmid_ledger, IPC_RMID, NULL) == -1)
     perror("shmctl block_ledger");
-
   if (shmctl(shmid, IPC_RMID, NULL) == -1)
     perror("shmctl transactions_pool");
   write_logfile("Finished terminating", "TERMINATE");

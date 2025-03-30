@@ -1,5 +1,7 @@
-#include "transaction.h"
+// Código da autoria de Lucas Oliveira (2023219472) e Dinis Silva
+
 #include "deichain.h"
+#include "transaction.h"
 #include <pthread.h>
 #include <semaphore.h>
 #include <signal.h>
@@ -7,13 +9,12 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
 int write_logfile(char *message, char *typemsg);
 
 void signal_handler(int signum) {
   if (signum == SIGINT) {
     char msg[256];
-    fprintf(stderr, "Killing process \n");
+    printf("Killing transaction generator\n");
     sprintf(msg, "SIGINT received on transaction generator with id: %d.",
             getpid());
     write_logfile(msg, "INFO");
@@ -48,12 +49,16 @@ int main(int argc, char *argv[]) {
     printf("Sleep time must be between 200 and 3000\n");
     exit(1);
   }
-  char msg[256];
-  Transaction t;
-  t = create_transaction(reward, 4);
-  sprintf(msg, "Transaction with reward %d and sleep time %d pid: %d created",
-          t.reward, sleepTime, getpid());
-  printf("%s\n", msg);
-  write_logfile(msg, "INFO");
+
+  while (1) {
+    char msg[256];
+    Transaction t;
+    t = create_transaction(reward, 4);
+    sprintf(msg, "Transaction with reward %d and id: %d created", t.reward,
+            t.transaction_id);
+    printf("%s\n", msg);
+    write_logfile(msg, "INFO");
+    usleep(sleepTime * 1000);
+  }
   return 0;
 }

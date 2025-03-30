@@ -1,3 +1,4 @@
+// Código da autoria de Lucas Oliveira (2023219472) e Dinis Silva
 #include "deichain.h"
 #include <pthread.h>
 #include <stdio.h>
@@ -5,8 +6,11 @@
 
 pthread_mutex_t logfilemutex = PTHREAD_MUTEX_INITIALIZER;
 
+// by now this file just has this function but it will have more general
+// functions
 int write_logfile(char *message, char *typemsg) {
 
+  // timestamp for the logfile
   time_t raw = time(NULL);
 
   struct tm timeinfo;
@@ -22,9 +26,9 @@ int write_logfile(char *message, char *typemsg) {
       0) {
     return -3;
   }
-
+  // lock only here to reduce concorrency problems
   pthread_mutex_lock(&logfilemutex);
-  FILE *logfile = fopen("logfile.txt", "a");
+  FILE *logfile = fopen("DEIChain_log.txt", "a");
   if (logfile == NULL) {
     printf("Error: Could not open file logfile.txt\n");
     pthread_mutex_unlock(&logfilemutex);
