@@ -6,7 +6,9 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <unistd.h>
-int *transactionid;
+int a = 0;
+int *transactionid = &a;
+
 Transaction create_transaction(int reward, int value) {
   Transaction t = {.reward = reward,
                    .sender_id = getpid(),

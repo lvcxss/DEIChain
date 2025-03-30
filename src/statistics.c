@@ -2,8 +2,10 @@
 #include "deichain.h"
 #include <stdio.h>
 
+int write_logfile(char *message, char *typemsg);
+
 void print_statistics() {
 
-  write_logfile("im statistics!!!\n", "INFO");
+  write_logfile("im statistics!!!", "INFO");
   printf("im statistics!!!\n");
 }

@@ -28,5 +28,9 @@ void initminers(int num) {
   // waits for threads
   for (i = 0; i < num; i++) {
     pthread_join(thread_miners[i], NULL);
+    char msg[256];
+    sprintf(msg, "Miner %d finished", id[i]);
+    write_logfile(msg, "INFO");
+    printf("%s\n", msg); 
   }
 }

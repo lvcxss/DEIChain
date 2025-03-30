@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <time.h>
 
-void write_logfile(char *message, char *typemsg);
+int write_logfile(char *message, char *typemsg);
 // data strutcutes usued in the project
 typedef struct {
   unsigned int num_miners;

@@ -15,20 +15,20 @@
 #include <unistd.h>
 #include <wait.h>
 #define BUFFER_SIZE 16
-
+#define DEBUG
 void init();
 void terminate();
-void write_logfile(char *message, char *typemsg);
+int write_logfile(char *message, char *typemsg);
+int create_miner_process(int nt);
+int create_validator_process();
+int create_statistics_process();
 Config processFile(char *filename);
 
-// init semaphore for logfile
-pthread_mutex_t logfilemutex = PTHREAD_MUTEX_INITIALIZER;
 int shmid, shmid_ledger, shmid_transaction_pool_index;
 int *index_transaction_pool;
 TransactionPool *transactions_pool;
 Config config;
 BlockchainLedger *block_ledger;
-
 void testDataStructures() {
   Transaction t, t1;
   t.transaction_id = 1;
@@ -74,18 +74,17 @@ void init() {
   // read file info
   config = processFile(filename);
 
-  printf("num_miners : %d  pool_size : %d blockchain_blocks : %d "
-         "transaction_pool_size : %d\n",
-         config.num_miners, config.tx_pool_size, config.blockchain_blocks,
-         config.transactions_per_block);
+#ifdef DEBUG
   char configmsg[256];
   sprintf(configmsg,
           "Configuration loaded :\n   Number of Miners: %d \n   Transaction "
           "pool size: %d\n   Maximum number of blocks in the block chain: %d\n "
-          "  Number of Transacions in a block: %d\n",
+          "  Number of Transacions in a block: %d",
           config.num_miners, config.tx_pool_size, config.blockchain_blocks,
           config.transactions_per_block);
   write_logfile(configmsg, "INFO");
+  printf("%s\n", configmsg);
+#endif
   // init shared memory
   // transaction pool
   shmid = shmget(IPC_PRIVATE,
@@ -143,29 +142,72 @@ void init() {
   // problem : whenever a child process is created, the son gets a copy of the
   // parent's stdout
   fflush(stdout);
-  // create miner process and its threads
-  if (fork() == 0) {
+  // create processes
+  if (create_miner_process(config.num_miners) == 1) {
+    terminate();
+  }
+  if (create_statistics_process() == 1) {
+    terminate();
+  }
+  if (create_validator_process() == 1) {
+    terminate();
+  }
+  int i;
+  for (i = 0; i < 3; i++)
+    wait(NULL);
+  while (1) {
+  }
+}
+
+int create_miner_process(int nt) {
+  pid_t pid = fork();
+  if (pid < 0) {
+    perror("fork");
+    printf("Error creating miner process\n");
+    write_logfile("Error creating miner process", "ERROR");
+    return 1;
+  } else if (pid == 0) {
     write_logfile("Miner process created", "INIT");
     printf("Miner process created\n");
-    initminers(config.num_miners);
-  } else {
-    if (fork() == 0) {
-      write_logfile("Statistics process created", "INIT");
-      printf("Statistics process created\n");
-
-      print_statistics();
-    } else {
-      if (fork() == 0) {
-        write_logfile("Validator process created", "INIT");
-        printf("Validator process created\n");
-        validator();
-      } else {
-        wait(NULL);
-        while (1) {
-        }
-      }
-    }
+    // function that starts all miner threads
+    initminers(nt);
+    write_logfile("Miner process terminated", "TERMINATE");
+    exit(0);
   }
+  return 0;
+}
+
+int create_statistics_process() {
+  pid_t pid = fork();
+  if (pid < 0) {
+    perror("fork");
+    printf("Error creating statistics process\n");
+    write_logfile("Error creating statistics process", "ERROR");
+    return 1;
+  } else if (pid == 0) {
+    write_logfile("Statistics process created", "INIT");
+    printf("Statistics process created\n");
+    print_statistics();
+    write_logfile("Statistics process terminated", "TERMINATE");
+    exit(0);
+  }
+  return 0;
+}
+
+int create_validator_process() {
+  pid_t pid = fork();
+  if (pid < 0) {
+    perror("fork");
+    write_logfile("Error creating validator process", "ERROR");
+    return 1;
+  } else if (pid == 0) {
+    write_logfile("Validator process created", "INIT");
+    printf("Validator process created\n");
+    validator();
+    write_logfile("Validator process terminated", "TERMINATE");
+    exit(0);
+  }
+  return 0;
 }
 
 Config processFile(char *filename) {
@@ -221,33 +263,35 @@ Config processFile(char *filename) {
     }
     found++;
   }
-  fclose(config);
-  return cfg;
-}
-
-void write_logfile(char *message, char *typemsg) {
-  pthread_mutex_lock(&logfilemutex);
-  FILE *logfile = fopen("logfile.txt", "a");
-  if (logfile == NULL) {
-    printf("Error: Could not open file logfile.txt\n");
+  if (found != 4) {
+    write_logfile("O ficheiro tem menos de 4 linhas", "ERROR");
+    printf("Erro: O ficheiro de configuração tem menos de 4 linhas.\n");
     exit(1);
   }
-  fprintf(logfile, "[%s] (%ld) %s\n", typemsg, time(NULL), message);
-  fclose(logfile);
-  pthread_mutex_unlock(&logfilemutex);
+  fclose(config);
+  return cfg;
 }
 
 void terminate() {
   write_logfile("Destroying mutex", "TERMINATE");
   pthread_mutex_destroy(&logfilemutex);
   write_logfile("Detaching shared memory", "TERMINATE");
-  shmdt(transactions_pool);
-  shmdt(index_transaction_pool);
-  shmdt(block_ledger);
+  if (shmdt(transactions_pool) == -1)
+    perror("shmdt transactions_pool");
+  if (shmdt(index_transaction_pool) == -1)
+    perror("shmdt index_transaction_pool");
+
+  if (shmdt(block_ledger) == -1)
+    perror("shmdt block_ledger");
   write_logfile("Removing shared memory", "TERMINATE");
-  shmctl(shmid_transaction_pool_index, IPC_RMID, NULL);
-  shmctl(shmid_ledger, IPC_RMID, NULL);
-  shmctl(shmid, IPC_RMID, NULL);
+  if (shmctl(shmid_transaction_pool_index, IPC_RMID, NULL) == -1)
+    perror("shmctl transaction_pool_index");
+
+  if (shmctl(shmid_ledger, IPC_RMID, NULL) == -1)
+    perror("shmctl block_ledger");
+
+  if (shmctl(shmid, IPC_RMID, NULL) == -1)
+    perror("shmctl transactions_pool");
   write_logfile("Finished terminating", "TERMINATE");
   printf("\nFinished terminating\n");
 }
