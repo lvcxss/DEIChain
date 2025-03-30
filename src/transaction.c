@@ -21,7 +21,7 @@ void signal_handler(int signum) {
   }
 }
 
-void main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   signal(SIGINT, signal_handler);
   if (argc != 3) {
     printf("Usage: %s <reward> <sleep time>\n", argv[0]);
@@ -59,5 +59,5 @@ void main(int argc, char *argv[]) {
     write_logfile(msg, "INFO");
     sleep(sleepTime/1000);
   }
-
+  return 1;
 }
