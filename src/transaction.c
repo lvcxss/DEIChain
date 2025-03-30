@@ -50,10 +50,14 @@ int main(int argc, char *argv[]) {
   }
   char msg[256];
   Transaction t;
-  t = create_transaction(reward, 4);
-  sprintf(msg, "Transaction with reward %d and sleep time %d pid: %d created",
-          t.reward, sleepTime, getpid());
-  printf("%s\n", msg);
-  write_logfile(msg, "INFO");
+  while(1)
+  {
+    t = create_transaction(reward, 4);
+    sprintf(msg, "Transaction with reward %d and sleep time %d pid: %d created",
+            t.reward, sleepTime, getpid());
+    printf("%s\n", msg);
+    write_logfile(msg, "INFO");
+    sleep(sleepTime);
+  }
   return 0;
 }
