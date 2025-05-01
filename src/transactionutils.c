@@ -1,3 +1,5 @@
+// Código da autoria de Lucas Oliveira (2023219472) e Dinis Silva
+
 #include "deichain.h"
 #include "transaction.h"
 #include <pthread.h>
@@ -27,6 +29,7 @@ Transaction create_transaction(int reward, int value) {
   return t;
 }
 
+// simple printing function for testing purposes (for now)
 void print_transaction(TransactionPoolEntry t) {
   printf("Transaction ID : %d\n", t.transaction.transaction_id);
   printf("Sender ID : %d\n", t.transaction.sender_id);

@@ -8,7 +8,7 @@ TARGET2 = TxGen
 CONTROLLER_OBJ = controller.o
 MINER_OBJ = miner.o
 TRANSACTIONGEN_OBJ = transactionutils.o
-TRANSACTION_OBJ = transaction.o
+TRANSACTION_OBJ = txgen.o
 VALIDATOR_OBJ = validator.o
 STATISTICS_OBJ = statistics.o
 UTILS_OBJ = utils.o
@@ -42,7 +42,7 @@ $(TARGET2): $(TRANSACTIONGEN_OBJ) $(TRANSACTION_OBJ) $(UTILS_OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
 
 
-$(TRANSACTION_OBJ): transaction.c transaction.h controller.h
+$(TRANSACTION_OBJ): txgen.c transaction.h controller.h
 	$(CC) $(CFLAGS) -c $<
 
 clean:

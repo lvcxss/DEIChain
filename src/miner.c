@@ -1,8 +1,9 @@
-#include "controller.h"
+// Código da autoria de Lucas Oliveira (2023219472) e Dinis Silva
+
+#include "deichain.h"
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
-
 void *mine(void *idp) {
   int mine_id = *(int *)idp;
   char msg[256];
@@ -31,6 +32,6 @@ void initminers(int num) {
     char msg[256];
     sprintf(msg, "Miner %d finished", id[i]);
     write_logfile(msg, "INFO");
-    printf("%s\n", msg); 
+    printf("%s\n", msg);
   }
 }
