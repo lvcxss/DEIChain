@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
     TransactionPoolEntry ent;
     ent.transaction = t;
     ent.age = 0;
-    ent.empty = 0;
+    ent.occupied = 1;
     printf("%s\n", msg);
     sem_wait(sem);
     id = transaction_pool->id;

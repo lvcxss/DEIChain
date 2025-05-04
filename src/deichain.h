@@ -24,14 +24,14 @@ typedef struct {
 } Transaction;
 
 typedef struct {
-  int empty;
+  int occupied;
   int age;
   Transaction transaction;
 } TransactionPoolEntry;
 
 typedef struct {
-  int current_block_id;
-  TransactionPoolEntry transactions[];
+  int id, max_size;
+  sem_t *transaction_pool_sem;
 } TransactionPool;
 typedef struct {
   int block_id;
@@ -44,6 +44,7 @@ typedef struct {
 typedef struct {
   sem_t ledger_sem;
   int total_blocks;
+  int num_blocks;
   Block blocks[];
 } BlockchainLedger;
 

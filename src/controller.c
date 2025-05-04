@@ -3,7 +3,9 @@
 #include "deichain.h"
 #include "miner.h"
 #include "statistics.h"
+#include "transaction.h"
 #include "validator.h"
+#include <errno.h>
 #include <fcntl.h>
 #include <pthread.h>
 #include <semaphore.h>
@@ -12,26 +14,40 @@
 #include <string.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <wait.h>
 #define BUFFER_SIZE 16
 #define DEBUG
+#define PIPE_NAME "VALIDATOR_INPUT"
 void init();
 void terminate();
 int write_logfile(char *message, char *typemsg);
 int create_miner_process(int nt);
 int create_validator_process();
 int create_statistics_process();
+int create_pipe();
 Config processFile(char *filename);
 
-int shmid, shmid_ledger, shmid_transaction_pool_index;
-int *index_transaction_pool;
-TransactionPool *transactions_pool;
+int shmid, shmid_ledger;
+TransactionPool *transactions_pool_info;
+Transaction *transactions_pool;
 Config config;
 BlockchainLedger *block_ledger;
 
 void quiter(int sig) {
   if (sig == 2) {
+    TransactionPoolEntry *transactions =
+        (TransactionPoolEntry *)((char *)transactions_pool_info +
+                                 sizeof(TransactionPool));
+
+    printf("Transactions : ");
+    sem_wait(transactions_pool_info->transaction_pool_sem);
+    for (int i = 0; i < transactions_pool_info->id; i++) {
+      print_transaction(transactions[i]);
+    }
+    sem_post(transactions_pool_info->transaction_pool_sem);
     terminate();
     write_logfile("Closing program", "INFO");
     printf("Closing program\n");
@@ -42,7 +58,6 @@ void quiter(int sig) {
 void init() {
 
   signal(SIGINT, quiter);
-
   transactionid = 0;
   char *filename = "config.cfg";
   // read file info
@@ -61,7 +76,8 @@ void init() {
 #endif
   // init shared memory
   // transaction pool
-  shmid = shmget(IPC_PRIVATE,
+  key_t key = ftok("config.cfg", 65);
+  shmid = shmget(key,
                  sizeof(TransactionPool) + sizeof(TransactionPoolEntry) *
                                                config.transactions_per_block,
                  IPC_CREAT | 0700);
@@ -69,8 +85,8 @@ void init() {
     perror("shmget");
     exit(1);
   }
-  transactions_pool = (TransactionPool *)shmat(shmid, NULL, 0);
-  if (transactions_pool == (void *)-1) {
+  transactions_pool_info = (TransactionPool *)shmat(shmid, NULL, 0);
+  if (transactions_pool_info == (void *)-1) {
     perror("shmat");
     exit(1);
   }
@@ -78,10 +94,6 @@ void init() {
   // fill the transaction pool and iterate throw it from
   // 0-TRANSACTION_POOL_SIZE, and repeat => index= ++index %
   // TRANSACTION_POOL_SIZE)
-  shmid_transaction_pool_index =
-      shmget(IPC_PRIVATE, sizeof(int), IPC_CREAT | 0700);
-  index_transaction_pool = (int *)shmat(shmid_transaction_pool_index, NULL, 0);
-  *index_transaction_pool = 0;
 
   // block ledger
   shmid_ledger = shmget(
@@ -104,13 +116,21 @@ void init() {
     exit(1);
   }
 
-  memset(transactions_pool, 0,
-         sizeof(*transactions_pool) +
-             sizeof(Transaction) * config.transactions_per_block);
+  memset(transactions_pool_info, 0,
+         sizeof(TransactionPool) +
+             sizeof(TransactionPoolEntry) * config.transactions_per_block);
   memset(block_ledger, 0,
          sizeof(*block_ledger) + sizeof(Block) * config.blockchain_blocks +
              sizeof(Transaction) * config.transactions_per_block *
                  config.blockchain_blocks);
+  transactions_pool_info->id = 0;
+  transactions_pool_info->transaction_pool_sem =
+      sem_open("/transaction_pool_sem", O_CREAT, 0666, 1);
+  if (transactions_pool_info->transaction_pool_sem == SEM_FAILED) {
+    perror("sem_open");
+    exit(1);
+  }
+  transactions_pool_info->max_size = config.tx_pool_size;
 
   // DONT REMOVE THIS LINE !!!
   // problem : whenever a child process is created, the son gets a copy of the
@@ -126,11 +146,22 @@ void init() {
   if (create_validator_process() == 1) {
     terminate();
   }
+  if (create_pipe() == 1) {
+    terminate();
+  }
   int i;
   for (i = 0; i < 3; i++)
     wait(NULL);
   while (1) {
   }
+}
+
+int create_pipe() {
+  if ((mkfifo(PIPE_NAME, O_CREAT | O_EXCL | 0600) < 0) && (errno != EEXIST)) {
+    perror("Cannot create pie: ");
+    return 1;
+  }
+  return 0;
 }
 
 // function for creating the miner process
@@ -254,23 +285,23 @@ Config processFile(char *filename) {
 }
 
 void terminate() {
-
+  write_logfile("Destroying sem", "TERMINATE");
+  sem_close(transactions_pool_info->transaction_pool_sem);
+  sem_unlink("/transaction_pool_sem");
   write_logfile("Destroying mutex", "TERMINATE");
+  // unlink pipe
+  unlink(PIPE_NAME);
   // destroy mutex
   // NOTE: professor said the pthread_mutex_destroy is enough
   pthread_mutex_destroy(&logfilemutex);
   write_logfile("Detaching shared memory", "TERMINATE");
   // detach shared memory
-  if (shmdt(transactions_pool) == -1)
+  if (shmdt(transactions_pool_info) == -1)
     perror("shmdt transactions_pool");
-  if (shmdt(index_transaction_pool) == -1)
-    perror("shmdt index_transaction_pool");
   if (shmdt(block_ledger) == -1)
     perror("shmdt block_ledger");
   write_logfile("Removing shared memory", "TERMINATE");
   // remove shared memory (flag : IPC_RMID)
-  if (shmctl(shmid_transaction_pool_index, IPC_RMID, NULL) == -1)
-    perror("shmctl transaction_pool_index");
   if (shmctl(shmid_ledger, IPC_RMID, NULL) == -1)
     perror("shmctl block_ledger");
   if (shmctl(shmid, IPC_RMID, NULL) == -1)

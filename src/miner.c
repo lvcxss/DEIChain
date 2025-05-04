@@ -1,15 +1,29 @@
 // Código da autoria de Lucas Oliveira (2023219472) e Dinis Silva
 
 #include "deichain.h"
+#include <fcntl.h>
 #include <pthread.h>
 #include <stdio.h>
+#include <sys/types.h>
 #include <unistd.h>
+
+int cnt = 0;
+
 void *mine(void *idp) {
   int mine_id = *(int *)idp;
-  char msg[256];
-  sprintf(msg, "IM MINING (id : %d)", mine_id);
-  write_logfile(msg, "INFO");
-  printf("%s\n", msg);
+  while (1) {
+    Block new_block;
+    new_block.block_id = mine_id + cnt;
+    new_block.timestamp = time(NULL);
+
+    int pipe_fd = open("VALIDATOR_INPUT", O_WRONLY);
+    if (pipe_fd == -1) {
+      perror("Erro ao abrir o pipe");
+      return NULL;
+    }
+    write(pipe_fd, &new_block, sizeof(Block));
+    close(pipe_fd);
+  }
   return NULL;
 }
 
