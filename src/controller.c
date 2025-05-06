@@ -21,6 +21,8 @@
 #define BUFFER_SIZE 16
 #define DEBUG
 #define PIPE_NAME "VALIDATOR_INPUT"
+
+int pids[3];
 void init();
 void terminate();
 int write_logfile(char *message, char *typemsg);
@@ -29,35 +31,107 @@ int create_validator_process();
 int create_statistics_process();
 int create_pipe();
 Config processFile(char *filename);
+int miner_should_exit = 0;
 
+pthread_condattr_t cattr;
+pthread_mutexattr_t mattr;
 int shmid, shmid_ledger;
-TransactionPool *transactions_pool_info;
-Transaction *transactions_pool;
+TransactionPool *transactions_pool;
+TransactionPoolEntry *transactions;
 Config config;
 BlockchainLedger *block_ledger;
 
-void quiter(int sig) {
-  if (sig == 2) {
-    TransactionPoolEntry *transactions =
-        (TransactionPoolEntry *)((char *)transactions_pool_info +
-                                 sizeof(TransactionPool));
+void terminate() {
+  printf("entered terminate");
+  write_logfile("Destroying sem", "TERMINATE");
 
-    printf("Transactions : ");
-    sem_wait(transactions_pool_info->transaction_pool_sem);
-    for (int i = 0; i < transactions_pool_info->id; i++) {
-      print_transaction(transactions[i]);
+  sem_close(transactions_pool->transaction_pool_sem);
+  sem_unlink("/transaction_pool_sem");
+
+  sem_close(transactions_pool->tp_access_pool);
+  sem_unlink("/top_access_pool");
+
+  // pthread_cond_destroy(&transactions_pool->cond_min);
+  // pthread_mutex_destroy(&transactions_pool->mt_min);
+
+  write_logfile("Destroying mutex", "TERMINATE");
+  unlink(PIPE_NAME);
+  pthread_mutex_destroy(&logfilemutex);
+
+  write_logfile("Detaching shared memory", "TERMINATE");
+  shmdt(transactions_pool);
+  shmdt(block_ledger);
+
+  write_logfile("Removing shared memory", "TERMINATE");
+  shmctl(shmid_ledger, IPC_RMID, NULL);
+  shmctl(shmid, IPC_RMID, NULL);
+
+  write_logfile("Finished terminating", "TERMINATE");
+  printf("\nFinished terminating\n");
+}
+
+void sighandler(int sig) {
+  if (sig == SIGINT) {
+    write_logfile("SIGINT received", "DEBUG");
+    miner_should_exit = 1;
+    pthread_cond_broadcast(&transactions_pool->cond_min);
+
+    for (int i = 0; i < 3; i++) {
+      if (pids[i] > 0) {
+        kill(pids[i], SIGTERM);
+      }
     }
-    sem_post(transactions_pool_info->transaction_pool_sem);
+
+    for (int i = 0; i < 3; i++) {
+      if (pids[i] > 0) {
+        int status;
+        waitpid(pids[i], &status, 0);
+      }
+    }
+    printf("All children terminated\n");
+    if (transactions_pool->atual > 0) {
+      printf("Transactions : \n");
+      sem_wait(transactions_pool->transaction_pool_sem);
+      for (unsigned int i = 0; i < transactions_pool->atual; i++) {
+        print_transaction(transactions[i]);
+      }
+      sem_post(transactions_pool->transaction_pool_sem);
+    }
     terminate();
     write_logfile("Closing program", "INFO");
     printf("Closing program\n");
     exit(0);
   }
+  // TODO: verify if we are iterating in the correct way
+  if (sig == SIGUSR1) {
+    Block *blocks = (Block *)((char *)block_ledger + sizeof(BlockchainLedger));
+    for (int i = 0; i < block_ledger->num_blocks; i++) {
+      blocks = blocks + (sizeof(BlockchainLedger) +
+                         sizeof(Transaction) * config.transactions_per_block);
+    }
+  }
 }
 
 void init() {
+  signal(SIGCHLD, SIG_IGN);
+  struct sigaction sa_int;
+  sa_int.sa_handler = sighandler;
+  sigemptyset(&sa_int.sa_mask);
+  sa_int.sa_flags = 0;
+  if (sigaction(SIGINT, &sa_int, NULL) == -1) {
+    perror("sigaction");
+    exit(1);
+  }
 
-  signal(SIGINT, quiter);
+  // Configuração do sigaction para SIGUSR1
+  struct sigaction sa_usr1;
+  sa_usr1.sa_handler = sighandler;
+  sigemptyset(&sa_usr1.sa_mask);
+  sa_usr1.sa_flags = 0;
+  if (sigaction(SIGUSR1, &sa_usr1, NULL) == -1) {
+    perror("sigaction");
+    exit(1);
+  }
   transactionid = 0;
   char *filename = "config.cfg";
   // read file info
@@ -85,8 +159,8 @@ void init() {
     perror("shmget");
     exit(1);
   }
-  transactions_pool_info = (TransactionPool *)shmat(shmid, NULL, 0);
-  if (transactions_pool_info == (void *)-1) {
+  transactions_pool = (TransactionPool *)shmat(shmid, NULL, 0);
+  if (transactions_pool == (void *)-1) {
     perror("shmat");
     exit(1);
   }
@@ -94,6 +168,11 @@ void init() {
   // fill the transaction pool and iterate throw it from
   // 0-TRANSACTION_POOL_SIZE, and repeat => index= ++index %
   // TRANSACTION_POOL_SIZE)
+  // cv for miners
+  pthread_mutexattr_init(&mattr);
+  pthread_mutexattr_setpshared(&mattr, PTHREAD_PROCESS_SHARED);
+  pthread_condattr_init(&cattr);
+  pthread_condattr_setpshared(&cattr, PTHREAD_PROCESS_SHARED);
 
   // block ledger
   shmid_ledger = shmget(
@@ -116,21 +195,33 @@ void init() {
     exit(1);
   }
 
-  memset(transactions_pool_info, 0,
+  memset(transactions_pool, 0,
          sizeof(TransactionPool) +
              sizeof(TransactionPoolEntry) * config.transactions_per_block);
   memset(block_ledger, 0,
          sizeof(*block_ledger) + sizeof(Block) * config.blockchain_blocks +
              sizeof(Transaction) * config.transactions_per_block *
                  config.blockchain_blocks);
-  transactions_pool_info->id = 0;
-  transactions_pool_info->transaction_pool_sem =
+
+  pthread_mutex_init(&transactions_pool->mt_min, &mattr);
+  pthread_cond_init(&transactions_pool->cond_min, &cattr);
+  transactions = (TransactionPoolEntry *)((char *)transactions_pool +
+                                          sizeof(TransactionPool));
+  transactions_pool->atual = 0;
+  transactions_pool->transaction_pool_sem =
       sem_open("/transaction_pool_sem", O_CREAT, 0666, 1);
-  if (transactions_pool_info->transaction_pool_sem == SEM_FAILED) {
+  if (transactions_pool->transaction_pool_sem == SEM_FAILED) {
     perror("sem_open");
     exit(1);
   }
-  transactions_pool_info->max_size = config.tx_pool_size;
+  transactions_pool->tp_access_pool =
+      sem_open("/tp_access_pool", O_CREAT, 0666, 2);
+  if (transactions_pool->tp_access_pool == SEM_FAILED) {
+    perror("sem_open");
+    exit(1);
+  }
+
+  transactions_pool->max_size = config.tx_pool_size;
 
   // DONT REMOVE THIS LINE !!!
   // problem : whenever a child process is created, the son gets a copy of the
@@ -149,9 +240,6 @@ void init() {
   if (create_pipe() == 1) {
     terminate();
   }
-  int i;
-  for (i = 0; i < 3; i++)
-    wait(NULL);
   while (1) {
   }
 }
@@ -173,6 +261,7 @@ int create_miner_process(int nt) {
     write_logfile("Error creating miner process", "ERROR");
     return 1;
   } else if (pid == 0) {
+    signal(SIGINT, SIG_IGN);
     write_logfile("Miner process created", "INIT");
     printf("Miner process created\n");
     // function that starts all miner threads
@@ -180,6 +269,7 @@ int create_miner_process(int nt) {
     write_logfile("Miner process terminated", "TERMINATE");
     exit(0);
   }
+  pids[0] = pid;
   return 0;
 }
 
@@ -192,12 +282,14 @@ int create_statistics_process() {
     write_logfile("Error creating statistics process", "ERROR");
     return 1;
   } else if (pid == 0) {
+    signal(SIGINT, SIG_IGN);
     write_logfile("Statistics process created", "INIT");
     printf("Statistics process created\n");
     print_statistics();
     write_logfile("Statistics process terminated", "TERMINATE");
     exit(0);
   }
+  pids[1] = pid;
   return 0;
 }
 
@@ -209,12 +301,14 @@ int create_validator_process() {
     write_logfile("Error creating validator process", "ERROR");
     return 1;
   } else if (pid == 0) {
+    signal(SIGINT, SIG_IGN);
     write_logfile("Validator process created", "INIT");
     printf("Validator process created\n");
     validator();
     write_logfile("Validator process terminated", "TERMINATE");
     exit(0);
   }
+  pids[2] = pid;
   return 0;
 }
 
@@ -282,30 +376,4 @@ Config processFile(char *filename) {
   }
   fclose(config);
   return cfg;
-}
-
-void terminate() {
-  write_logfile("Destroying sem", "TERMINATE");
-  sem_close(transactions_pool_info->transaction_pool_sem);
-  sem_unlink("/transaction_pool_sem");
-  write_logfile("Destroying mutex", "TERMINATE");
-  // unlink pipe
-  unlink(PIPE_NAME);
-  // destroy mutex
-  // NOTE: professor said the pthread_mutex_destroy is enough
-  pthread_mutex_destroy(&logfilemutex);
-  write_logfile("Detaching shared memory", "TERMINATE");
-  // detach shared memory
-  if (shmdt(transactions_pool_info) == -1)
-    perror("shmdt transactions_pool");
-  if (shmdt(block_ledger) == -1)
-    perror("shmdt block_ledger");
-  write_logfile("Removing shared memory", "TERMINATE");
-  // remove shared memory (flag : IPC_RMID)
-  if (shmctl(shmid_ledger, IPC_RMID, NULL) == -1)
-    perror("shmctl block_ledger");
-  if (shmctl(shmid, IPC_RMID, NULL) == -1)
-    perror("shmctl transactions_pool");
-  write_logfile("Finished terminating", "TERMINATE");
-  printf("\nFinished terminating\n");
 }

@@ -4,8 +4,8 @@
 #include <semaphore.h>
 #include <stdbool.h>
 #include <time.h>
-
-int write_logfile(char *message, char *typemsg);
+#define HASH_SIZE 65
+#define TX_ID_LEN 64
 // data strutcutes usued in the project
 typedef struct {
   unsigned int num_miners;
@@ -15,7 +15,7 @@ typedef struct {
 } Config;
 
 typedef struct {
-  int transaction_id;
+  char transaction_id[TX_ID_LEN];
   int reward;
   pid_t sender_id;
   int receiver_id;
@@ -30,22 +30,26 @@ typedef struct {
 } TransactionPoolEntry;
 
 typedef struct {
-  int id, max_size;
+  int id;
+  unsigned int atual, max_size;
   sem_t *transaction_pool_sem;
+  sem_t *tp_access_pool;
+  // cv for minimum transactions (miner should wait for this)
+  pthread_mutex_t mt_min;
+  pthread_cond_t cond_min;
 } TransactionPool;
+
 typedef struct {
-  int block_id;
+  char block_id[TX_ID_LEN];
   time_t timestamp;
-  int nonce;
-  char previous_hash[65];
-  Transaction transactions[];
+  char previous_hash[HASH_SIZE];
+  unsigned int nonce;
 } Block;
 
 typedef struct {
   sem_t ledger_sem;
   int total_blocks;
   int num_blocks;
-  Block blocks[];
 } BlockchainLedger;
 
 extern int shmid;
@@ -53,11 +57,14 @@ extern int shmidtransactions;
 extern int shmidledger;
 extern int shmidblockindex;
 extern int *transactionid;
-extern int *transactions_pool_index;
 extern int *block_index;
+extern int miner_should_exit;
 extern Config config;
 extern pthread_mutex_t logfilemutex;
-extern TransactionPool *transcations_pool;
+extern TransactionPool *transactions_pool;
+extern TransactionPoolEntry *transactions;
 extern BlockchainLedger *block_ledger;
 
+int write_logfile(char *message, char *typemsg);
+void showBlock(Block *block);
 #endif
