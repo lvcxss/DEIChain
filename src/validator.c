@@ -3,8 +3,13 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
- 
-int write_statistics();
+
+
+//integrate with the pow.c - puppet function
+int verify_nonce(Block * block){
+  return rand() % 2 ;
+}
+int write_statistics(); //  needs to be implemented
 //verifying pow
 //verifying hash 
 // ageing transactions
@@ -13,25 +18,29 @@ void validator() {
   //para evitar 
   int validated_blocks,invalidated_blocks,index = 0;
   int fd;
-  Block received_block;
+  Block * received_block = malloc(sizeof(Block)+ sizeof(Transaction) * config.transactions_per_block);
   if ((fd = open("VALIDATOR_INPUT",O_RDONLY))<0)
     {
       perror("Cannot open pipe:");
       return 1;
     }
-    read(fd,&received_block,sizeof(Block)+ sizeof(Transaction) * config.transactions_per_block);
+
+    read(fd,received_block,sizeof(Block)+ sizeof(Transaction) * config.transactions_per_block);
     close(fd);
-    Transaction * block_transactions = received_block.transactions; // casting of the transactions in block
+    if(verify_nonce(received_block))
+      write_statistics("Invalid block detected", "ERROR");
+      return 1;
+    Transaction * block_transactions = received_block->transactions; // casting of the transactions in block
     TransactionPoolEntry * tx_pool_entries = (TransactionPoolEntry *)((char*) transactions_pool); 
     sem_wait(&(block_ledger->ledger_sem));
-    if(strcmp (block_ledger->blocks[index].previous_hash,received_block.previous_hash )!= 0)
-      write_statistics("Invalid block detected", "ERROR");
+    if(strcmp (block_ledger->blocks[index].previous_hash,received_block->previous_hash )!= 0)
+      write_statistics("Invalid block detected", "ERROR"); // isnt doing shit
       sem_post(&(block_ledger->ledger_sem));
       return 1;
     int tx_idx [config.transactions_per_block];
     for(int i = 0; i<config.transactions_per_block;i++)
     {
-      for (int j = 0;j<config.tx_pool_size;) {
+      for (int j = 0;j<config.tx_pool_size;j++) {
 
         if(block_transactions[i].transaction_id != tx_pool_entries->transaction.transaction_id)
         {
@@ -54,6 +63,8 @@ void validator() {
     {
       (tx_pool_entries+tx_idx[i])->occupied = 1;
     }
+    index++;
+    block_ledger->blocks[index];
     sem_post(&(block_ledger->ledger_sem))
 }
 
