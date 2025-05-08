@@ -32,7 +32,7 @@ Config processFile(char *filename);
 
 int shmid, shmid_ledger;
 TransactionPool *transactions_pool_info;
-Transaction *transactions_pool;
+Transaction *transactions_pool; 
 Config config;
 BlockchainLedger *block_ledger;
 
@@ -158,7 +158,7 @@ void init() {
 
 int create_pipe() {
   if ((mkfifo(PIPE_NAME, O_CREAT | O_EXCL | 0600) < 0) && (errno != EEXIST)) {
-    perror("Cannot create pie: ");
+    perror("Cannot create pipe: ");
     return 1;
   }
   return 0;

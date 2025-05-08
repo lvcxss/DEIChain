@@ -4,6 +4,7 @@
 #include <semaphore.h>
 #include <stdbool.h>
 #include <time.h>
+#include <pthread.h>
 
 int write_logfile(char *message, char *typemsg);
 // data strutcutes usued in the project
@@ -33,13 +34,22 @@ typedef struct {
   int id, max_size;
   sem_t *transaction_pool_sem;
 } TransactionPool;
+
 typedef struct {
   int block_id;
   time_t timestamp;
   int nonce;
   char previous_hash[65];
+  char initial_hash[65]; //maybe not necessary but not sure
   Transaction transactions[];
 } Block;
+
+typedef struct{
+  long int result; // using long int as an indicator of result
+  int time_taken;
+  long int miner_id;
+  long int block_credit;
+}ValidationMessage;
 
 typedef struct {
   sem_t ledger_sem;
@@ -57,7 +67,7 @@ extern int *transactions_pool_index;
 extern int *block_index;
 extern Config config;
 extern pthread_mutex_t logfilemutex;
-extern TransactionPool *transcations_pool;
-extern BlockchainLedger *block_ledger;
+extern TransactionPool *transactions_pool; // já é o ponteiro para as transactions ?
+extern BlockchainLedger *block_ledger; 
 
 #endif
