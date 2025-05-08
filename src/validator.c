@@ -50,11 +50,11 @@ void validator() {
         tx_idx[i] = j;
       }
     }
-    for(int i = 0;i<config.tx_pool_size:i++)
+    for(int i = 0;i<config.tx_pool_size;i++)
     {
-      (tx_pool_entries+sizeof(TransactionPoolEntry)*i)->occupied == 0;
+      (tx_pool_entries+tx_idx[i])->occupied = 1;
     }
-
+    sem_post(&(block_ledger->ledger_sem))
 }
 
 int write_statistics(char * message,char * typemsg);
