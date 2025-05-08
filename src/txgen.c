@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
   }
   char msg[256];
   Transaction t;
-  int id;
+  unsigned int id;
   int done = 0;
   while (!done) {
     t = create_transaction(reward, 4);
@@ -75,15 +75,16 @@ int main(int argc, char *argv[]) {
     ent.occupied = 1;
     printf("%s\n", msg);
     sem_wait(sem);
-    id = transaction_pool->id;
-    if (transaction_pool->id == transaction_pool->max_size) {
+
+    id = transaction_pool->atual;
+    if (id == transaction_pool->max_size) {
       sem_post(sem);
       done = 1;
     }
     transactions[id] = ent;
-    printf("%d", transaction_pool->id);
-    transaction_pool->id++;
-
+    printf("%d", transaction_pool->atual);
+    transaction_pool->atual++;
+    pthread_cond_broadcast(&transaction_pool->cond_min);
     sem_post(sem);
     write_logfile(msg, "INFO");
     sleep(sleepTime / 1000);

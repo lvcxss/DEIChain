@@ -1,6 +1,6 @@
 # gcc settings
 CC = gcc
-CFLAGS = -Wall -Wextra -g -pthread
+CFLAGS = -Wall -Wextra -g -pthread -lcrypto
 
 # variables (for better organization during the creation of the project)
 TARGET = main

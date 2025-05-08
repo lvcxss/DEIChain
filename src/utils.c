@@ -6,13 +6,17 @@
 
 pthread_mutex_t logfilemutex = PTHREAD_MUTEX_INITIALIZER;
 
+void showBlock(Block *block) {
+  printf("Block : %s\n", block->block_id);
+  printf("Previous Block : %s\n", block->previous_hash);
+  printf("Nonce : %d\n", block->nonce);
+  printf("Timestamp: %ld\n", block->timestamp);
+}
 // by now this file just has this function but it will have more general
 // functions
 int write_logfile(char *message, char *typemsg) {
-
   // timestamp for the logfile
   time_t raw = time(NULL);
-
   struct tm timeinfo;
   if (raw == -1) {
     printf("Error: Could not get current time\n");

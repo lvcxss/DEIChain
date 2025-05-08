@@ -3,10 +3,17 @@
 
 #include <semaphore.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
+<<<<<<< HEAD
 #include <pthread.h>
 
 int write_logfile(char *message, char *typemsg);
+=======
+#define HASH_SIZE 65
+#define TX_ID_LEN 64
+>>>>>>> 3ad10e755fc3e889ba1ea3d87eb055b8e1942635
 // data strutcutes usued in the project
 typedef struct {
   unsigned int num_miners;
@@ -16,7 +23,7 @@ typedef struct {
 } Config;
 
 typedef struct {
-  int transaction_id;
+  char transaction_id[TX_ID_LEN];
   int reward;
   pid_t sender_id;
   int receiver_id;
@@ -31,17 +38,27 @@ typedef struct {
 } TransactionPoolEntry;
 
 typedef struct {
-  int id, max_size;
+  int id;
+  unsigned int atual, max_size;
   sem_t *transaction_pool_sem;
+  sem_t *tp_access_pool;
+  // cv for minimum transactions (miner should wait for this)
+  pthread_mutex_t mt_min;
+  pthread_cond_t cond_min;
 } TransactionPool;
 
 typedef struct {
-  int block_id;
+  char block_id[TX_ID_LEN];
   time_t timestamp;
+<<<<<<< HEAD
   int nonce;
   char previous_hash[65];
   char initial_hash[65]; //maybe not necessary but not sure
   Transaction transactions[];
+=======
+  char previous_hash[HASH_SIZE];
+  unsigned int nonce;
+>>>>>>> 3ad10e755fc3e889ba1ea3d87eb055b8e1942635
 } Block;
 
 typedef struct{
@@ -52,22 +69,43 @@ typedef struct{
 }ValidationMessage;
 
 typedef struct {
-  sem_t ledger_sem;
+  sem_t *ledger_sem;
   int total_blocks;
   int num_blocks;
-  Block blocks[];
+  char hash_atual[HASH_SIZE];
 } BlockchainLedger;
+
+typedef struct {
+  long int result;
+  int time_taken;
+  long int miner_id;
+  long int block_credit;
+} ValidationMessage;
 
 extern int shmid;
 extern int shmidtransactions;
 extern int shmidledger;
 extern int shmidblockindex;
 extern int *transactionid;
-extern int *transactions_pool_index;
 extern int *block_index;
 extern Config config;
 extern pthread_mutex_t logfilemutex;
+<<<<<<< HEAD
 extern Transaction *transactions_pool; // já é o ponteiro para as transactions ?
 extern BlockchainLedger *block_ledger; 
+=======
+extern TransactionPool *transactions_pool;
+extern TransactionPoolEntry *transactions;
+extern BlockchainLedger *block_ledger;
+>>>>>>> 3ad10e755fc3e889ba1ea3d87eb055b8e1942635
 
+int write_logfile(char *message, char *typemsg);
+void showBlock(Block *block);
+static inline size_t get_transaction_block_size() {
+  if (config.transactions_per_block == 0) {
+    perror("Must set the 'transactions_per_block' variable before using!\n");
+    exit(-1);
+  }
+  return sizeof(Block) + config.transactions_per_block * sizeof(Transaction);
+}
 #endif
