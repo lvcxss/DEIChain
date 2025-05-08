@@ -3922,3 +3922,2013 @@
 [TERMINATE] (2025-05-06 21:43:06) Removing shared memory
 [TERMINATE] (2025-05-06 21:43:06) Finished terminating
 [INFO] (2025-05-06 21:43:06) Closing program
+[INIT] (2025-05-06 21:46:58) Program started
+[INIT] (2025-05-06 21:46:58) Started reading configuration file
+[INFO] (2025-05-06 21:46:58) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-06 21:46:58) Miner process created
+[INIT] (2025-05-06 21:46:58) Statistics process created
+[INIT] (2025-05-06 21:46:58) Validator process created
+[INFO] (2025-05-06 21:46:58) im statistics!!!
+[TERMINATE] (2025-05-06 21:46:58) Statistics process terminated
+[INIT] (2025-05-06 21:46:58) Validator process
+[TERMINATE] (2025-05-06 21:46:58) Validator process terminated
+[INIT] (2025-05-06 21:46:58) Miner 1 created
+[INIT] (2025-05-06 21:46:59) Miner 2 created
+[INFO] (2025-05-06 21:47:05) Transaction with reward 1 and sleep time 1999 pid: 7942 created
+[INIT] (2025-05-06 21:47:04) Miner 3 created
+[INIT] (2025-05-06 21:47:05) Miner 4 created
+[INFO] (2025-05-06 21:47:06) Transaction with reward 1 and sleep time 1999 pid: 7942 created
+[INFO] (2025-05-06 21:47:07) Transaction with reward 1 and sleep time 1999 pid: 7942 created
+[INFO] (2025-05-06 21:47:08) Transaction with reward 1 and sleep time 1999 pid: 7942 created
+[INFO] (2025-05-06 21:47:09) Transaction with reward 1 and sleep time 1999 pid: 7942 created
+[INFO] (2025-05-06 21:47:10) Transaction with reward 1 and sleep time 1999 pid: 7942 created
+[INFO] (2025-05-06 21:47:11) SIGINT received on transaction generator with id: 7942.
+[DEBUG] (2025-05-06 21:47:14) SIGINT received
+[TERMINATE] (2025-05-06 21:47:18) Destroying sem
+[TERMINATE] (2025-05-06 21:47:18) Destroying mutex
+[TERMINATE] (2025-05-06 21:47:18) Detaching shared memory
+[TERMINATE] (2025-05-06 21:47:18) Removing shared memory
+[TERMINATE] (2025-05-06 21:47:18) Finished terminating
+[INFO] (2025-05-06 21:47:18) Closing program
+[INIT] (2025-05-06 21:48:24) Program started
+[INIT] (2025-05-06 21:48:24) Started reading configuration file
+[INFO] (2025-05-06 21:48:24) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-06 21:48:24) Miner process created
+[INIT] (2025-05-06 21:48:24) Statistics process created
+[INIT] (2025-05-06 21:48:24) Validator process created
+[INFO] (2025-05-06 21:48:24) im statistics!!!
+[TERMINATE] (2025-05-06 21:48:24) Statistics process terminated
+[INIT] (2025-05-06 21:48:24) Validator process
+[TERMINATE] (2025-05-06 21:48:24) Validator process terminated
+[INIT] (2025-05-06 21:48:24) Miner 1 created
+[INIT] (2025-05-06 21:48:25) Miner 2 created
+[INIT] (2025-05-06 21:48:30) Miner 3 created
+[DEBUG] (2025-05-06 21:48:32) SIGINT received
+[TERMINATE] (2025-05-06 21:48:32) Destroying sem
+[TERMINATE] (2025-05-06 21:48:32) Destroying mutex
+[TERMINATE] (2025-05-06 21:48:32) Detaching shared memory
+[TERMINATE] (2025-05-06 21:48:32) Removing shared memory
+[TERMINATE] (2025-05-06 21:48:32) Finished terminating
+[INFO] (2025-05-06 21:48:32) Closing program
+[INIT] (2025-05-06 21:55:06) Program started
+[INIT] (2025-05-06 21:55:06) Started reading configuration file
+[INFO] (2025-05-06 21:55:06) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-06 21:55:06) Miner process created
+[INIT] (2025-05-06 21:55:06) Statistics process created
+[INFO] (2025-05-06 21:55:06) im statistics!!!
+[TERMINATE] (2025-05-06 21:55:06) Statistics process terminated
+[INIT] (2025-05-06 21:55:06) Validator process created
+[INIT] (2025-05-06 21:55:06) Miner 1 created
+[INIT] (2025-05-06 21:55:06) Validator process
+[TERMINATE] (2025-05-06 21:55:06) Validator process terminated
+[INIT] (2025-05-06 21:55:06) Miner 2 created
+[INIT] (2025-05-06 21:55:06) Miner 3 created
+[INIT] (2025-05-06 21:55:06) Miner 4 created
+[DEBUG] (2025-05-06 21:55:06) SIGINT received
+[INIT] (2025-05-06 21:58:16) Program started
+[INIT] (2025-05-06 21:58:16) Started reading configuration file
+[INFO] (2025-05-06 21:58:16) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-06 21:58:16) Miner process created
+[INIT] (2025-05-06 21:58:16) Miner 1 created
+[INIT] (2025-05-06 21:58:16) Statistics process created
+[INFO] (2025-05-06 21:58:16) im statistics!!!
+[INIT] (2025-05-06 21:58:16) Miner 2 created
+[TERMINATE] (2025-05-06 21:58:16) Statistics process terminated
+[INIT] (2025-05-06 21:58:16) Validator process created
+[INIT] (2025-05-06 21:58:16) Miner 3 created
+[INIT] (2025-05-06 21:58:16) Validator process
+[TERMINATE] (2025-05-06 21:58:16) Validator process terminated
+[INIT] (2025-05-06 21:58:16) Miner 4 created
+[DEBUG] (2025-05-06 21:58:17) SIGINT received
+[INIT] (2025-05-06 22:00:58) Program started
+[INIT] (2025-05-06 22:00:58) Started reading configuration file
+[INFO] (2025-05-06 22:00:58) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-06 22:00:58) Statistics process created
+[INFO] (2025-05-06 22:00:58) im statistics!!!
+[TERMINATE] (2025-05-06 22:00:58) Statistics process terminated
+[INIT] (2025-05-06 22:00:58) Validator process created
+[INIT] (2025-05-06 22:00:58) Validator process
+[TERMINATE] (2025-05-06 22:00:58) Validator process terminated
+[INIT] (2025-05-06 22:00:58) Miner process created
+[INIT] (2025-05-06 22:00:58) Miner 1 created
+[INIT] (2025-05-06 22:00:58) Miner 2 created
+[INIT] (2025-05-06 22:00:58) Miner 3 created
+[INIT] (2025-05-06 22:00:58) Miner 4 created
+[DEBUG] (2025-05-06 22:01:36) SIGINT received
+[INIT] (2025-05-06 22:02:31) Program started
+[INIT] (2025-05-06 22:02:31) Started reading configuration file
+[INFO] (2025-05-06 22:02:31) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-06 22:02:31) Miner process created
+[INIT] (2025-05-06 22:02:31) Miner 1 created
+[INIT] (2025-05-06 22:02:31) Statistics process created
+[INFO] (2025-05-06 22:02:31) im statistics!!!
+[INIT] (2025-05-06 22:02:31) Miner 2 created
+[TERMINATE] (2025-05-06 22:02:31) Statistics process terminated
+[INIT] (2025-05-06 22:02:31) Miner 3 created
+[INIT] (2025-05-06 22:02:31) Validator process created
+[INIT] (2025-05-06 22:02:31) Miner 4 created
+[INIT] (2025-05-06 22:02:31) Validator process
+[TERMINATE] (2025-05-06 22:02:31) Validator process terminated
+[DEBUG] (2025-05-06 22:02:32) SIGINT received
+[INFO] (2025-05-06 22:02:32) Miner 1 finished
+[INFO] (2025-05-06 22:02:32) Miner 2 finished
+[INFO] (2025-05-06 22:02:32) Miner 3 finished
+[INFO] (2025-05-06 22:02:32) Miner 4 finished
+[TERMINATE] (2025-05-06 22:02:32) Miner process terminated
+[TERMINATE] (2025-05-06 22:02:32) Destroying sem
+[TERMINATE] (2025-05-06 22:02:32) Destroying mutex
+[TERMINATE] (2025-05-06 22:02:32) Detaching shared memory
+[TERMINATE] (2025-05-06 22:02:32) Removing shared memory
+[TERMINATE] (2025-05-06 22:02:32) Finished terminating
+[INFO] (2025-05-06 22:02:32) Closing program
+[INIT] (2025-05-06 22:03:07) Program started
+[INIT] (2025-05-06 22:03:07) Started reading configuration file
+[INFO] (2025-05-06 22:03:07) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-06 22:03:07) Miner process created
+[INIT] (2025-05-06 22:03:07) Statistics process created
+[INFO] (2025-05-06 22:03:07) im statistics!!!
+[TERMINATE] (2025-05-06 22:03:07) Statistics process terminated
+[INIT] (2025-05-06 22:03:07) Validator process created
+[INIT] (2025-05-06 22:03:07) Validator process
+[TERMINATE] (2025-05-06 22:03:07) Validator process terminated
+[INIT] (2025-05-06 22:03:07) Miner 1 created
+[INIT] (2025-05-06 22:03:07) Miner 2 created
+[INIT] (2025-05-06 22:03:07) Miner 3 created
+[INIT] (2025-05-06 22:03:07) Miner 4 created
+[DEBUG] (2025-05-06 22:03:13) SIGINT received
+[INFO] (2025-05-06 22:03:13) Miner 1 finished
+[INFO] (2025-05-06 22:03:13) Miner 2 finished
+[INFO] (2025-05-06 22:03:13) Miner 3 finished
+[INFO] (2025-05-06 22:03:13) Miner 4 finished
+[TERMINATE] (2025-05-06 22:03:13) Miner process terminated
+[TERMINATE] (2025-05-06 22:03:13) Destroying sem
+[TERMINATE] (2025-05-06 22:03:13) Destroying mutex
+[TERMINATE] (2025-05-06 22:03:13) Detaching shared memory
+[TERMINATE] (2025-05-06 22:03:13) Removing shared memory
+[TERMINATE] (2025-05-06 22:03:13) Finished terminating
+[INFO] (2025-05-06 22:03:13) Closing program
+[INIT] (2025-05-06 22:03:57) Program started
+[INIT] (2025-05-06 22:03:57) Started reading configuration file
+[INFO] (2025-05-06 22:03:57) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-06 22:03:57) Miner process created
+[INIT] (2025-05-06 22:03:57) Statistics process created
+[INFO] (2025-05-06 22:03:57) im statistics!!!
+[TERMINATE] (2025-05-06 22:03:57) Statistics process terminated
+[INIT] (2025-05-06 22:03:57) Validator process created
+[INIT] (2025-05-06 22:03:57) Validator process
+[TERMINATE] (2025-05-06 22:03:57) Validator process terminated
+[INIT] (2025-05-06 22:03:57) Miner 1 created
+[INIT] (2025-05-06 22:03:57) Miner 2 created
+[INIT] (2025-05-06 22:03:57) Miner 3 created
+[INIT] (2025-05-06 22:03:57) Miner 4 created
+[DEBUG] (2025-05-06 22:04:04) SIGINT received
+[INFO] (2025-05-06 22:04:04) Miner 1 finished
+[INFO] (2025-05-06 22:04:04) Miner 2 finished
+[INFO] (2025-05-06 22:04:04) Miner 3 finished
+[INFO] (2025-05-06 22:04:04) Miner 4 finished
+[TERMINATE] (2025-05-06 22:04:04) Miner process terminated
+[TERMINATE] (2025-05-06 22:04:04) Destroying sem
+[TERMINATE] (2025-05-06 22:04:04) Destroying mutex
+[TERMINATE] (2025-05-06 22:04:04) Detaching shared memory
+[TERMINATE] (2025-05-06 22:04:04) Removing shared memory
+[TERMINATE] (2025-05-06 22:04:04) Finished terminating
+[INFO] (2025-05-06 22:04:04) Closing program
+[INIT] (2025-05-06 22:06:35) Program started
+[INIT] (2025-05-06 22:06:35) Started reading configuration file
+[INFO] (2025-05-06 22:06:35) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-06 22:06:35) Miner process created
+[INIT] (2025-05-06 22:06:35) Statistics process created
+[INFO] (2025-05-06 22:06:35) im statistics!!!
+[TERMINATE] (2025-05-06 22:06:35) Statistics process terminated
+[INIT] (2025-05-06 22:06:35) Validator process created
+[INIT] (2025-05-06 22:06:35) Validator process
+[TERMINATE] (2025-05-06 22:06:35) Validator process terminated
+[INIT] (2025-05-06 22:06:35) Miner 1 created
+[INIT] (2025-05-06 22:06:35) Miner 2 created
+[INIT] (2025-05-06 22:06:35) Miner 3 created
+[INIT] (2025-05-06 22:06:35) Miner 4 created
+[DEBUG] (2025-05-06 22:06:42) SIGINT received
+[INFO] (2025-05-06 22:06:42) Miner 1 finished
+[INFO] (2025-05-06 22:06:42) Miner 2 finished
+[INFO] (2025-05-06 22:06:42) Miner 3 finished
+[INFO] (2025-05-06 22:06:42) Miner 4 finished
+[TERMINATE] (2025-05-06 22:06:42) Miner process terminated
+[TERMINATE] (2025-05-06 22:06:42) Destroying sem
+[TERMINATE] (2025-05-06 22:06:42) Destroying mutex
+[TERMINATE] (2025-05-06 22:06:42) Detaching shared memory
+[TERMINATE] (2025-05-06 22:06:42) Removing shared memory
+[TERMINATE] (2025-05-06 22:06:42) Finished terminating
+[INFO] (2025-05-06 22:06:42) Closing program
+[INIT] (2025-05-06 22:27:44) Program started
+[INIT] (2025-05-06 22:27:44) Started reading configuration file
+[INFO] (2025-05-06 22:27:44) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-06 22:27:44) Miner process created
+[INIT] (2025-05-06 22:27:44) Statistics process created
+[INIT] (2025-05-06 22:27:44) Miner 1 created
+[INFO] (2025-05-06 22:27:44) im statistics!!!
+[INIT] (2025-05-06 22:27:44) Validator process created
+[TERMINATE] (2025-05-06 22:27:44) Statistics process terminated
+[INIT] (2025-05-06 22:27:44) Validator process
+[INIT] (2025-05-06 22:27:44) Miner 2 created
+[TERMINATE] (2025-05-06 22:27:44) Validator process terminated
+[INIT] (2025-05-06 22:27:44) Miner 3 created
+[INIT] (2025-05-06 22:27:44) Miner 4 created
+[DEBUG] (2025-05-06 22:27:46) SIGINT received
+[INFO] (2025-05-06 22:27:46) Miner 1 finished
+[INFO] (2025-05-06 22:27:46) Miner 2 finished
+[INFO] (2025-05-06 22:27:46) Miner 3 finished
+[INFO] (2025-05-06 22:27:46) Miner 4 finished
+[TERMINATE] (2025-05-06 22:27:46) Miner process terminated
+[TERMINATE] (2025-05-06 22:27:46) Destroying sem
+[TERMINATE] (2025-05-06 22:27:46) Destroying mutex
+[TERMINATE] (2025-05-06 22:27:46) Detaching shared memory
+[TERMINATE] (2025-05-06 22:27:46) Removing shared memory
+[TERMINATE] (2025-05-06 22:27:46) Finished terminating
+[INFO] (2025-05-06 22:27:46) Closing program
+[INIT] (2025-05-07 23:04:23) Program started
+[INIT] (2025-05-07 23:04:23) Started reading configuration file
+[INFO] (2025-05-07 23:04:23) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-07 23:04:23) Miner process created
+[INIT] (2025-05-07 23:04:23) Statistics process created
+[INFO] (2025-05-07 23:04:23) im statistics!!!
+[TERMINATE] (2025-05-07 23:04:23) Statistics process terminated
+[INIT] (2025-05-07 23:04:23) Validator process created
+[INIT] (2025-05-07 23:04:23) Validator process
+[TERMINATE] (2025-05-07 23:04:23) Validator process terminated
+[INIT] (2025-05-07 23:04:23) Miner 1 created
+[INIT] (2025-05-07 23:04:23) Miner 2 created
+[INIT] (2025-05-07 23:04:23) Miner 3 created
+[INIT] (2025-05-07 23:04:23) Miner 4 created
+[DEBUG] (2025-05-07 23:04:24) SIGINT received
+[INFO] (2025-05-07 23:04:24) Miner 1 finished
+[INFO] (2025-05-07 23:04:24) Miner 2 finished
+[INFO] (2025-05-07 23:04:24) Miner 3 finished
+[INFO] (2025-05-07 23:04:24) Miner 4 finished
+[TERMINATE] (2025-05-07 23:04:24) Miner process terminated
+[TERMINATE] (2025-05-07 23:04:24) Destroying sem
+[TERMINATE] (2025-05-07 23:04:24) Destroying mutex
+[TERMINATE] (2025-05-07 23:04:24) Detaching shared memory
+[TERMINATE] (2025-05-07 23:04:24) Removing shared memory
+[TERMINATE] (2025-05-07 23:04:24) Finished terminating
+[INFO] (2025-05-07 23:04:24) Closing program
+[INIT] (2025-05-07 23:04:34) Program started
+[INIT] (2025-05-07 23:04:34) Started reading configuration file
+[INFO] (2025-05-07 23:04:34) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-07 23:04:34) Miner process created
+[INIT] (2025-05-07 23:04:34) Statistics process created
+[INIT] (2025-05-07 23:04:34) Validator process created
+[INFO] (2025-05-07 23:04:34) im statistics!!!
+[TERMINATE] (2025-05-07 23:04:34) Statistics process terminated
+[INIT] (2025-05-07 23:04:34) Validator process
+[TERMINATE] (2025-05-07 23:04:34) Validator process terminated
+[INIT] (2025-05-07 23:04:34) Miner 1 created
+[INIT] (2025-05-07 23:04:35) Miner 2 created
+[INIT] (2025-05-07 23:04:35) Miner 3 created
+[INIT] (2025-05-07 23:04:35) Miner 4 created
+[DEBUG] (2025-05-07 23:04:38) SIGINT received
+[INFO] (2025-05-07 23:04:38) Miner 1 finished
+[INFO] (2025-05-07 23:04:38) Miner 2 finished
+[INFO] (2025-05-07 23:04:38) Miner 3 finished
+[INFO] (2025-05-07 23:04:38) Miner 4 finished
+[TERMINATE] (2025-05-07 23:04:38) Miner process terminated
+[TERMINATE] (2025-05-07 23:04:38) Destroying sem
+[TERMINATE] (2025-05-07 23:04:38) Destroying mutex
+[TERMINATE] (2025-05-07 23:04:38) Detaching shared memory
+[TERMINATE] (2025-05-07 23:04:38) Removing shared memory
+[TERMINATE] (2025-05-07 23:04:38) Finished terminating
+[INFO] (2025-05-07 23:04:38) Closing program
+[INIT] (2025-05-07 23:04:59) Program started
+[INIT] (2025-05-07 23:04:59) Started reading configuration file
+[INFO] (2025-05-07 23:04:59) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-07 23:04:59) Miner process created
+[INIT] (2025-05-07 23:04:59) Statistics process created
+[INFO] (2025-05-07 23:04:59) im statistics!!!
+[TERMINATE] (2025-05-07 23:04:59) Statistics process terminated
+[INIT] (2025-05-07 23:04:59) Validator process created
+[INIT] (2025-05-07 23:04:59) Miner 1 created
+[INIT] (2025-05-07 23:04:59) Validator process
+[TERMINATE] (2025-05-07 23:04:59) Validator process terminated
+[INIT] (2025-05-07 23:04:59) Miner 2 created
+[INIT] (2025-05-07 23:04:59) Miner 3 created
+[INIT] (2025-05-07 23:04:59) Miner 4 created
+[DEBUG] (2025-05-07 23:05:00) SIGINT received
+[INFO] (2025-05-07 23:05:00) Miner 1 finished
+[INFO] (2025-05-07 23:05:00) Miner 2 finished
+[INFO] (2025-05-07 23:05:00) Miner 3 finished
+[INFO] (2025-05-07 23:05:00) Miner 4 finished
+[TERMINATE] (2025-05-07 23:05:00) Miner process terminated
+[TERMINATE] (2025-05-07 23:05:00) Destroying sem
+[TERMINATE] (2025-05-07 23:05:00) Destroying mutex
+[TERMINATE] (2025-05-07 23:05:00) Detaching shared memory
+[TERMINATE] (2025-05-07 23:05:00) Removing shared memory
+[TERMINATE] (2025-05-07 23:05:00) Finished terminating
+[INFO] (2025-05-07 23:05:00) Closing program
+[INIT] (2025-05-08 10:41:23) Program started
+[INIT] (2025-05-08 10:41:23) Started reading configuration file
+[INFO] (2025-05-08 10:41:23) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 10:41:23) Miner process created
+[INIT] (2025-05-08 10:41:23) Statistics process created
+[INFO] (2025-05-08 10:41:23) im statistics!!!
+[TERMINATE] (2025-05-08 10:41:23) Statistics process terminated
+[INIT] (2025-05-08 10:41:23) Miner 1 created
+[INIT] (2025-05-08 10:41:23) Miner 2 created
+[INIT] (2025-05-08 10:41:23) Miner 3 created
+[INIT] (2025-05-08 10:41:23) Validator process created
+[INIT] (2025-05-08 10:41:23) Miner 4 created
+[INIT] (2025-05-08 10:41:23) Validator process
+[TERMINATE] (2025-05-08 10:41:23) Validator process terminated
+[DEBUG] (2025-05-08 10:41:24) SIGINT received
+[INFO] (2025-05-08 10:41:24) Miner 1 finished
+[INFO] (2025-05-08 10:41:24) Miner 2 finished
+[INFO] (2025-05-08 10:41:24) Miner 3 finished
+[INFO] (2025-05-08 10:41:24) Miner 4 finished
+[TERMINATE] (2025-05-08 10:41:24) Miner process terminated
+[TERMINATE] (2025-05-08 10:41:24) Destroying sem
+[TERMINATE] (2025-05-08 10:41:24) Destroying mutex
+[TERMINATE] (2025-05-08 10:41:24) Detaching shared memory
+[TERMINATE] (2025-05-08 10:41:24) Removing shared memory
+[TERMINATE] (2025-05-08 10:41:24) Finished terminating
+[INFO] (2025-05-08 10:41:24) Closing program
+[INIT] (2025-05-08 10:42:02) Program started
+[INIT] (2025-05-08 10:42:02) Started reading configuration file
+[INFO] (2025-05-08 10:42:02) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 10:42:02) Miner process created
+[INIT] (2025-05-08 10:42:02) Statistics process created
+[INFO] (2025-05-08 10:42:02) im statistics!!!
+[TERMINATE] (2025-05-08 10:42:02) Statistics process terminated
+[INIT] (2025-05-08 10:42:02) Miner 1 created
+[INIT] (2025-05-08 10:42:02) Miner 2 created
+[INIT] (2025-05-08 10:42:02) Miner 3 created
+[INIT] (2025-05-08 10:42:02) Validator process created
+[INIT] (2025-05-08 10:42:02) Miner 4 created
+[INIT] (2025-05-08 10:42:02) Validator process
+[TERMINATE] (2025-05-08 10:42:02) Validator process terminated
+[DEBUG] (2025-05-08 10:42:03) SIGINT received
+[INFO] (2025-05-08 10:42:03) Miner 1 finished
+[INFO] (2025-05-08 10:42:03) Miner 2 finished
+[INFO] (2025-05-08 10:42:03) Miner 3 finished
+[INFO] (2025-05-08 10:42:03) Miner 4 finished
+[TERMINATE] (2025-05-08 10:42:03) Miner process terminated
+[TERMINATE] (2025-05-08 10:42:03) Destroying sem
+[TERMINATE] (2025-05-08 10:42:03) Destroying mutex
+[TERMINATE] (2025-05-08 10:42:03) Detaching shared memory
+[TERMINATE] (2025-05-08 10:42:03) Removing shared memory
+[TERMINATE] (2025-05-08 10:42:03) Finished terminating
+[INFO] (2025-05-08 10:42:03) Closing program
+[INIT] (2025-05-08 10:42:18) Program started
+[INIT] (2025-05-08 10:42:18) Started reading configuration file
+[INFO] (2025-05-08 10:42:18) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 10:42:18) Miner process created
+[INIT] (2025-05-08 10:42:18) Statistics process created
+[INIT] (2025-05-08 10:42:18) Validator process created
+[INFO] (2025-05-08 10:42:18) im statistics!!!
+[TERMINATE] (2025-05-08 10:42:18) Statistics process terminated
+[INIT] (2025-05-08 10:42:18) Validator process
+[TERMINATE] (2025-05-08 10:42:18) Validator process terminated
+[INIT] (2025-05-08 10:42:18) Miner 1 created
+[INIT] (2025-05-08 10:42:18) Miner 2 created
+[INIT] (2025-05-08 10:42:18) Miner 3 created
+[INIT] (2025-05-08 10:42:18) Miner 4 created
+[DEBUG] (2025-05-08 10:42:33) SIGINT received
+[INFO] (2025-05-08 10:42:33) Miner 1 finished
+[INFO] (2025-05-08 10:42:33) Miner 2 finished
+[INFO] (2025-05-08 10:42:33) Miner 3 finished
+[INFO] (2025-05-08 10:42:33) Miner 4 finished
+[TERMINATE] (2025-05-08 10:42:33) Miner process terminated
+[TERMINATE] (2025-05-08 10:42:33) Destroying sem
+[TERMINATE] (2025-05-08 10:42:33) Destroying mutex
+[TERMINATE] (2025-05-08 10:42:33) Detaching shared memory
+[TERMINATE] (2025-05-08 10:42:33) Removing shared memory
+[TERMINATE] (2025-05-08 10:42:33) Finished terminating
+[INFO] (2025-05-08 10:42:33) Closing program
+[INIT] (2025-05-08 10:46:43) Program started
+[INIT] (2025-05-08 10:46:43) Started reading configuration file
+[INFO] (2025-05-08 10:46:43) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 10:46:43) Miner process created
+[INIT] (2025-05-08 10:46:43) Statistics process created
+[INFO] (2025-05-08 10:46:43) im statistics!!!
+[TERMINATE] (2025-05-08 10:46:43) Statistics process terminated
+[INIT] (2025-05-08 10:46:43) Miner 1 created
+[INIT] (2025-05-08 10:46:43) Miner 2 created
+[INIT] (2025-05-08 10:46:43) Miner 3 created
+[INIT] (2025-05-08 10:46:43) Miner 4 created
+[INIT] (2025-05-08 10:46:43) Validator process created
+[INIT] (2025-05-08 10:46:43) Validator process
+[TERMINATE] (2025-05-08 10:46:43) Validator process terminated
+[INFO] (2025-05-08 10:46:56) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:46:57) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:46:58) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:46:59) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:00) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:01) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:02) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:03) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:04) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:05) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:06) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:07) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:08) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:09) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:10) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:11) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:12) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:13) Transaction with reward 1 and sleep time 1999 pid: 10415 created
+[INFO] (2025-05-08 10:47:13) SIGINT received on transaction generator with id: 10415.
+[DEBUG] (2025-05-08 10:47:17) SIGINT received
+[INFO] (2025-05-08 10:47:17) Miner 1 finished
+[INFO] (2025-05-08 10:47:17) Miner 2 finished
+[INFO] (2025-05-08 10:47:17) Miner 3 finished
+[INFO] (2025-05-08 10:47:17) Miner 4 finished
+[TERMINATE] (2025-05-08 10:47:17) Miner process terminated
+[TERMINATE] (2025-05-08 10:47:17) Destroying sem
+[TERMINATE] (2025-05-08 10:47:17) Destroying mutex
+[TERMINATE] (2025-05-08 10:47:17) Detaching shared memory
+[TERMINATE] (2025-05-08 10:47:17) Removing shared memory
+[TERMINATE] (2025-05-08 10:47:17) Finished terminating
+[INFO] (2025-05-08 10:47:17) Closing program
+[INIT] (2025-05-08 10:51:40) Program started
+[INIT] (2025-05-08 10:51:40) Started reading configuration file
+[INFO] (2025-05-08 10:51:40) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 10:51:40) Miner process created
+[INIT] (2025-05-08 10:51:40) Statistics process created
+[INFO] (2025-05-08 10:51:40) im statistics!!!
+[TERMINATE] (2025-05-08 10:51:40) Statistics process terminated
+[INIT] (2025-05-08 10:51:40) Miner 1 created
+[INIT] (2025-05-08 10:51:40) Validator process created
+[INIT] (2025-05-08 10:51:40) Validator process
+[INIT] (2025-05-08 10:51:40) Miner 2 created
+[TERMINATE] (2025-05-08 10:51:40) Validator process terminated
+[INIT] (2025-05-08 10:51:40) Miner 3 created
+[INIT] (2025-05-08 10:51:40) Miner 4 created
+[INFO] (2025-05-08 10:51:43) Transaction with reward 1 and sleep time 1999 pid: 13096 created
+[INFO] (2025-05-08 10:51:44) Transaction with reward 1 and sleep time 1999 pid: 13096 created
+[INFO] (2025-05-08 10:51:45) Transaction with reward 1 and sleep time 1999 pid: 13096 created
+[INFO] (2025-05-08 10:51:46) Transaction with reward 1 and sleep time 1999 pid: 13096 created
+[INFO] (2025-05-08 10:51:47) Transaction with reward 1 and sleep time 1999 pid: 13096 created
+[INFO] (2025-05-08 10:51:48) Transaction with reward 1 and sleep time 1999 pid: 13096 created
+[INFO] (2025-05-08 10:51:49) Transaction with reward 1 and sleep time 1999 pid: 13096 created
+[INFO] (2025-05-08 10:51:50) Transaction with reward 1 and sleep time 1999 pid: 13096 created
+[INFO] (2025-05-08 10:51:51) Transaction with reward 1 and sleep time 1999 pid: 13096 created
+[INFO] (2025-05-08 10:51:51) SIGINT received on transaction generator with id: 13096.
+[INFO] (2025-05-08 10:51:52) Transaction with reward 1 and sleep time 1999 pid: 13185 created
+[INFO] (2025-05-08 10:51:53) Transaction with reward 1 and sleep time 1999 pid: 13185 created
+[INFO] (2025-05-08 10:51:54) Transaction with reward 1 and sleep time 1999 pid: 13185 created
+[INFO] (2025-05-08 10:51:55) Transaction with reward 1 and sleep time 1999 pid: 13185 created
+[INFO] (2025-05-08 10:51:56) Transaction with reward 1 and sleep time 1999 pid: 13185 created
+[INFO] (2025-05-08 10:51:56) SIGINT received on transaction generator with id: 13185.
+[DEBUG] (2025-05-08 10:51:57) SIGINT received
+[INFO] (2025-05-08 10:51:57) Miner 1 finished
+[INFO] (2025-05-08 10:51:57) Miner 2 finished
+[INFO] (2025-05-08 10:51:57) Miner 3 finished
+[INFO] (2025-05-08 10:51:57) Miner 4 finished
+[TERMINATE] (2025-05-08 10:51:57) Miner process terminated
+[TERMINATE] (2025-05-08 10:51:57) Destroying sem
+[TERMINATE] (2025-05-08 10:51:57) Destroying mutex
+[TERMINATE] (2025-05-08 10:51:57) Detaching shared memory
+[TERMINATE] (2025-05-08 10:51:57) Removing shared memory
+[TERMINATE] (2025-05-08 10:51:57) Finished terminating
+[INFO] (2025-05-08 10:51:57) Closing program
+[INIT] (2025-05-08 10:54:45) Program started
+[INIT] (2025-05-08 10:54:45) Started reading configuration file
+[INFO] (2025-05-08 10:54:45) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 10:54:45) Miner process created
+[INIT] (2025-05-08 10:54:45) Statistics process created
+[INFO] (2025-05-08 10:54:45) im statistics!!!
+[TERMINATE] (2025-05-08 10:54:45) Statistics process terminated
+[INIT] (2025-05-08 10:54:45) Miner 1 created
+[INIT] (2025-05-08 10:54:45) Validator process created
+[INIT] (2025-05-08 10:54:45) Miner 2 created
+[INIT] (2025-05-08 10:54:45) Validator process
+[TERMINATE] (2025-05-08 10:54:45) Validator process terminated
+[INIT] (2025-05-08 10:54:45) Miner 3 created
+[INIT] (2025-05-08 10:54:45) Miner 4 created
+[INFO] (2025-05-08 10:54:47) Transaction with reward 1 and sleep time 1999 pid: 14922 created
+[INFO] (2025-05-08 10:54:48) Transaction with reward 1 and sleep time 1999 pid: 14922 created
+[INFO] (2025-05-08 10:54:49) Transaction with reward 1 and sleep time 1999 pid: 14922 created
+[INFO] (2025-05-08 10:54:50) Transaction with reward 1 and sleep time 1999 pid: 14922 created
+[INFO] (2025-05-08 10:54:51) Transaction with reward 1 and sleep time 1999 pid: 14922 created
+[INFO] (2025-05-08 10:54:52) Transaction with reward 1 and sleep time 1999 pid: 14922 created
+[INFO] (2025-05-08 10:54:53) Transaction with reward 1 and sleep time 1999 pid: 14922 created
+[INFO] (2025-05-08 10:54:53) SIGINT received on transaction generator with id: 14922.
+[DEBUG] (2025-05-08 10:54:54) SIGINT received
+[INFO] (2025-05-08 10:54:54) Miner 1 finished
+[INFO] (2025-05-08 10:54:54) Miner 2 finished
+[INFO] (2025-05-08 10:54:54) Miner 3 finished
+[INFO] (2025-05-08 10:54:54) Miner 4 finished
+[TERMINATE] (2025-05-08 10:54:54) Miner process terminated
+[TERMINATE] (2025-05-08 10:54:54) Destroying sem
+[TERMINATE] (2025-05-08 10:54:54) Destroying mutex
+[TERMINATE] (2025-05-08 10:54:54) Detaching shared memory
+[TERMINATE] (2025-05-08 10:54:54) Removing shared memory
+[TERMINATE] (2025-05-08 10:54:54) Finished terminating
+[INFO] (2025-05-08 10:54:54) Closing program
+[INIT] (2025-05-08 10:57:43) Program started
+[INIT] (2025-05-08 10:57:43) Started reading configuration file
+[INFO] (2025-05-08 10:57:43) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 10:57:43) Miner process created
+[INIT] (2025-05-08 10:57:43) Statistics process created
+[INFO] (2025-05-08 10:57:43) im statistics!!!
+[TERMINATE] (2025-05-08 10:57:43) Statistics process terminated
+[INIT] (2025-05-08 10:57:43) Miner 1 created
+[INIT] (2025-05-08 10:57:43) Validator process created
+[INIT] (2025-05-08 10:57:43) Miner 2 created
+[INIT] (2025-05-08 10:57:43) Validator process
+[TERMINATE] (2025-05-08 10:57:43) Validator process terminated
+[INIT] (2025-05-08 10:57:43) Miner 3 created
+[INIT] (2025-05-08 10:57:43) Miner 4 created
+[INFO] (2025-05-08 10:57:45) Transaction with reward 1 and sleep time 1999 pid: 16632 created
+[INFO] (2025-05-08 10:57:46) Transaction with reward 1 and sleep time 1999 pid: 16632 created
+[INFO] (2025-05-08 10:57:47) Transaction with reward 1 and sleep time 1999 pid: 16632 created
+[INFO] (2025-05-08 10:57:48) Transaction with reward 1 and sleep time 1999 pid: 16632 created
+[INFO] (2025-05-08 10:57:49) Transaction with reward 1 and sleep time 1999 pid: 16632 created
+[INFO] (2025-05-08 10:57:49) SIGINT received on transaction generator with id: 16632.
+[DEBUG] (2025-05-08 10:58:18) SIGINT received
+[INIT] (2025-05-08 10:58:34) Program started
+[INIT] (2025-05-08 10:58:34) Started reading configuration file
+[INFO] (2025-05-08 10:58:34) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 10:58:34) Miner process created
+[INIT] (2025-05-08 10:58:34) Statistics process created
+[INFO] (2025-05-08 10:58:34) im statistics!!!
+[TERMINATE] (2025-05-08 10:58:34) Statistics process terminated
+[INIT] (2025-05-08 10:58:34) Miner 1 created
+[INIT] (2025-05-08 10:58:34) Miner 2 created
+[INIT] (2025-05-08 10:58:34) Validator process created
+[INIT] (2025-05-08 10:58:34) Miner 3 created
+[INIT] (2025-05-08 10:58:34) Validator process
+[TERMINATE] (2025-05-08 10:58:34) Validator process terminated
+[INIT] (2025-05-08 10:58:34) Miner 4 created
+[DEBUG] (2025-05-08 10:58:37) SIGINT received
+[INFO] (2025-05-08 10:58:37) Miner 1 finished
+[INFO] (2025-05-08 10:58:37) Miner 2 finished
+[INFO] (2025-05-08 10:58:37) Miner 3 finished
+[INFO] (2025-05-08 10:58:37) Miner 4 finished
+[TERMINATE] (2025-05-08 10:58:37) Miner process terminated
+[TERMINATE] (2025-05-08 10:58:37) Destroying sem
+[TERMINATE] (2025-05-08 10:58:37) Destroying mutex
+[TERMINATE] (2025-05-08 10:58:37) Detaching shared memory
+[TERMINATE] (2025-05-08 10:58:37) Removing shared memory
+[TERMINATE] (2025-05-08 10:58:37) Finished terminating
+[INFO] (2025-05-08 10:58:37) Closing program
+[INFO] (2025-05-08 11:09:16) Miner 1 finished
+[INFO] (2025-05-08 11:09:16) Miner 2 finished
+[INFO] (2025-05-08 11:09:16) Miner 3 finished
+[INFO] (2025-05-08 11:09:16) Miner 4 finished
+[TERMINATE] (2025-05-08 11:09:16) Miner process terminated
+[INIT] (2025-05-08 15:09:37) Program started
+[INIT] (2025-05-08 15:09:37) Started reading configuration file
+[INFO] (2025-05-08 15:09:37) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:09:37) Miner process created
+[INIT] (2025-05-08 15:09:37) Statistics process created
+[INFO] (2025-05-08 15:09:37) im statistics!!!
+[TERMINATE] (2025-05-08 15:09:37) Statistics process terminated
+[INIT] (2025-05-08 15:09:37) Miner 1 created
+[INIT] (2025-05-08 15:09:37) Miner 2 created
+[INIT] (2025-05-08 15:09:37) Validator process created
+[INIT] (2025-05-08 15:09:37) Miner 3 created
+[INIT] (2025-05-08 15:09:37) Miner 4 created
+[INFO] (2025-05-08 15:09:55) Transaction with reward 1 and sleep time 1999 pid: 31543 created
+[INFO] (2025-05-08 15:09:56) Transaction with reward 1 and sleep time 1999 pid: 31543 created
+[INFO] (2025-05-08 15:09:57) Transaction with reward 1 and sleep time 1999 pid: 31543 created
+[INFO] (2025-05-08 15:09:58) Transaction with reward 1 and sleep time 1999 pid: 31543 created
+[INFO] (2025-05-08 15:09:59) Transaction with reward 1 and sleep time 1999 pid: 31543 created
+[TERMINATE] (2025-05-08 15:09:59) Validator process terminated
+[INFO] (2025-05-08 15:09:59) SIGINT received on transaction generator with id: 31543.
+[DEBUG] (2025-05-08 15:10:02) SIGINT received
+[INIT] (2025-05-08 15:11:47) Program started
+[INIT] (2025-05-08 15:11:47) Started reading configuration file
+[INFO] (2025-05-08 15:11:47) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:11:47) Miner process created
+[INIT] (2025-05-08 15:11:47) Statistics process created
+[INIT] (2025-05-08 15:11:47) Validator process created
+[INFO] (2025-05-08 15:11:47) im statistics!!!
+[TERMINATE] (2025-05-08 15:11:47) Statistics process terminated
+[INIT] (2025-05-08 15:11:47) Miner 1 created
+[INIT] (2025-05-08 15:11:47) Miner 2 created
+[INIT] (2025-05-08 15:11:47) Miner 3 created
+[TERMINATE] (2025-05-08 15:11:47) Validator process terminated
+[INIT] (2025-05-08 15:11:47) Miner 4 created
+[INFO] (2025-05-08 15:11:47) Miner 1 finished
+[INFO] (2025-05-08 15:11:47) Miner 2 finished
+[INFO] (2025-05-08 15:11:47) Miner 3 finished
+[DEBUG] (2025-05-08 15:11:50) SIGINT received
+[INFO] (2025-05-08 15:11:50) Miner 1 finished
+[INFO] (2025-05-08 15:11:50) Miner 2 finished
+[INFO] (2025-05-08 15:11:50) Miner 3 finished
+[INFO] (2025-05-08 15:11:50) Miner 4 finished
+[TERMINATE] (2025-05-08 15:11:50) Miner process terminated
+[TERMINATE] (2025-05-08 15:11:50) Destroying sem
+[TERMINATE] (2025-05-08 15:11:50) Destroying mutex
+[TERMINATE] (2025-05-08 15:11:50) Detaching shared memory
+[TERMINATE] (2025-05-08 15:11:50) Removing shared memory
+[TERMINATE] (2025-05-08 15:11:50) Finished terminating
+[INFO] (2025-05-08 15:11:50) Closing program
+[INIT] (2025-05-08 15:11:54) Program started
+[INIT] (2025-05-08 15:11:54) Started reading configuration file
+[INFO] (2025-05-08 15:11:54) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:11:54) Miner process created
+[INIT] (2025-05-08 15:11:54) Statistics process created
+[INFO] (2025-05-08 15:11:54) im statistics!!!
+[TERMINATE] (2025-05-08 15:11:54) Statistics process terminated
+[INIT] (2025-05-08 15:11:54) Validator process created
+[INIT] (2025-05-08 15:11:54) Miner 1 created
+[INIT] (2025-05-08 15:11:54) Miner 2 created
+[INIT] (2025-05-08 15:11:54) Miner 3 created
+[INIT] (2025-05-08 15:11:54) Miner 4 created
+[INFO] (2025-05-08 15:11:55) Transaction with reward 1 and sleep time 1999 pid: 465 created
+[INFO] (2025-05-08 15:11:56) Transaction with reward 1 and sleep time 1999 pid: 465 created
+[INFO] (2025-05-08 15:11:57) Transaction with reward 1 and sleep time 1999 pid: 465 created
+[INFO] (2025-05-08 15:11:58) Transaction with reward 1 and sleep time 1999 pid: 465 created
+[INFO] (2025-05-08 15:11:59) Transaction with reward 1 and sleep time 1999 pid: 465 created
+[TERMINATE] (2025-05-08 15:11:59) Validator process terminated
+[INFO] (2025-05-08 15:12:00) SIGINT received on transaction generator with id: 465.
+[DEBUG] (2025-05-08 15:12:15) SIGINT received
+[INIT] (2025-05-08 15:17:53) Program started
+[INIT] (2025-05-08 15:17:53) Started reading configuration file
+[INFO] (2025-05-08 15:17:53) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:17:53) Miner process created
+[INIT] (2025-05-08 15:17:53) Miner 1 created
+[INIT] (2025-05-08 15:17:53) Statistics process created
+[INIT] (2025-05-08 15:17:53) Miner 2 created
+[INFO] (2025-05-08 15:17:53) im statistics!!!
+[TERMINATE] (2025-05-08 15:17:53) Statistics process terminated
+[INIT] (2025-05-08 15:17:53) Miner 3 created
+[INIT] (2025-05-08 15:17:53) Miner 4 created
+[INIT] (2025-05-08 15:17:53) Validator process created
+[TERMINATE] (2025-05-08 15:17:53) Validator process terminated
+[DEBUG] (2025-05-08 15:17:55) SIGINT received
+[INFO] (2025-05-08 15:17:55) Miner 1 finished
+[INFO] (2025-05-08 15:17:55) Miner 2 finished
+[INFO] (2025-05-08 15:17:55) Miner 3 finished
+[INFO] (2025-05-08 15:17:55) Miner 4 finished
+[TERMINATE] (2025-05-08 15:17:55) Miner process terminated
+[TERMINATE] (2025-05-08 15:17:55) Destroying sem
+[TERMINATE] (2025-05-08 15:17:55) Destroying mutex
+[TERMINATE] (2025-05-08 15:17:55) Detaching shared memory
+[TERMINATE] (2025-05-08 15:17:55) Removing shared memory
+[TERMINATE] (2025-05-08 15:17:55) Finished terminating
+[INFO] (2025-05-08 15:17:55) Closing program
+[INIT] (2025-05-08 15:18:20) Program started
+[INIT] (2025-05-08 15:18:20) Started reading configuration file
+[INFO] (2025-05-08 15:18:20) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:18:20) Miner process created
+[INIT] (2025-05-08 15:18:20) Statistics process created
+[INFO] (2025-05-08 15:18:20) im statistics!!!
+[TERMINATE] (2025-05-08 15:18:20) Statistics process terminated
+[INIT] (2025-05-08 15:18:20) Miner 1 created
+[INIT] (2025-05-08 15:18:20) Miner 2 created
+[INIT] (2025-05-08 15:18:20) Validator process created
+[INIT] (2025-05-08 15:18:20) Miner 3 created
+[INIT] (2025-05-08 15:18:20) Miner 4 created
+[DEBUG] (2025-05-08 15:18:30) SIGINT received
+[INFO] (2025-05-08 15:18:30) Miner 1 finished
+[INFO] (2025-05-08 15:18:30) Miner 2 finished
+[INFO] (2025-05-08 15:18:30) Miner 3 finished
+[INFO] (2025-05-08 15:18:30) Miner 4 finished
+[TERMINATE] (2025-05-08 15:18:30) Miner process terminated
+[TERMINATE] (2025-05-08 15:18:30) Destroying sem
+[TERMINATE] (2025-05-08 15:18:30) Destroying mutex
+[TERMINATE] (2025-05-08 15:18:30) Detaching shared memory
+[TERMINATE] (2025-05-08 15:18:30) Removing shared memory
+[TERMINATE] (2025-05-08 15:18:30) Finished terminating
+[INFO] (2025-05-08 15:18:30) Closing program
+[INIT] (2025-05-08 15:18:31) Program started
+[INIT] (2025-05-08 15:18:31) Started reading configuration file
+[INFO] (2025-05-08 15:18:31) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:18:31) Miner process created
+[INIT] (2025-05-08 15:18:31) Statistics process created
+[INFO] (2025-05-08 15:18:31) im statistics!!!
+[TERMINATE] (2025-05-08 15:18:31) Statistics process terminated
+[INIT] (2025-05-08 15:18:31) Miner 1 created
+[INIT] (2025-05-08 15:18:31) Miner 2 created
+[INIT] (2025-05-08 15:18:31) Validator process created
+[INIT] (2025-05-08 15:18:31) Miner 3 created
+[INIT] (2025-05-08 15:18:31) Miner 4 created
+[TERMINATE] (2025-05-08 15:18:31) Validator process terminated
+[INFO] (2025-05-08 15:18:49) Transaction with reward 2 and sleep time 1999 pid: 5719 created
+[INFO] (2025-05-08 15:18:50) Transaction with reward 2 and sleep time 1999 pid: 5719 created
+[INFO] (2025-05-08 15:18:51) Transaction with reward 2 and sleep time 1999 pid: 5719 created
+[INFO] (2025-05-08 15:18:52) Transaction with reward 2 and sleep time 1999 pid: 5719 created
+[INFO] (2025-05-08 15:18:53) Transaction with reward 2 and sleep time 1999 pid: 5719 created
+[INFO] (2025-05-08 15:18:54) Transaction with reward 2 and sleep time 1999 pid: 5719 created
+[INFO] (2025-05-08 15:18:54) SIGINT received on transaction generator with id: 5719.
+[DEBUG] (2025-05-08 15:18:55) SIGINT received
+[INFO] (2025-05-08 15:18:55) Miner 1 finished
+[INFO] (2025-05-08 15:18:55) Miner 2 finished
+[INFO] (2025-05-08 15:18:55) Miner 3 finished
+[INFO] (2025-05-08 15:18:55) Miner 4 finished
+[TERMINATE] (2025-05-08 15:18:55) Miner process terminated
+[TERMINATE] (2025-05-08 15:18:55) Destroying sem
+[TERMINATE] (2025-05-08 15:18:55) Destroying mutex
+[TERMINATE] (2025-05-08 15:18:55) Detaching shared memory
+[TERMINATE] (2025-05-08 15:18:55) Removing shared memory
+[TERMINATE] (2025-05-08 15:18:55) Finished terminating
+[INFO] (2025-05-08 15:18:55) Closing program
+[INIT] (2025-05-08 15:20:07) Program started
+[INIT] (2025-05-08 15:20:07) Started reading configuration file
+[INFO] (2025-05-08 15:20:07) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:20:07) Miner process created
+[INIT] (2025-05-08 15:20:07) Statistics process created
+[INFO] (2025-05-08 15:20:07) im statistics!!!
+[TERMINATE] (2025-05-08 15:20:07) Statistics process terminated
+[INIT] (2025-05-08 15:20:07) Miner 1 created
+[INIT] (2025-05-08 15:20:07) Miner 2 created
+[INIT] (2025-05-08 15:20:07) Validator process created
+[INIT] (2025-05-08 15:20:07) Miner 3 created
+[INIT] (2025-05-08 15:20:07) Miner 4 created
+[INFO] (2025-05-08 15:20:11) Transaction with reward 2 and sleep time 1999 pid: 6831 created
+[INFO] (2025-05-08 15:20:12) Transaction with reward 2 and sleep time 1999 pid: 6831 created
+[INFO] (2025-05-08 15:20:13) Transaction with reward 2 and sleep time 1999 pid: 6831 created
+[INFO] (2025-05-08 15:20:14) Transaction with reward 2 and sleep time 1999 pid: 6831 created
+[INFO] (2025-05-08 15:20:15) Transaction with reward 2 and sleep time 1999 pid: 6831 created
+[TERMINATE] (2025-05-08 15:20:15) Validator process terminated
+[INFO] (2025-05-08 15:20:15) SIGINT received on transaction generator with id: 6831.
+[DEBUG] (2025-05-08 15:20:17) SIGINT received
+[INIT] (2025-05-08 15:21:04) Program started
+[INIT] (2025-05-08 15:21:04) Started reading configuration file
+[INFO] (2025-05-08 15:21:04) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:21:04) Miner process created
+[INIT] (2025-05-08 15:21:04) Statistics process created
+[INFO] (2025-05-08 15:21:04) im statistics!!!
+[TERMINATE] (2025-05-08 15:21:04) Statistics process terminated
+[INIT] (2025-05-08 15:21:04) Miner 1 created
+[INIT] (2025-05-08 15:21:04) Miner 2 created
+[INIT] (2025-05-08 15:21:04) Validator process created
+[INIT] (2025-05-08 15:21:04) Miner 3 created
+[INIT] (2025-05-08 15:21:04) Miner 4 created
+[TERMINATE] (2025-05-08 15:21:04) Validator process terminated
+[INFO] (2025-05-08 15:21:04) Miner 1 finished
+[INFO] (2025-05-08 15:21:04) Miner 2 finished
+[INFO] (2025-05-08 15:21:04) Miner 3 finished
+[INFO] (2025-05-08 15:21:04) Miner 4 finished
+[DEBUG] (2025-05-08 15:21:07) SIGINT received
+[INFO] (2025-05-08 15:21:07) Miner 1 finished
+[INFO] (2025-05-08 15:21:07) Miner 2 finished
+[INFO] (2025-05-08 15:21:07) Miner 3 finished
+[TERMINATE] (2025-05-08 15:21:07) Miner process terminated
+[INFO] (2025-05-08 15:21:07) Miner 4 finished
+[TERMINATE] (2025-05-08 15:21:07) Miner process terminated
+[TERMINATE] (2025-05-08 15:21:07) Destroying sem
+[TERMINATE] (2025-05-08 15:21:07) Destroying mutex
+[TERMINATE] (2025-05-08 15:21:07) Detaching shared memory
+[TERMINATE] (2025-05-08 15:21:07) Removing shared memory
+[TERMINATE] (2025-05-08 15:21:07) Finished terminating
+[INFO] (2025-05-08 15:21:07) Closing program
+[INIT] (2025-05-08 15:21:08) Program started
+[INIT] (2025-05-08 15:21:08) Started reading configuration file
+[INFO] (2025-05-08 15:21:08) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:21:08) Miner process created
+[INIT] (2025-05-08 15:21:08) Statistics process created
+[INFO] (2025-05-08 15:21:08) im statistics!!!
+[TERMINATE] (2025-05-08 15:21:08) Statistics process terminated
+[INIT] (2025-05-08 15:21:08) Miner 1 created
+[INIT] (2025-05-08 15:21:08) Validator process created
+[INIT] (2025-05-08 15:21:08) Miner 2 created
+[INIT] (2025-05-08 15:21:08) Miner 3 created
+[INIT] (2025-05-08 15:21:08) Miner 4 created
+[DEBUG] (2025-05-08 15:21:32) SIGINT received
+[INFO] (2025-05-08 15:21:32) Miner 1 finished
+[INFO] (2025-05-08 15:21:32) Miner 2 finished
+[INFO] (2025-05-08 15:21:32) Miner 3 finished
+[INFO] (2025-05-08 15:21:32) Miner 4 finished
+[TERMINATE] (2025-05-08 15:21:32) Miner process terminated
+[TERMINATE] (2025-05-08 15:21:32) Destroying sem
+[TERMINATE] (2025-05-08 15:21:32) Destroying mutex
+[TERMINATE] (2025-05-08 15:21:32) Detaching shared memory
+[TERMINATE] (2025-05-08 15:21:32) Removing shared memory
+[TERMINATE] (2025-05-08 15:21:32) Finished terminating
+[INFO] (2025-05-08 15:21:32) Closing program
+[INIT] (2025-05-08 15:21:52) Program started
+[INIT] (2025-05-08 15:21:52) Started reading configuration file
+[INFO] (2025-05-08 15:21:52) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:21:52) Miner process created
+[INIT] (2025-05-08 15:21:52) Miner 1 created
+[INIT] (2025-05-08 15:21:52) Miner 2 created
+[INIT] (2025-05-08 15:21:52) Statistics process created
+[INIT] (2025-05-08 15:21:52) Miner 3 created
+[INFO] (2025-05-08 15:21:52) im statistics!!!
+[TERMINATE] (2025-05-08 15:21:52) Statistics process terminated
+[INIT] (2025-05-08 15:21:52) Validator process created
+[INIT] (2025-05-08 15:21:52) Miner 4 created
+[INFO] (2025-05-08 15:21:54) Transaction with reward 2 and sleep time 1999 pid: 8084 created
+[INFO] (2025-05-08 15:21:55) Transaction with reward 2 and sleep time 1999 pid: 8084 created
+[INFO] (2025-05-08 15:21:56) Transaction with reward 2 and sleep time 1999 pid: 8084 created
+[INFO] (2025-05-08 15:21:57) Transaction with reward 2 and sleep time 1999 pid: 8084 created
+[INFO] (2025-05-08 15:21:58) Transaction with reward 2 and sleep time 1999 pid: 8084 created
+[INFO] (2025-05-08 15:21:58) SIGINT received on transaction generator with id: 8084.
+[DEBUG] (2025-05-08 15:22:02) SIGINT received
+[INIT] (2025-05-08 15:24:25) Program started
+[INIT] (2025-05-08 15:24:25) Started reading configuration file
+[INFO] (2025-05-08 15:24:25) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:24:25) Miner process created
+[INIT] (2025-05-08 15:24:25) Validator process created
+[INIT] (2025-05-08 15:24:25) Miner 1 created
+[INIT] (2025-05-08 15:24:25) Statistics process created
+[INIT] (2025-05-08 15:24:25) Miner 2 created
+[INFO] (2025-05-08 15:24:25) im statistics!!!
+[TERMINATE] (2025-05-08 15:24:25) Statistics process terminated
+[INIT] (2025-05-08 15:24:25) Miner 3 created
+[INIT] (2025-05-08 15:24:25) Miner 4 created
+[INFO] (2025-05-08 15:24:25) Miner 1 finished
+[INFO] (2025-05-08 15:24:25) Miner 2 finished
+[INFO] (2025-05-08 15:24:25) Miner 3 finished
+[INFO] (2025-05-08 15:24:25) Miner 4 finished
+[DEBUG] (2025-05-08 15:24:27) SIGINT received
+[INFO] (2025-05-08 15:24:27) Miner 1 finished
+[INFO] (2025-05-08 15:24:27) Miner 2 finished
+[INFO] (2025-05-08 15:24:27) Miner 3 finished
+[INFO] (2025-05-08 15:24:27) Miner 4 finished
+[TERMINATE] (2025-05-08 15:24:27) Miner process terminated
+[TERMINATE] (2025-05-08 15:24:27) Miner process terminated
+[TERMINATE] (2025-05-08 15:24:27) Destroying sem
+[TERMINATE] (2025-05-08 15:24:27) Destroying mutex
+[TERMINATE] (2025-05-08 15:24:27) Detaching shared memory
+[TERMINATE] (2025-05-08 15:24:27) Removing shared memory
+[TERMINATE] (2025-05-08 15:24:27) Finished terminating
+[INFO] (2025-05-08 15:24:27) Closing program
+[INIT] (2025-05-08 15:24:28) Program started
+[INIT] (2025-05-08 15:24:28) Started reading configuration file
+[INFO] (2025-05-08 15:24:28) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:24:28) Miner process created
+[INIT] (2025-05-08 15:24:28) Statistics process created
+[INFO] (2025-05-08 15:24:28) im statistics!!!
+[TERMINATE] (2025-05-08 15:24:28) Statistics process terminated
+[INIT] (2025-05-08 15:24:28) Validator process created
+[INIT] (2025-05-08 15:24:28) Miner 1 created
+[INIT] (2025-05-08 15:24:28) Miner 2 created
+[INIT] (2025-05-08 15:24:28) Miner 3 created
+[INIT] (2025-05-08 15:24:28) Miner 4 created
+[INFO] (2025-05-08 15:24:29) Transaction with reward 2 and sleep time 1999 pid: 9796 created
+[INFO] (2025-05-08 15:24:30) Transaction with reward 2 and sleep time 1999 pid: 9796 created
+[INFO] (2025-05-08 15:24:31) Transaction with reward 2 and sleep time 1999 pid: 9796 created
+[INFO] (2025-05-08 15:24:32) Transaction with reward 2 and sleep time 1999 pid: 9796 created
+[INFO] (2025-05-08 15:24:33) Transaction with reward 2 and sleep time 1999 pid: 9796 created
+[INFO] (2025-05-08 15:24:34) Transaction with reward 2 and sleep time 1999 pid: 9796 created
+[INFO] (2025-05-08 15:24:35) SIGINT received on transaction generator with id: 9796.
+[DEBUG] (2025-05-08 15:24:38) SIGINT received
+[INIT] (2025-05-08 15:26:34) Program started
+[INIT] (2025-05-08 15:26:34) Started reading configuration file
+[INFO] (2025-05-08 15:26:34) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:26:34) Miner process created
+[INIT] (2025-05-08 15:26:34) Statistics process created
+[INIT] (2025-05-08 15:26:34) Miner 1 created
+[INFO] (2025-05-08 15:26:34) im statistics!!!
+[TERMINATE] (2025-05-08 15:26:34) Statistics process terminated
+[INIT] (2025-05-08 15:26:34) Miner 2 created
+[INIT] (2025-05-08 15:26:34) Miner 3 created
+[INIT] (2025-05-08 15:26:34) Validator process created
+[INIT] (2025-05-08 15:26:34) Miner 4 created
+[INFO] (2025-05-08 15:26:34) Miner 1 finished
+[INFO] (2025-05-08 15:26:34) Miner 2 finished
+[INFO] (2025-05-08 15:26:34) Miner 3 finished
+[INFO] (2025-05-08 15:26:34) Miner 4 finished
+[INFO] (2025-05-08 15:26:37) Transaction with reward 2 and sleep time 1999 pid: 11211 created
+[INFO] (2025-05-08 15:26:38) Transaction with reward 2 and sleep time 1999 pid: 11211 created
+[INFO] (2025-05-08 15:26:39) Transaction with reward 2 and sleep time 1999 pid: 11211 created
+[INFO] (2025-05-08 15:26:40) Transaction with reward 2 and sleep time 1999 pid: 11211 created
+[INFO] (2025-05-08 15:26:41) Transaction with reward 2 and sleep time 1999 pid: 11211 created
+[TERMINATE] (2025-05-08 15:26:41) Miner process terminated
+[INFO] (2025-05-08 15:26:42) Transaction with reward 2 and sleep time 1999 pid: 11211 created
+[INFO] (2025-05-08 15:26:43) SIGINT received on transaction generator with id: 11211.
+[DEBUG] (2025-05-08 15:26:49) SIGINT received
+[INIT] (2025-05-08 15:30:25) Program started
+[INIT] (2025-05-08 15:30:25) Started reading configuration file
+[INFO] (2025-05-08 15:30:25) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:30:25) Miner process created
+[INIT] (2025-05-08 15:30:25) Statistics process created
+[INFO] (2025-05-08 15:30:25) im statistics!!!
+[TERMINATE] (2025-05-08 15:30:25) Statistics process terminated
+[INIT] (2025-05-08 15:30:25) Miner 1 created
+[INIT] (2025-05-08 15:30:25) Validator process created
+[INIT] (2025-05-08 15:30:25) Miner 2 created
+[INIT] (2025-05-08 15:30:25) Miner 3 created
+[INIT] (2025-05-08 15:30:25) Miner 4 created
+[INFO] (2025-05-08 15:30:25) Miner 1 finished
+[INFO] (2025-05-08 15:30:25) Miner 2 finished
+[INFO] (2025-05-08 15:30:25) Miner 3 finished
+[INFO] (2025-05-08 15:30:25) Miner 4 finished
+[INFO] (2025-05-08 15:30:26) Transaction with reward 2 and sleep time 1999 pid: 13472 created
+[INFO] (2025-05-08 15:30:27) Transaction with reward 2 and sleep time 1999 pid: 13472 created
+[INFO] (2025-05-08 15:30:28) Transaction with reward 2 and sleep time 1999 pid: 13472 created
+[INFO] (2025-05-08 15:30:29) Transaction with reward 2 and sleep time 1999 pid: 13472 created
+[INFO] (2025-05-08 15:30:30) Transaction with reward 2 and sleep time 1999 pid: 13472 created
+[TERMINATE] (2025-05-08 15:30:30) Miner process terminated
+[INFO] (2025-05-08 15:30:31) Transaction with reward 2 and sleep time 1999 pid: 13472 created
+[INFO] (2025-05-08 15:30:32) SIGINT received on transaction generator with id: 13472.
+[DEBUG] (2025-05-08 15:30:37) SIGINT received
+[INIT] (2025-05-08 15:33:32) Program started
+[INIT] (2025-05-08 15:33:32) Started reading configuration file
+[INFO] (2025-05-08 15:33:32) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:33:32) Miner process created
+[INIT] (2025-05-08 15:33:32) Statistics process created
+[INFO] (2025-05-08 15:33:32) im statistics!!!
+[INIT] (2025-05-08 15:33:32) Miner 1 created
+[TERMINATE] (2025-05-08 15:33:32) Statistics process terminated
+[INIT] (2025-05-08 15:33:32) Validator process created
+[INIT] (2025-05-08 15:33:32) Miner 2 created
+[INIT] (2025-05-08 15:33:32) Miner 3 created
+[INIT] (2025-05-08 15:33:32) Miner 4 created
+[INFO] (2025-05-08 15:33:35) Transaction with reward 2 and sleep time 1999 pid: 15488 created
+[INFO] (2025-05-08 15:33:36) Transaction with reward 2 and sleep time 1999 pid: 15488 created
+[INFO] (2025-05-08 15:33:37) Transaction with reward 2 and sleep time 1999 pid: 15488 created
+[INFO] (2025-05-08 15:33:38) Transaction with reward 2 and sleep time 1999 pid: 15488 created
+[INFO] (2025-05-08 15:33:39) Transaction with reward 2 and sleep time 1999 pid: 15488 created
+[INFO] (2025-05-08 15:33:39) SIGINT received on transaction generator with id: 15488.
+[DEBUG] (2025-05-08 15:33:43) SIGINT received
+[INIT] (2025-05-08 15:58:26) Program started
+[INIT] (2025-05-08 15:58:26) Started reading configuration file
+[INFO] (2025-05-08 15:58:26) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:58:26) Miner process created
+[INIT] (2025-05-08 15:58:26) Statistics process created
+[INFO] (2025-05-08 15:58:26) im statistics!!!
+[TERMINATE] (2025-05-08 15:58:26) Statistics process terminated
+[INIT] (2025-05-08 15:58:26) Miner 1 created
+[INIT] (2025-05-08 15:58:26) Validator process created
+[INIT] (2025-05-08 15:58:26) Miner 2 created
+[INIT] (2025-05-08 15:58:26) Miner 3 created
+[INIT] (2025-05-08 15:58:26) Miner 4 created
+[INFO] (2025-05-08 15:58:26) Miner 1 finished
+[INFO] (2025-05-08 15:58:26) Miner 2 finished
+[INFO] (2025-05-08 15:58:26) Miner 3 finished
+[INFO] (2025-05-08 15:58:26) Miner 4 finished
+[TERMINATE] (2025-05-08 15:58:26) Validator process terminated
+[DEBUG] (2025-05-08 15:58:41) SIGINT received
+[TERMINATE] (2025-05-08 15:58:41) Miner process terminated
+[INFO] (2025-05-08 15:58:41) Miner 1 finished
+[INFO] (2025-05-08 15:58:41) Miner 2 finished
+[INFO] (2025-05-08 15:58:41) Miner 3 finished
+[INFO] (2025-05-08 15:58:41) Miner 4 finished
+[TERMINATE] (2025-05-08 15:58:41) Miner process terminated
+[TERMINATE] (2025-05-08 15:58:41) Destroying sem
+[TERMINATE] (2025-05-08 15:58:41) Destroying mutex
+[TERMINATE] (2025-05-08 15:58:41) Detaching shared memory
+[TERMINATE] (2025-05-08 15:58:41) Removing shared memory
+[TERMINATE] (2025-05-08 15:58:41) Finished terminating
+[INFO] (2025-05-08 15:58:41) Closing program
+[INIT] (2025-05-08 15:58:43) Program started
+[INIT] (2025-05-08 15:58:43) Started reading configuration file
+[INFO] (2025-05-08 15:58:43) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 15:58:43) Miner process created
+[INIT] (2025-05-08 15:58:43) Statistics process created
+[INFO] (2025-05-08 15:58:43) im statistics!!!
+[TERMINATE] (2025-05-08 15:58:43) Statistics process terminated
+[INIT] (2025-05-08 15:58:43) Miner 1 created
+[INIT] (2025-05-08 15:58:43) Validator process created
+[INIT] (2025-05-08 15:58:43) Miner 2 created
+[INIT] (2025-05-08 15:58:43) Miner 3 created
+[INIT] (2025-05-08 15:58:43) Miner 4 created
+[DEBUG] (2025-05-08 15:58:44) SIGINT received
+[TERMINATE] (2025-05-08 15:58:44) Validator process terminated
+[INFO] (2025-05-08 15:58:44) Miner 1 finished
+[INFO] (2025-05-08 15:58:44) Miner 2 finished
+[INFO] (2025-05-08 15:58:44) Miner 3 finished
+[INFO] (2025-05-08 15:58:44) Miner 4 finished
+[TERMINATE] (2025-05-08 15:58:44) Miner process terminated
+[TERMINATE] (2025-05-08 15:58:44) Destroying sem
+[TERMINATE] (2025-05-08 15:58:44) Destroying mutex
+[TERMINATE] (2025-05-08 15:58:44) Detaching shared memory
+[TERMINATE] (2025-05-08 15:58:44) Removing shared memory
+[TERMINATE] (2025-05-08 15:58:44) Finished terminating
+[INFO] (2025-05-08 15:58:44) Closing program
+[INIT] (2025-05-08 16:04:46) Program started
+[INIT] (2025-05-08 16:04:46) Started reading configuration file
+[INFO] (2025-05-08 16:04:46) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 16:04:46) Statistics process created
+[INIT] (2025-05-08 16:04:46) Miner process created
+[INFO] (2025-05-08 16:04:46) im statistics!!!
+[TERMINATE] (2025-05-08 16:04:46) Statistics process terminated
+[INIT] (2025-05-08 16:04:46) Validator process created
+[INIT] (2025-05-08 16:04:46) Miner 1 created
+[INIT] (2025-05-08 16:04:46) Miner 2 created
+[INIT] (2025-05-08 16:04:46) Miner 3 created
+[INIT] (2025-05-08 16:04:46) Miner 4 created
+[INFO] (2025-05-08 16:04:46) Transaction with reward 1 and sleep time 1999 pid: 1587 created
+[INFO] (2025-05-08 16:04:47) Transaction with reward 1 and sleep time 1999 pid: 1587 created
+[INFO] (2025-05-08 16:04:48) Transaction with reward 1 and sleep time 1999 pid: 1587 created
+[INFO] (2025-05-08 16:04:49) Transaction with reward 1 and sleep time 1999 pid: 1587 created
+[INFO] (2025-05-08 16:04:50) Transaction with reward 1 and sleep time 1999 pid: 1587 created
+[TERMINATE] (2025-05-08 16:04:50) Validator process terminated
+[INFO] (2025-05-08 16:04:51) SIGINT received on transaction generator with id: 1587.
+[DEBUG] (2025-05-08 16:04:53) SIGINT received
+[INIT] (2025-05-08 16:19:31) Program started
+[INIT] (2025-05-08 16:19:31) Started reading configuration file
+[INFO] (2025-05-08 16:19:31) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 16:19:31) Miner process created
+[INIT] (2025-05-08 16:19:31) Statistics process created
+[INFO] (2025-05-08 16:19:31) im statistics!!!
+[TERMINATE] (2025-05-08 16:19:31) Statistics process terminated
+[INIT] (2025-05-08 16:19:31) Miner 1 created
+[INIT] (2025-05-08 16:19:31) Validator process created
+[INIT] (2025-05-08 16:19:31) Miner 2 created
+[INIT] (2025-05-08 16:19:31) Miner 3 created
+[INIT] (2025-05-08 16:19:31) Miner 4 created
+[INFO] (2025-05-08 16:19:31) Miner 1 finished
+[INFO] (2025-05-08 16:19:31) Miner 2 finished
+[INFO] (2025-05-08 16:19:31) Miner 3 finished
+[INFO] (2025-05-08 16:19:31) Miner 4 finished
+[TERMINATE] (2025-05-08 16:19:31) Validator process terminated
+[DEBUG] (2025-05-08 16:19:35) SIGINT received
+[DEBUG] (2025-05-08 16:19:35) SIGINT received
+[TERMINATE] (2025-05-08 16:19:35) Destroying sem
+[TERMINATE] (2025-05-08 16:19:35) Destroying mutex
+[TERMINATE] (2025-05-08 16:19:35) Detaching shared memory
+[TERMINATE] (2025-05-08 16:19:35) Removing shared memory
+[TERMINATE] (2025-05-08 16:19:35) Finished terminating
+[INFO] (2025-05-08 16:19:35) Closing program
+[TERMINATE] (2025-05-08 16:19:35) Destroying sem
+[TERMINATE] (2025-05-08 16:19:35) Destroying mutex
+[TERMINATE] (2025-05-08 16:19:35) Detaching shared memory
+[TERMINATE] (2025-05-08 16:19:35) Removing shared memory
+[TERMINATE] (2025-05-08 16:19:35) Finished terminating
+[INFO] (2025-05-08 16:19:35) Closing program
+[INIT] (2025-05-08 16:19:37) Program started
+[INIT] (2025-05-08 16:19:37) Started reading configuration file
+[INFO] (2025-05-08 16:19:37) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 16:19:37) Miner process created
+[INIT] (2025-05-08 16:19:37) Statistics process created
+[INFO] (2025-05-08 16:19:37) im statistics!!!
+[TERMINATE] (2025-05-08 16:19:37) Statistics process terminated
+[INIT] (2025-05-08 16:19:37) Miner 1 created
+[INIT] (2025-05-08 16:19:37) Miner 2 created
+[INIT] (2025-05-08 16:19:37) Miner 3 created
+[INIT] (2025-05-08 16:19:37) Miner 4 created
+[INIT] (2025-05-08 16:19:37) Validator process created
+[INFO] (2025-05-08 16:19:39) Transaction with reward 1 and sleep time 1999 pid: 9876 created
+[INFO] (2025-05-08 16:19:40) Transaction with reward 1 and sleep time 1999 pid: 9876 created
+[INFO] (2025-05-08 16:19:41) Transaction with reward 1 and sleep time 1999 pid: 9876 created
+[INFO] (2025-05-08 16:19:42) Transaction with reward 1 and sleep time 1999 pid: 9876 created
+[INFO] (2025-05-08 16:19:43) Transaction with reward 1 and sleep time 1999 pid: 9876 created
+[TERMINATE] (2025-05-08 16:19:43) Validator process terminated
+[INFO] (2025-05-08 16:19:43) SIGINT received on transaction generator with id: 9876.
+[DEBUG] (2025-05-08 16:19:47) SIGINT received
+[DEBUG] (2025-05-08 16:19:47) SIGINT received
+[TERMINATE] (2025-05-08 16:19:47) Destroying sem
+[TERMINATE] (2025-05-08 16:19:47) Destroying mutex
+[TERMINATE] (2025-05-08 16:19:47) Detaching shared memory
+[TERMINATE] (2025-05-08 16:19:47) Removing shared memory
+[TERMINATE] (2025-05-08 16:19:47) Finished terminating
+[INFO] (2025-05-08 16:19:47) Closing program
+[TERMINATE] (2025-05-08 16:19:47) Destroying sem
+[TERMINATE] (2025-05-08 16:19:47) Destroying mutex
+[TERMINATE] (2025-05-08 16:19:47) Detaching shared memory
+[TERMINATE] (2025-05-08 16:19:47) Removing shared memory
+[TERMINATE] (2025-05-08 16:19:47) Finished terminating
+[INFO] (2025-05-08 16:19:47) Closing program
+[INIT] (2025-05-08 16:56:48) Program started
+[INIT] (2025-05-08 16:56:48) Started reading configuration file
+[INFO] (2025-05-08 16:56:48) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 16:56:48) Miner process created
+[INIT] (2025-05-08 16:56:48) Statistics process created
+[INFO] (2025-05-08 16:56:48) im statistics!!!
+[TERMINATE] (2025-05-08 16:56:48) Statistics process terminated
+[INIT] (2025-05-08 16:56:48) Validator process created
+[INIT] (2025-05-08 16:56:48) Miner 1 created
+[INIT] (2025-05-08 16:56:48) Miner 2 created
+[INIT] (2025-05-08 16:56:48) Miner 3 created
+[INIT] (2025-05-08 16:56:48) Miner 4 created
+[INFO] (2025-05-08 16:57:04) Transaction with reward 1 and sleep time 1999 pid: 20991 created
+[INFO] (2025-05-08 16:57:05) Transaction with reward 1 and sleep time 1999 pid: 20991 created
+[INFO] (2025-05-08 16:57:06) Transaction with reward 1 and sleep time 1999 pid: 20991 created
+[INFO] (2025-05-08 16:57:07) Transaction with reward 1 and sleep time 1999 pid: 20991 created
+[INFO] (2025-05-08 16:57:08) Transaction with reward 1 and sleep time 1999 pid: 20991 created
+[INFO] (2025-05-08 16:57:09) SIGINT received on transaction generator with id: 20991.
+[DEBUG] (2025-05-08 16:57:14) SIGINT received
+[DEBUG] (2025-05-08 16:57:14) SIGINT received
+[TERMINATE] (2025-05-08 16:57:14) Validator process terminated
+[TERMINATE] (2025-05-08 16:57:14) Destroying sem
+[TERMINATE] (2025-05-08 16:57:14) Destroying mutex
+[TERMINATE] (2025-05-08 16:57:14) Detaching shared memory
+[TERMINATE] (2025-05-08 16:57:14) Removing shared memory
+[TERMINATE] (2025-05-08 16:57:14) Finished terminating
+[INFO] (2025-05-08 16:57:14) Closing program
+[TERMINATE] (2025-05-08 16:57:14) Destroying sem
+[TERMINATE] (2025-05-08 16:57:14) Destroying mutex
+[TERMINATE] (2025-05-08 16:57:14) Detaching shared memory
+[TERMINATE] (2025-05-08 16:57:14) Removing shared memory
+[TERMINATE] (2025-05-08 16:57:14) Finished terminating
+[INFO] (2025-05-08 16:57:14) Closing program
+[INIT] (2025-05-08 16:57:20) Program started
+[INIT] (2025-05-08 16:57:20) Started reading configuration file
+[INFO] (2025-05-08 16:57:20) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 16:57:20) Miner process created
+[INIT] (2025-05-08 16:57:20) Statistics process created
+[INFO] (2025-05-08 16:57:20) im statistics!!!
+[INIT] (2025-05-08 16:57:20) Validator process created
+[TERMINATE] (2025-05-08 16:57:20) Statistics process terminated
+[INIT] (2025-05-08 16:57:20) Miner 1 created
+[INIT] (2025-05-08 16:57:20) Miner 2 created
+[INIT] (2025-05-08 16:57:20) Miner 3 created
+[INIT] (2025-05-08 16:57:20) Miner 4 created
+[INFO] (2025-05-08 16:57:24) Transaction with reward 1 and sleep time 1999 pid: 21210 created
+[INFO] (2025-05-08 16:57:25) Transaction with reward 1 and sleep time 1999 pid: 21210 created
+[INFO] (2025-05-08 16:57:26) Transaction with reward 1 and sleep time 1999 pid: 21210 created
+[INFO] (2025-05-08 16:57:27) Transaction with reward 1 and sleep time 1999 pid: 21210 created
+[INFO] (2025-05-08 16:57:28) Transaction with reward 1 and sleep time 1999 pid: 21210 created
+[INFO] (2025-05-08 16:57:29) Transaction with reward 1 and sleep time 1999 pid: 21210 created
+[INFO] (2025-05-08 16:57:30) Transaction with reward 1 and sleep time 1999 pid: 21210 created
+[INFO] (2025-05-08 16:57:31) Transaction with reward 1 and sleep time 1999 pid: 21210 created
+[INFO] (2025-05-08 16:57:32) SIGINT received on transaction generator with id: 21210.
+[DEBUG] (2025-05-08 16:57:34) SIGINT received
+[TERMINATE] (2025-05-08 16:57:34) Validator process terminated
+[DEBUG] (2025-05-08 16:57:34) SIGINT received
+[TERMINATE] (2025-05-08 16:57:34) Destroying sem
+[TERMINATE] (2025-05-08 16:57:34) Destroying mutex
+[TERMINATE] (2025-05-08 16:57:34) Detaching shared memory
+[TERMINATE] (2025-05-08 16:57:34) Removing shared memory
+[TERMINATE] (2025-05-08 16:57:34) Finished terminating
+[INFO] (2025-05-08 16:57:34) Closing program
+[TERMINATE] (2025-05-08 16:57:34) Destroying sem
+[TERMINATE] (2025-05-08 16:57:34) Destroying mutex
+[TERMINATE] (2025-05-08 16:57:34) Detaching shared memory
+[TERMINATE] (2025-05-08 16:57:34) Removing shared memory
+[TERMINATE] (2025-05-08 16:57:34) Finished terminating
+[INFO] (2025-05-08 16:57:34) Closing program
+[INIT] (2025-05-08 16:57:37) Program started
+[INIT] (2025-05-08 16:57:37) Started reading configuration file
+[INFO] (2025-05-08 16:57:37) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 16:57:37) Miner process created
+[INIT] (2025-05-08 16:57:37) Statistics process created
+[INFO] (2025-05-08 16:57:37) im statistics!!!
+[TERMINATE] (2025-05-08 16:57:37) Statistics process terminated
+[INIT] (2025-05-08 16:57:37) Miner 1 created
+[INIT] (2025-05-08 16:57:37) Miner 2 created
+[INIT] (2025-05-08 16:57:37) Validator process created
+[INIT] (2025-05-08 16:57:37) Miner 3 created
+[INIT] (2025-05-08 16:57:37) Miner 4 created
+[INFO] (2025-05-08 16:57:39) Transaction with reward 1 and sleep time 1999 pid: 21400 created
+[INFO] (2025-05-08 16:57:40) Transaction with reward 1 and sleep time 1999 pid: 21400 created
+[INFO] (2025-05-08 16:57:41) Transaction with reward 1 and sleep time 1999 pid: 21400 created
+[INFO] (2025-05-08 16:57:42) Transaction with reward 1 and sleep time 1999 pid: 21400 created
+[INFO] (2025-05-08 16:57:43) Transaction with reward 1 and sleep time 1999 pid: 21400 created
+[INFO] (2025-05-08 16:57:44) Transaction with reward 1 and sleep time 1999 pid: 21400 created
+[INFO] (2025-05-08 16:57:45) Transaction with reward 1 and sleep time 1999 pid: 21400 created
+[INFO] (2025-05-08 16:57:46) Transaction with reward 1 and sleep time 1999 pid: 21400 created
+[INFO] (2025-05-08 16:57:46) SIGINT received on transaction generator with id: 21400.
+[INFO] (2025-05-08 16:57:47) Transaction with reward 1 and sleep time 1999 pid: 21486 created
+[INFO] (2025-05-08 16:57:48) Transaction with reward 1 and sleep time 1999 pid: 21486 created
+[INFO] (2025-05-08 16:57:49) Transaction with reward 1 and sleep time 1999 pid: 21486 created
+[INFO] (2025-05-08 16:57:50) Transaction with reward 1 and sleep time 1999 pid: 21486 created
+[INFO] (2025-05-08 16:57:51) Transaction with reward 1 and sleep time 1999 pid: 21486 created
+[INFO] (2025-05-08 16:57:52) SIGINT received on transaction generator with id: 21486.
+[DEBUG] (2025-05-08 16:58:19) SIGINT received
+[DEBUG] (2025-05-08 16:58:19) SIGINT received
+[TERMINATE] (2025-05-08 16:58:19) Validator process terminated
+[TERMINATE] (2025-05-08 16:58:19) Destroying sem
+[TERMINATE] (2025-05-08 16:58:19) Destroying mutex
+[TERMINATE] (2025-05-08 16:58:19) Detaching shared memory
+[TERMINATE] (2025-05-08 16:58:19) Removing shared memory
+[TERMINATE] (2025-05-08 16:58:19) Finished terminating
+[INFO] (2025-05-08 16:58:19) Closing program
+[TERMINATE] (2025-05-08 16:58:19) Destroying sem
+[TERMINATE] (2025-05-08 16:58:19) Destroying mutex
+[TERMINATE] (2025-05-08 16:58:19) Detaching shared memory
+[TERMINATE] (2025-05-08 16:58:19) Removing shared memory
+[TERMINATE] (2025-05-08 16:58:19) Finished terminating
+[INFO] (2025-05-08 16:58:19) Closing program
+[INIT] (2025-05-08 16:59:05) Program started
+[INIT] (2025-05-08 16:59:05) Started reading configuration file
+[INFO] (2025-05-08 16:59:05) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 16:59:05) Miner process created
+[INIT] (2025-05-08 16:59:05) Statistics process created
+[INFO] (2025-05-08 16:59:05) im statistics!!!
+[TERMINATE] (2025-05-08 16:59:05) Statistics process terminated
+[INIT] (2025-05-08 16:59:05) Validator process created
+[INIT] (2025-05-08 16:59:05) Miner 1 created
+[INIT] (2025-05-08 16:59:05) Miner 2 created
+[INIT] (2025-05-08 16:59:05) Miner 3 created
+[INIT] (2025-05-08 16:59:05) Miner 4 created
+[INFO] (2025-05-08 16:59:07) Transaction with reward 1 and sleep time 1999 pid: 22485 created
+[INFO] (2025-05-08 16:59:08) Transaction with reward 1 and sleep time 1999 pid: 22485 created
+[INFO] (2025-05-08 16:59:09) Transaction with reward 1 and sleep time 1999 pid: 22485 created
+[INFO] (2025-05-08 16:59:10) Transaction with reward 1 and sleep time 1999 pid: 22485 created
+[INFO] (2025-05-08 16:59:11) Transaction with reward 1 and sleep time 1999 pid: 22485 created
+[INFO] (2025-05-08 16:59:12) Transaction with reward 1 and sleep time 1999 pid: 22485 created
+[INFO] (2025-05-08 16:59:12) SIGINT received on transaction generator with id: 22485.
+[DEBUG] (2025-05-08 16:59:26) SIGINT received
+[DEBUG] (2025-05-08 16:59:26) SIGINT received
+[TERMINATE] (2025-05-08 16:59:26) Destroying sem
+[TERMINATE] (2025-05-08 16:59:26) Destroying mutex
+[TERMINATE] (2025-05-08 16:59:26) Detaching shared memory
+[TERMINATE] (2025-05-08 16:59:26) Removing shared memory
+[TERMINATE] (2025-05-08 16:59:26) Finished terminating
+[TERMINATE] (2025-05-08 16:59:26) Validator process terminated
+[INFO] (2025-05-08 16:59:26) Closing program
+[TERMINATE] (2025-05-08 16:59:26) Destroying sem
+[TERMINATE] (2025-05-08 16:59:26) Destroying mutex
+[TERMINATE] (2025-05-08 16:59:26) Detaching shared memory
+[TERMINATE] (2025-05-08 16:59:26) Removing shared memory
+[TERMINATE] (2025-05-08 16:59:26) Finished terminating
+[INFO] (2025-05-08 16:59:26) Closing program
+[INIT] (2025-05-08 17:06:04) Program started
+[INIT] (2025-05-08 17:06:04) Started reading configuration file
+[INFO] (2025-05-08 17:06:04) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 17:06:04) Miner process created
+[INIT] (2025-05-08 17:06:04) Statistics process created
+[INFO] (2025-05-08 17:06:04) im statistics!!!
+[TERMINATE] (2025-05-08 17:06:04) Statistics process terminated
+[INIT] (2025-05-08 17:06:04) Miner 1 created
+[INIT] (2025-05-08 17:06:04) Miner 2 created
+[INIT] (2025-05-08 17:06:04) Validator process created
+[INIT] (2025-05-08 17:06:04) Miner 3 created
+[INIT] (2025-05-08 17:06:04) Miner 4 created
+[INFO] (2025-05-08 17:06:06) Transaction with reward 1 and sleep time 1999 pid: 26577 created
+[INFO] (2025-05-08 17:06:07) Transaction with reward 1 and sleep time 1999 pid: 26577 created
+[INFO] (2025-05-08 17:06:08) Transaction with reward 1 and sleep time 1999 pid: 26577 created
+[INFO] (2025-05-08 17:06:09) Transaction with reward 1 and sleep time 1999 pid: 26577 created
+[INFO] (2025-05-08 17:06:10) Transaction with reward 1 and sleep time 1999 pid: 26577 created
+[TERMINATE] (2025-05-08 17:06:10) Validator process terminated
+[INFO] (2025-05-08 17:06:10) SIGINT received on transaction generator with id: 26577.
+[DEBUG] (2025-05-08 17:06:13) SIGINT received
+[DEBUG] (2025-05-08 17:06:13) SIGINT received
+[TERMINATE] (2025-05-08 17:06:13) Destroying sem
+[TERMINATE] (2025-05-08 17:06:13) Destroying mutex
+[TERMINATE] (2025-05-08 17:06:13) Detaching shared memory
+[TERMINATE] (2025-05-08 17:06:13) Removing shared memory
+[TERMINATE] (2025-05-08 17:06:13) Finished terminating
+[INFO] (2025-05-08 17:06:13) Closing program
+[TERMINATE] (2025-05-08 17:06:13) Destroying sem
+[TERMINATE] (2025-05-08 17:06:13) Destroying mutex
+[TERMINATE] (2025-05-08 17:06:13) Detaching shared memory
+[TERMINATE] (2025-05-08 17:06:13) Removing shared memory
+[TERMINATE] (2025-05-08 17:06:13) Finished terminating
+[INFO] (2025-05-08 17:06:13) Closing program
+[INIT] (2025-05-08 17:08:05) Program started
+[INIT] (2025-05-08 17:08:05) Started reading configuration file
+[INFO] (2025-05-08 17:08:05) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 17:08:05) Miner process created
+[INIT] (2025-05-08 17:08:05) Statistics process created
+[INFO] (2025-05-08 17:08:05) im statistics!!!
+[INIT] (2025-05-08 17:08:05) Validator process created
+[TERMINATE] (2025-05-08 17:08:05) Statistics process terminated
+[INIT] (2025-05-08 17:08:05) Miner 1 created
+[INIT] (2025-05-08 17:08:05) Miner 2 created
+[INIT] (2025-05-08 17:08:05) Miner 3 created
+[INIT] (2025-05-08 17:08:05) Miner 4 created
+[INFO] (2025-05-08 17:08:07) Transaction with reward 1 and sleep time 1999 pid: 28439 created
+[INFO] (2025-05-08 17:08:08) Transaction with reward 1 and sleep time 1999 pid: 28439 created
+[INFO] (2025-05-08 17:08:09) Transaction with reward 1 and sleep time 1999 pid: 28439 created
+[INFO] (2025-05-08 17:08:10) Transaction with reward 1 and sleep time 1999 pid: 28439 created
+[INFO] (2025-05-08 17:08:11) Transaction with reward 1 and sleep time 1999 pid: 28439 created
+[TERMINATE] (2025-05-08 17:08:11) Validator process terminated
+[INFO] (2025-05-08 17:08:12) Transaction with reward 1 and sleep time 1999 pid: 28439 created
+[INFO] (2025-05-08 17:08:13) Transaction with reward 1 and sleep time 1999 pid: 28439 created
+[INFO] (2025-05-08 17:08:14) Transaction with reward 1 and sleep time 1999 pid: 28439 created
+[INFO] (2025-05-08 17:08:15) Transaction with reward 1 and sleep time 1999 pid: 28439 created
+[INFO] (2025-05-08 17:08:16) Transaction with reward 1 and sleep time 1999 pid: 28439 created
+[INFO] (2025-05-08 17:08:17) SIGINT received on transaction generator with id: 28439.
+[DEBUG] (2025-05-08 17:08:27) SIGINT received
+[DEBUG] (2025-05-08 17:08:27) SIGINT received
+[TERMINATE] (2025-05-08 17:08:27) Destroying sem
+[TERMINATE] (2025-05-08 17:08:27) Destroying mutex
+[TERMINATE] (2025-05-08 17:08:27) Detaching shared memory
+[TERMINATE] (2025-05-08 17:08:27) Removing shared memory
+[TERMINATE] (2025-05-08 17:08:27) Finished terminating
+[INFO] (2025-05-08 17:08:27) Closing program
+[TERMINATE] (2025-05-08 17:08:27) Destroying sem
+[TERMINATE] (2025-05-08 17:08:27) Destroying mutex
+[TERMINATE] (2025-05-08 17:08:27) Detaching shared memory
+[TERMINATE] (2025-05-08 17:08:27) Removing shared memory
+[TERMINATE] (2025-05-08 17:08:27) Finished terminating
+[INFO] (2025-05-08 17:08:27) Closing program
+[INIT] (2025-05-08 17:10:14) Program started
+[INIT] (2025-05-08 17:10:14) Started reading configuration file
+[INFO] (2025-05-08 17:10:14) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 17:10:14) Miner process created
+[INIT] (2025-05-08 17:10:14) Statistics process created
+[INFO] (2025-05-08 17:10:14) im statistics!!!
+[INIT] (2025-05-08 17:10:14) Miner 1 created
+[TERMINATE] (2025-05-08 17:10:14) Statistics process terminated
+[INIT] (2025-05-08 17:10:14) Miner 2 created
+[INIT] (2025-05-08 17:10:14) Miner 3 created
+[INIT] (2025-05-08 17:10:14) Miner 4 created
+[INIT] (2025-05-08 17:10:14) Validator process created
+[INFO] (2025-05-08 17:10:16) Transaction with reward 1 and sleep time 1999 pid: 29804 created
+[INFO] (2025-05-08 17:10:17) Transaction with reward 1 and sleep time 1999 pid: 29804 created
+[INFO] (2025-05-08 17:10:18) Transaction with reward 1 and sleep time 1999 pid: 29804 created
+[INFO] (2025-05-08 17:10:19) Transaction with reward 1 and sleep time 1999 pid: 29804 created
+[INFO] (2025-05-08 17:10:20) Transaction with reward 1 and sleep time 1999 pid: 29804 created
+[TERMINATE] (2025-05-08 17:10:21) Validator process terminated
+[INFO] (2025-05-08 17:10:21) SIGINT received on transaction generator with id: 29804.
+[DEBUG] (2025-05-08 17:10:25) SIGINT received
+[DEBUG] (2025-05-08 17:10:25) SIGINT received
+[TERMINATE] (2025-05-08 17:10:25) Destroying sem
+[TERMINATE] (2025-05-08 17:10:25) Destroying mutex
+[TERMINATE] (2025-05-08 17:10:25) Detaching shared memory
+[TERMINATE] (2025-05-08 17:10:25) Removing shared memory
+[TERMINATE] (2025-05-08 17:10:25) Finished terminating
+[INFO] (2025-05-08 17:10:25) Closing program
+[TERMINATE] (2025-05-08 17:10:25) Destroying sem
+[TERMINATE] (2025-05-08 17:10:25) Destroying mutex
+[TERMINATE] (2025-05-08 17:10:25) Detaching shared memory
+[TERMINATE] (2025-05-08 17:10:25) Removing shared memory
+[TERMINATE] (2025-05-08 17:10:25) Finished terminating
+[INFO] (2025-05-08 17:10:25) Closing program
+[INIT] (2025-05-08 17:11:47) Program started
+[INIT] (2025-05-08 17:11:47) Started reading configuration file
+[INFO] (2025-05-08 17:11:47) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 17:11:47) Miner process created
+[INIT] (2025-05-08 17:11:47) Statistics process created
+[INFO] (2025-05-08 17:11:47) im statistics!!!
+[TERMINATE] (2025-05-08 17:11:47) Statistics process terminated
+[INIT] (2025-05-08 17:11:47) Validator process created
+[INIT] (2025-05-08 17:11:47) Miner 1 created
+[INIT] (2025-05-08 17:11:47) Miner 2 created
+[INIT] (2025-05-08 17:11:47) Miner 3 created
+[INIT] (2025-05-08 17:11:47) Miner 4 created
+[INFO] (2025-05-08 17:11:49) Transaction with reward 1 and sleep time 1999 pid: 31259 created
+[INFO] (2025-05-08 17:11:50) Transaction with reward 1 and sleep time 1999 pid: 31259 created
+[INFO] (2025-05-08 17:11:51) Transaction with reward 1 and sleep time 1999 pid: 31259 created
+[INFO] (2025-05-08 17:11:52) Transaction with reward 1 and sleep time 1999 pid: 31259 created
+[INFO] (2025-05-08 17:11:53) Transaction with reward 1 and sleep time 1999 pid: 31259 created
+[TERMINATE] (2025-05-08 17:11:53) Validator process terminated
+[INFO] (2025-05-08 17:11:53) SIGINT received on transaction generator with id: 31259.
+[DEBUG] (2025-05-08 17:11:54) SIGINT received
+[DEBUG] (2025-05-08 17:11:54) SIGINT received
+[TERMINATE] (2025-05-08 17:11:54) Destroying sem
+[TERMINATE] (2025-05-08 17:11:54) Destroying mutex
+[TERMINATE] (2025-05-08 17:11:54) Detaching shared memory
+[TERMINATE] (2025-05-08 17:11:54) Removing shared memory
+[TERMINATE] (2025-05-08 17:11:54) Finished terminating
+[INFO] (2025-05-08 17:11:54) Closing program
+[TERMINATE] (2025-05-08 17:11:54) Destroying sem
+[TERMINATE] (2025-05-08 17:11:54) Destroying mutex
+[TERMINATE] (2025-05-08 17:11:54) Detaching shared memory
+[TERMINATE] (2025-05-08 17:11:54) Removing shared memory
+[TERMINATE] (2025-05-08 17:11:54) Finished terminating
+[INFO] (2025-05-08 17:11:54) Closing program
+[INIT] (2025-05-08 17:24:04) Program started
+[INIT] (2025-05-08 17:24:04) Started reading configuration file
+[INFO] (2025-05-08 17:24:04) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 17:24:04) Miner process created
+[INIT] (2025-05-08 17:24:04) Statistics process created
+[INFO] (2025-05-08 17:24:04) im statistics!!!
+[TERMINATE] (2025-05-08 17:24:04) Statistics process terminated
+[INIT] (2025-05-08 17:24:04) Miner 1 created
+[INIT] (2025-05-08 17:24:04) Validator process created
+[INIT] (2025-05-08 17:24:04) Miner 2 created
+[INIT] (2025-05-08 17:24:04) Miner 3 created
+[INIT] (2025-05-08 17:24:04) Miner 4 created
+[INFO] (2025-05-08 17:24:05) Transaction with reward 1 and sleep time 1999 pid: 5860 created
+[INFO] (2025-05-08 17:24:06) Transaction with reward 1 and sleep time 1999 pid: 5860 created
+[INFO] (2025-05-08 17:24:07) Transaction with reward 1 and sleep time 1999 pid: 5860 created
+[INFO] (2025-05-08 17:24:08) Transaction with reward 1 and sleep time 1999 pid: 5860 created
+[INFO] (2025-05-08 17:24:09) Transaction with reward 1 and sleep time 1999 pid: 5860 created
+[TERMINATE] (2025-05-08 17:24:09) Validator process terminated
+[INFO] (2025-05-08 17:24:09) SIGINT received on transaction generator with id: 5860.
+[DEBUG] (2025-05-08 17:24:10) SIGINT received
+[DEBUG] (2025-05-08 17:24:10) SIGINT received
+[TERMINATE] (2025-05-08 17:24:10) Destroying sem
+[TERMINATE] (2025-05-08 17:24:10) Destroying mutex
+[TERMINATE] (2025-05-08 17:24:10) Detaching shared memory
+[TERMINATE] (2025-05-08 17:24:10) Removing shared memory
+[TERMINATE] (2025-05-08 17:24:10) Finished terminating
+[INFO] (2025-05-08 17:24:10) Closing program
+[TERMINATE] (2025-05-08 17:24:10) Destroying sem
+[TERMINATE] (2025-05-08 17:24:10) Destroying mutex
+[TERMINATE] (2025-05-08 17:24:10) Detaching shared memory
+[TERMINATE] (2025-05-08 17:24:10) Removing shared memory
+[TERMINATE] (2025-05-08 17:24:10) Finished terminating
+[INFO] (2025-05-08 17:24:10) Closing program
+[INIT] (2025-05-08 17:24:57) Program started
+[INIT] (2025-05-08 17:24:57) Started reading configuration file
+[INFO] (2025-05-08 17:24:57) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 17:24:57) Miner process created
+[INIT] (2025-05-08 17:24:57) Statistics process created
+[INFO] (2025-05-08 17:24:57) im statistics!!!
+[TERMINATE] (2025-05-08 17:24:57) Statistics process terminated
+[INIT] (2025-05-08 17:24:57) Miner 1 created
+[INIT] (2025-05-08 17:24:57) Validator process created
+[INIT] (2025-05-08 17:24:57) Miner 2 created
+[INIT] (2025-05-08 17:24:57) Miner 3 created
+[INIT] (2025-05-08 17:24:57) Miner 4 created
+[INFO] (2025-05-08 17:24:59) Transaction with reward 1 and sleep time 1999 pid: 6611 created
+[INFO] (2025-05-08 17:25:00) Transaction with reward 1 and sleep time 1999 pid: 6611 created
+[INFO] (2025-05-08 17:25:01) Transaction with reward 1 and sleep time 1999 pid: 6611 created
+[INFO] (2025-05-08 17:25:02) Transaction with reward 1 and sleep time 1999 pid: 6611 created
+[INFO] (2025-05-08 17:25:03) Transaction with reward 1 and sleep time 1999 pid: 6611 created
+[TERMINATE] (2025-05-08 17:25:03) Validator process terminated
+[INFO] (2025-05-08 17:25:03) SIGINT received on transaction generator with id: 6611.
+[DEBUG] (2025-05-08 17:25:04) SIGINT received
+[DEBUG] (2025-05-08 17:25:04) SIGINT received
+[TERMINATE] (2025-05-08 17:25:04) Destroying sem
+[TERMINATE] (2025-05-08 17:25:04) Destroying mutex
+[TERMINATE] (2025-05-08 17:25:04) Detaching shared memory
+[TERMINATE] (2025-05-08 17:25:04) Removing shared memory
+[TERMINATE] (2025-05-08 17:25:04) Finished terminating
+[INFO] (2025-05-08 17:25:04) Closing program
+[TERMINATE] (2025-05-08 17:25:04) Destroying sem
+[TERMINATE] (2025-05-08 17:25:04) Destroying mutex
+[TERMINATE] (2025-05-08 17:25:04) Detaching shared memory
+[TERMINATE] (2025-05-08 17:25:04) Removing shared memory
+[TERMINATE] (2025-05-08 17:25:04) Finished terminating
+[INFO] (2025-05-08 17:25:04) Closing program
+[INIT] (2025-05-08 17:32:09) Program started
+[INIT] (2025-05-08 17:32:09) Started reading configuration file
+[INFO] (2025-05-08 17:32:09) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 17:32:09) Miner process created
+[INIT] (2025-05-08 17:32:09) Statistics process created
+[INFO] (2025-05-08 17:32:09) im statistics!!!
+[TERMINATE] (2025-05-08 17:32:09) Statistics process terminated
+[INIT] (2025-05-08 17:32:09) Miner 1 created
+[INIT] (2025-05-08 17:32:09) Validator process created
+[INIT] (2025-05-08 17:32:09) Miner 2 created
+[INIT] (2025-05-08 17:32:09) Miner 3 created
+[INIT] (2025-05-08 17:32:09) Miner 4 created
+[INFO] (2025-05-08 17:32:11) Transaction with reward 1 and sleep time 1999 pid: 10695 created
+[INFO] (2025-05-08 17:32:12) Transaction with reward 1 and sleep time 1999 pid: 10695 created
+[INFO] (2025-05-08 17:32:13) Transaction with reward 1 and sleep time 1999 pid: 10695 created
+[INFO] (2025-05-08 17:32:14) Transaction with reward 1 and sleep time 1999 pid: 10695 created
+[INFO] (2025-05-08 17:32:15) Transaction with reward 1 and sleep time 1999 pid: 10695 created
+[TERMINATE] (2025-05-08 17:32:15) Validator process terminated
+[INFO] (2025-05-08 17:32:15) SIGINT received on transaction generator with id: 10695.
+[DEBUG] (2025-05-08 17:32:16) SIGINT received
+[DEBUG] (2025-05-08 17:32:16) SIGINT received
+[TERMINATE] (2025-05-08 17:32:16) Destroying sem
+[TERMINATE] (2025-05-08 17:32:16) Destroying mutex
+[TERMINATE] (2025-05-08 17:32:16) Detaching shared memory
+[TERMINATE] (2025-05-08 17:32:16) Removing shared memory
+[TERMINATE] (2025-05-08 17:32:16) Finished terminating
+[INFO] (2025-05-08 17:32:16) Closing program
+[TERMINATE] (2025-05-08 17:32:16) Destroying sem
+[TERMINATE] (2025-05-08 17:32:16) Destroying mutex
+[TERMINATE] (2025-05-08 17:32:16) Detaching shared memory
+[TERMINATE] (2025-05-08 17:32:16) Removing shared memory
+[TERMINATE] (2025-05-08 17:32:16) Finished terminating
+[INFO] (2025-05-08 17:32:16) Closing program
+[INIT] (2025-05-08 17:33:03) Program started
+[INIT] (2025-05-08 17:33:03) Started reading configuration file
+[INFO] (2025-05-08 17:33:03) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 17:33:03) Miner process created
+[INIT] (2025-05-08 17:33:03) Statistics process created
+[INFO] (2025-05-08 17:33:03) im statistics!!!
+[TERMINATE] (2025-05-08 17:33:03) Statistics process terminated
+[INIT] (2025-05-08 17:33:03) Miner 1 created
+[INIT] (2025-05-08 17:33:03) Validator process created
+[INIT] (2025-05-08 17:33:03) Miner 2 created
+[INIT] (2025-05-08 17:33:03) Miner 3 created
+[INIT] (2025-05-08 17:33:03) Miner 4 created
+[INFO] (2025-05-08 17:33:04) Transaction with reward 1 and sleep time 1999 pid: 11469 created
+[INFO] (2025-05-08 17:33:05) Transaction with reward 1 and sleep time 1999 pid: 11469 created
+[INFO] (2025-05-08 17:33:06) Transaction with reward 1 and sleep time 1999 pid: 11469 created
+[INFO] (2025-05-08 17:33:07) Transaction with reward 1 and sleep time 1999 pid: 11469 created
+[INFO] (2025-05-08 17:33:08) Transaction with reward 1 and sleep time 1999 pid: 11469 created
+[INFO] (2025-05-08 17:33:09) SIGINT received on transaction generator with id: 11469.
+[INFO] (2025-05-08 17:33:16) Transaction with reward 1 and sleep time 1999 pid: 11575 created
+[INFO] (2025-05-08 17:33:17) Transaction with reward 1 and sleep time 1999 pid: 11575 created
+[INFO] (2025-05-08 17:33:18) Transaction with reward 1 and sleep time 1999 pid: 11575 created
+[INFO] (2025-05-08 17:33:18) SIGINT received on transaction generator with id: 11575.
+[DEBUG] (2025-05-08 17:33:19) SIGINT received
+[DEBUG] (2025-05-08 17:33:19) SIGINT received
+[TERMINATE] (2025-05-08 17:33:19) Destroying sem
+[TERMINATE] (2025-05-08 17:33:19) Destroying mutex
+[TERMINATE] (2025-05-08 17:33:19) Detaching shared memory
+[TERMINATE] (2025-05-08 17:33:19) Removing shared memory
+[TERMINATE] (2025-05-08 17:33:19) Finished terminating
+[INFO] (2025-05-08 17:33:19) Closing program
+[TERMINATE] (2025-05-08 17:33:19) Destroying sem
+[TERMINATE] (2025-05-08 17:33:19) Destroying mutex
+[TERMINATE] (2025-05-08 17:33:19) Detaching shared memory
+[TERMINATE] (2025-05-08 17:33:19) Removing shared memory
+[TERMINATE] (2025-05-08 17:33:19) Finished terminating
+[INFO] (2025-05-08 17:33:19) Closing program
+[INIT] (2025-05-08 17:33:22) Program started
+[INIT] (2025-05-08 17:33:22) Started reading configuration file
+[INFO] (2025-05-08 17:33:22) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 17:33:22) Miner process created
+[INIT] (2025-05-08 17:33:22) Statistics process created
+[INFO] (2025-05-08 17:33:22) im statistics!!!
+[TERMINATE] (2025-05-08 17:33:22) Statistics process terminated
+[INIT] (2025-05-08 17:33:22) Validator process created
+[INIT] (2025-05-08 17:33:22) Miner 1 created
+[INIT] (2025-05-08 17:33:22) Miner 2 created
+[INIT] (2025-05-08 17:33:22) Miner 3 created
+[INIT] (2025-05-08 17:33:22) Miner 4 created
+[DEBUG] (2025-05-08 17:33:24) SIGINT received
+[DEBUG] (2025-05-08 17:33:24) SIGINT received
+[TERMINATE] (2025-05-08 17:33:24) Destroying sem
+[TERMINATE] (2025-05-08 17:33:24) Destroying mutex
+[TERMINATE] (2025-05-08 17:33:24) Detaching shared memory
+[TERMINATE] (2025-05-08 17:33:24) Removing shared memory
+[TERMINATE] (2025-05-08 17:33:24) Finished terminating
+[INFO] (2025-05-08 17:33:24) Closing program
+[TERMINATE] (2025-05-08 17:33:24) Validator process terminated
+[TERMINATE] (2025-05-08 17:33:24) Destroying sem
+[TERMINATE] (2025-05-08 17:33:24) Destroying mutex
+[TERMINATE] (2025-05-08 17:33:24) Detaching shared memory
+[TERMINATE] (2025-05-08 17:33:24) Removing shared memory
+[TERMINATE] (2025-05-08 17:33:24) Finished terminating
+[INFO] (2025-05-08 17:33:24) Closing program
+[INIT] (2025-05-08 18:03:03) Program started
+[INIT] (2025-05-08 18:03:03) Started reading configuration file
+[INFO] (2025-05-08 18:03:03) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 18:03:03) Miner process created
+[INIT] (2025-05-08 18:03:03) Statistics process created
+[INFO] (2025-05-08 18:03:03) im statistics!!!
+[INIT] (2025-05-08 18:03:03) Validator process created
+[TERMINATE] (2025-05-08 18:03:03) Statistics process terminated
+[INIT] (2025-05-08 18:03:03) Miner 1 created
+[INIT] (2025-05-08 18:03:03) Miner 2 created
+[INIT] (2025-05-08 18:03:03) Miner 3 created
+[INIT] (2025-05-08 18:03:03) Miner 4 created
+[INFO] (2025-05-08 18:03:05) Transaction with reward 1 and sleep time 1999 pid: 24930 created
+[INFO] (2025-05-08 18:03:06) Transaction with reward 1 and sleep time 1999 pid: 24930 created
+[INFO] (2025-05-08 18:03:07) Transaction with reward 1 and sleep time 1999 pid: 24930 created
+[INFO] (2025-05-08 18:03:08) Transaction with reward 1 and sleep time 1999 pid: 24930 created
+[INFO] (2025-05-08 18:03:09) Transaction with reward 1 and sleep time 1999 pid: 24930 created
+[TERMINATE] (2025-05-08 18:03:09) Validator process terminated
+[INFO] (2025-05-08 18:03:09) SIGINT received on transaction generator with id: 24930.
+[DEBUG] (2025-05-08 18:03:11) SIGINT received
+[DEBUG] (2025-05-08 18:03:11) SIGINT received
+[TERMINATE] (2025-05-08 18:03:11) Destroying sem
+[TERMINATE] (2025-05-08 18:03:11) Destroying mutex
+[TERMINATE] (2025-05-08 18:03:11) Detaching shared memory
+[TERMINATE] (2025-05-08 18:03:11) Removing shared memory
+[TERMINATE] (2025-05-08 18:03:11) Finished terminating
+[INFO] (2025-05-08 18:03:11) Closing program
+[TERMINATE] (2025-05-08 18:03:11) Destroying sem
+[TERMINATE] (2025-05-08 18:03:11) Destroying mutex
+[TERMINATE] (2025-05-08 18:03:11) Detaching shared memory
+[TERMINATE] (2025-05-08 18:03:11) Removing shared memory
+[TERMINATE] (2025-05-08 18:03:11) Finished terminating
+[INFO] (2025-05-08 18:03:11) Closing program
+[INIT] (2025-05-08 18:06:49) Program started
+[INIT] (2025-05-08 18:06:49) Started reading configuration file
+[INFO] (2025-05-08 18:06:49) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 18:06:49) Miner process created
+[INIT] (2025-05-08 18:06:49) Statistics process created
+[INFO] (2025-05-08 18:06:49) im statistics!!!
+[TERMINATE] (2025-05-08 18:06:49) Statistics process terminated
+[INIT] (2025-05-08 18:06:49) Miner 1 created
+[INIT] (2025-05-08 18:06:49) Miner 2 created
+[INIT] (2025-05-08 18:06:49) Validator process created
+[INIT] (2025-05-08 18:06:49) Miner 3 created
+[INIT] (2025-05-08 18:06:49) Miner 4 created
+[TERMINATE] (2025-05-08 18:06:49) Validator process terminated
+[INFO] (2025-05-08 18:06:51) Transaction with reward 1 and sleep time 1999 pid: 27634 created
+[INFO] (2025-05-08 18:06:52) Transaction with reward 1 and sleep time 1999 pid: 27634 created
+[INFO] (2025-05-08 18:06:53) Transaction with reward 1 and sleep time 1999 pid: 27634 created
+[INFO] (2025-05-08 18:06:54) Transaction with reward 1 and sleep time 1999 pid: 27634 created
+[INFO] (2025-05-08 18:06:55) Transaction with reward 1 and sleep time 1999 pid: 27634 created
+[INFO] (2025-05-08 18:06:55) SIGINT received on transaction generator with id: 27634.
+[DEBUG] (2025-05-08 18:07:09) SIGINT received
+[DEBUG] (2025-05-08 18:07:09) SIGINT received
+[TERMINATE] (2025-05-08 18:07:09) Destroying sem
+[TERMINATE] (2025-05-08 18:07:09) Destroying mutex
+[TERMINATE] (2025-05-08 18:07:09) Detaching shared memory
+[TERMINATE] (2025-05-08 18:07:09) Removing shared memory
+[TERMINATE] (2025-05-08 18:07:09) Finished terminating
+[INFO] (2025-05-08 18:07:09) Closing program
+[TERMINATE] (2025-05-08 18:07:09) Destroying sem
+[TERMINATE] (2025-05-08 18:07:09) Destroying mutex
+[TERMINATE] (2025-05-08 18:07:09) Detaching shared memory
+[TERMINATE] (2025-05-08 18:07:09) Removing shared memory
+[TERMINATE] (2025-05-08 18:07:09) Finished terminating
+[INFO] (2025-05-08 18:07:09) Closing program
+[INIT] (2025-05-08 18:08:13) Program started
+[INIT] (2025-05-08 18:08:13) Started reading configuration file
+[INFO] (2025-05-08 18:08:13) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 18:08:13) Miner process created
+[INIT] (2025-05-08 18:08:13) Statistics process created
+[INFO] (2025-05-08 18:08:13) im statistics!!!
+[TERMINATE] (2025-05-08 18:08:13) Statistics process terminated
+[INIT] (2025-05-08 18:08:13) Miner 1 created
+[INIT] (2025-05-08 18:08:13) Validator process created
+[INIT] (2025-05-08 18:08:13) Miner 2 created
+[INIT] (2025-05-08 18:08:13) Miner 3 created
+[INIT] (2025-05-08 18:08:13) Miner 4 created
+[INFO] (2025-05-08 18:08:14) Transaction with reward 1 and sleep time 1999 pid: 28636 created
+[INFO] (2025-05-08 18:08:15) Transaction with reward 1 and sleep time 1999 pid: 28636 created
+[INFO] (2025-05-08 18:08:16) Transaction with reward 1 and sleep time 1999 pid: 28636 created
+[INFO] (2025-05-08 18:08:17) Transaction with reward 1 and sleep time 1999 pid: 28636 created
+[INFO] (2025-05-08 18:08:18) Transaction with reward 1 and sleep time 1999 pid: 28636 created
+[TERMINATE] (2025-05-08 18:08:18) Validator process terminated
+[INFO] (2025-05-08 18:08:18) SIGINT received on transaction generator with id: 28636.
+[DEBUG] (2025-05-08 18:08:20) SIGINT received
+[DEBUG] (2025-05-08 18:08:20) SIGINT received
+[TERMINATE] (2025-05-08 18:08:20) Destroying sem
+[TERMINATE] (2025-05-08 18:08:20) Destroying mutex
+[TERMINATE] (2025-05-08 18:08:20) Detaching shared memory
+[TERMINATE] (2025-05-08 18:08:20) Removing shared memory
+[TERMINATE] (2025-05-08 18:08:20) Finished terminating
+[INFO] (2025-05-08 18:08:20) Closing program
+[TERMINATE] (2025-05-08 18:08:20) Destroying sem
+[TERMINATE] (2025-05-08 18:08:20) Destroying mutex
+[TERMINATE] (2025-05-08 18:08:20) Detaching shared memory
+[TERMINATE] (2025-05-08 18:08:20) Removing shared memory
+[TERMINATE] (2025-05-08 18:08:20) Finished terminating
+[INFO] (2025-05-08 18:08:20) Closing program
+[INIT] (2025-05-08 18:29:41) Program started
+[INIT] (2025-05-08 18:29:41) Started reading configuration file
+[INFO] (2025-05-08 18:29:41) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 18:29:41) Miner process created
+[INIT] (2025-05-08 18:29:41) Statistics process created
+[INFO] (2025-05-08 18:29:41) im statistics!!!
+[TERMINATE] (2025-05-08 18:29:41) Statistics process terminated
+[INIT] (2025-05-08 18:29:41) Miner 1 created
+[INIT] (2025-05-08 18:29:41) Miner 2 created
+[INIT] (2025-05-08 18:29:41) Validator process created
+[INIT] (2025-05-08 18:29:41) Miner 3 created
+[INIT] (2025-05-08 18:29:41) Miner 4 created
+[INFO] (2025-05-08 18:29:42) Transaction with reward 1 and sleep time 1999 pid: 5065 created
+[INFO] (2025-05-08 18:29:43) Transaction with reward 1 and sleep time 1999 pid: 5065 created
+[INFO] (2025-05-08 18:29:44) Transaction with reward 1 and sleep time 1999 pid: 5065 created
+[INFO] (2025-05-08 18:29:45) Transaction with reward 1 and sleep time 1999 pid: 5065 created
+[INFO] (2025-05-08 18:29:46) Transaction with reward 1 and sleep time 1999 pid: 5065 created
+[INFO] (2025-05-08 18:29:46) SIGINT received on transaction generator with id: 5065.
+[DEBUG] (2025-05-08 18:29:57) SIGINT received
+[DEBUG] (2025-05-08 18:29:57) SIGINT received
+[TERMINATE] (2025-05-08 18:29:57) Destroying sem
+[TERMINATE] (2025-05-08 18:29:57) Destroying mutex
+[TERMINATE] (2025-05-08 18:29:57) Detaching shared memory
+[TERMINATE] (2025-05-08 18:29:57) Removing shared memory
+[TERMINATE] (2025-05-08 18:29:57) Finished terminating
+[INFO] (2025-05-08 18:29:57) Closing program
+[TERMINATE] (2025-05-08 18:29:57) Validator process terminated
+[TERMINATE] (2025-05-08 18:29:57) Destroying sem
+[TERMINATE] (2025-05-08 18:29:57) Destroying mutex
+[TERMINATE] (2025-05-08 18:29:57) Detaching shared memory
+[TERMINATE] (2025-05-08 18:29:57) Removing shared memory
+[TERMINATE] (2025-05-08 18:29:57) Finished terminating
+[INFO] (2025-05-08 18:29:57) Closing program
+[INIT] (2025-05-08 18:31:40) Program started
+[INIT] (2025-05-08 18:31:40) Started reading configuration file
+[INFO] (2025-05-08 18:31:40) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 18:31:40) Miner process created
+[INIT] (2025-05-08 18:31:40) Statistics process created
+[INFO] (2025-05-08 18:31:40) im statistics!!!
+[TERMINATE] (2025-05-08 18:31:40) Statistics process terminated
+[INIT] (2025-05-08 18:31:40) Miner 1 created
+[INIT] (2025-05-08 18:31:40) Validator process created
+[INIT] (2025-05-08 18:31:40) Miner 2 created
+[INIT] (2025-05-08 18:31:40) Miner 3 created
+[INIT] (2025-05-08 18:31:40) Miner 4 created
+[INFO] (2025-05-08 18:31:43) Transaction with reward 1 and sleep time 1999 pid: 6435 created
+[INFO] (2025-05-08 18:31:44) Transaction with reward 1 and sleep time 1999 pid: 6435 created
+[INFO] (2025-05-08 18:31:45) Transaction with reward 1 and sleep time 1999 pid: 6435 created
+[INFO] (2025-05-08 18:31:46) Transaction with reward 1 and sleep time 1999 pid: 6435 created
+[INFO] (2025-05-08 18:31:47) Transaction with reward 1 and sleep time 1999 pid: 6435 created
+[INFO] (2025-05-08 18:31:48) SIGINT received on transaction generator with id: 6435.
+[DEBUG] (2025-05-08 18:32:05) SIGINT received
+[DEBUG] (2025-05-08 18:32:05) SIGINT received
+[TERMINATE] (2025-05-08 18:32:05) Destroying sem
+[TERMINATE] (2025-05-08 18:32:05) Validator process terminated
+[TERMINATE] (2025-05-08 18:32:05) Destroying mutex
+[TERMINATE] (2025-05-08 18:32:05) Detaching shared memory
+[TERMINATE] (2025-05-08 18:32:05) Removing shared memory
+[TERMINATE] (2025-05-08 18:32:05) Finished terminating
+[INFO] (2025-05-08 18:32:05) Closing program
+[TERMINATE] (2025-05-08 18:32:05) Destroying sem
+[TERMINATE] (2025-05-08 18:32:05) Destroying mutex
+[TERMINATE] (2025-05-08 18:32:05) Detaching shared memory
+[TERMINATE] (2025-05-08 18:32:05) Removing shared memory
+[TERMINATE] (2025-05-08 18:32:05) Finished terminating
+[INFO] (2025-05-08 18:32:05) Closing program
+[INIT] (2025-05-08 18:32:44) Program started
+[INIT] (2025-05-08 18:32:44) Started reading configuration file
+[INFO] (2025-05-08 18:32:44) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 18:32:44) Miner process created
+[INIT] (2025-05-08 18:32:44) Statistics process created
+[INIT] (2025-05-08 18:32:44) Miner 1 created
+[INFO] (2025-05-08 18:32:44) im statistics!!!
+[TERMINATE] (2025-05-08 18:32:44) Statistics process terminated
+[INIT] (2025-05-08 18:32:44) Miner 2 created
+[INIT] (2025-05-08 18:32:44) Miner 3 created
+[INIT] (2025-05-08 18:32:44) Miner 4 created
+[INIT] (2025-05-08 18:32:44) Validator process created
+[INFO] (2025-05-08 18:32:45) Transaction with reward 1 and sleep time 1999 pid: 7203 created
+[INFO] (2025-05-08 18:32:46) Transaction with reward 1 and sleep time 1999 pid: 7203 created
+[INFO] (2025-05-08 18:32:47) Transaction with reward 1 and sleep time 1999 pid: 7203 created
+[INFO] (2025-05-08 18:32:47) SIGINT received on transaction generator with id: 7203.
+[INFO] (2025-05-08 18:32:48) Transaction with reward 1 and sleep time 1999 pid: 7250 created
+[INFO] (2025-05-08 18:32:49) Transaction with reward 1 and sleep time 1999 pid: 7250 created
+[INFO] (2025-05-08 18:32:50) SIGINT received on transaction generator with id: 7250.
+[DEBUG] (2025-05-08 18:33:04) SIGINT received
+[TERMINATE] (2025-05-08 18:33:04) Validator process terminated
+[DEBUG] (2025-05-08 18:33:04) SIGINT received
+[TERMINATE] (2025-05-08 18:33:04) Destroying sem
+[TERMINATE] (2025-05-08 18:33:04) Destroying mutex
+[TERMINATE] (2025-05-08 18:33:04) Detaching shared memory
+[TERMINATE] (2025-05-08 18:33:04) Removing shared memory
+[TERMINATE] (2025-05-08 18:33:04) Finished terminating
+[INFO] (2025-05-08 18:33:04) Closing program
+[TERMINATE] (2025-05-08 18:33:04) Destroying sem
+[TERMINATE] (2025-05-08 18:33:04) Destroying mutex
+[TERMINATE] (2025-05-08 18:33:04) Detaching shared memory
+[TERMINATE] (2025-05-08 18:33:04) Removing shared memory
+[TERMINATE] (2025-05-08 18:33:04) Finished terminating
+[INFO] (2025-05-08 18:33:04) Closing program
+[INIT] (2025-05-08 18:33:41) Program started
+[INIT] (2025-05-08 18:33:41) Started reading configuration file
+[INFO] (2025-05-08 18:33:41) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 18:33:41) Miner process created
+[INIT] (2025-05-08 18:33:41) Statistics process created
+[INFO] (2025-05-08 18:33:41) im statistics!!!
+[TERMINATE] (2025-05-08 18:33:41) Statistics process terminated
+[INIT] (2025-05-08 18:33:41) Validator process created
+[INIT] (2025-05-08 18:33:41) Miner 1 created
+[INIT] (2025-05-08 18:33:41) Miner 2 created
+[INIT] (2025-05-08 18:33:41) Miner 3 created
+[INIT] (2025-05-08 18:33:41) Miner 4 created
+[INFO] (2025-05-08 18:33:43) Transaction with reward 1 and sleep time 1999 pid: 7992 created
+[INFO] (2025-05-08 18:33:44) Transaction with reward 1 and sleep time 1999 pid: 7992 created
+[INFO] (2025-05-08 18:33:45) Transaction with reward 1 and sleep time 1999 pid: 7992 created
+[INFO] (2025-05-08 18:33:45) SIGINT received on transaction generator with id: 7992.
+[INFO] (2025-05-08 18:33:45) Transaction with reward 1 and sleep time 1999 pid: 8038 created
+[INFO] (2025-05-08 18:33:46) SIGINT received on transaction generator with id: 8038.
+[INFO] (2025-05-08 18:33:47) Transaction with reward 1 and sleep time 1999 pid: 8078 created
+[INFO] (2025-05-08 18:33:48) SIGINT received on transaction generator with id: 8078.
+[DEBUG] (2025-05-08 18:33:53) SIGINT received
+[DEBUG] (2025-05-08 18:33:53) SIGINT received
+[TERMINATE] (2025-05-08 18:33:53) Destroying sem
+[TERMINATE] (2025-05-08 18:33:53) Destroying mutex
+[TERMINATE] (2025-05-08 18:33:53) Validator process terminated
+[TERMINATE] (2025-05-08 18:33:53) Detaching shared memory
+[TERMINATE] (2025-05-08 18:33:53) Removing shared memory
+[TERMINATE] (2025-05-08 18:33:53) Finished terminating
+[INFO] (2025-05-08 18:33:53) Closing program
+[TERMINATE] (2025-05-08 18:33:53) Destroying sem
+[TERMINATE] (2025-05-08 18:33:53) Destroying mutex
+[TERMINATE] (2025-05-08 18:33:53) Detaching shared memory
+[TERMINATE] (2025-05-08 18:33:53) Removing shared memory
+[TERMINATE] (2025-05-08 18:33:53) Finished terminating
+[INFO] (2025-05-08 18:33:53) Closing program
+[INIT] (2025-05-08 18:34:35) Program started
+[INIT] (2025-05-08 18:34:35) Started reading configuration file
+[INFO] (2025-05-08 18:34:35) Configuration loaded :
+   Number of Miners: 4 
+   Transaction pool size: 50
+   Maximum number of blocks in the block chain: 21
+   Number of Transacions in a block: 5
+[INIT] (2025-05-08 18:34:35) Miner process created
+[INIT] (2025-05-08 18:34:35) Statistics process created
+[INFO] (2025-05-08 18:34:35) im statistics!!!
+[TERMINATE] (2025-05-08 18:34:35) Statistics process terminated
+[INIT] (2025-05-08 18:34:35) Miner 1 created
+[INIT] (2025-05-08 18:34:35) Miner 2 created
+[INIT] (2025-05-08 18:34:35) Validator process created
+[INIT] (2025-05-08 18:34:35) Miner 3 created
+[INIT] (2025-05-08 18:34:35) Miner 4 created
+[INFO] (2025-05-08 18:34:37) Transaction with reward 1 and sleep time 1999 pid: 8996 created
+[INFO] (2025-05-08 18:34:38) Transaction with reward 1 and sleep time 1999 pid: 8996 created
+[INFO] (2025-05-08 18:34:39) Transaction with reward 1 and sleep time 1999 pid: 8996 created
+[INFO] (2025-05-08 18:34:40) Transaction with reward 1 and sleep time 1999 pid: 8996 created
+[INFO] (2025-05-08 18:34:41) Transaction with reward 1 and sleep time 1999 pid: 8996 created
+[INFO] (2025-05-08 18:34:41) SIGINT received on transaction generator with id: 8996.
+[DEBUG] (2025-05-08 18:35:16) SIGINT received
+[TERMINATE] (2025-05-08 18:35:16) Validator process terminated
+[DEBUG] (2025-05-08 18:35:16) SIGINT received
+[TERMINATE] (2025-05-08 18:35:16) Destroying sem
+[TERMINATE] (2025-05-08 18:35:16) Destroying mutex
+[TERMINATE] (2025-05-08 18:35:16) Detaching shared memory
+[TERMINATE] (2025-05-08 18:35:16) Removing shared memory
+[TERMINATE] (2025-05-08 18:35:16) Finished terminating
+[INFO] (2025-05-08 18:35:16) Closing program
+[TERMINATE] (2025-05-08 18:35:16) Destroying sem
+[TERMINATE] (2025-05-08 18:35:16) Destroying mutex
+[TERMINATE] (2025-05-08 18:35:16) Detaching shared memory
+[TERMINATE] (2025-05-08 18:35:16) Removing shared memory
+[TERMINATE] (2025-05-08 18:35:16) Finished terminating
+[INFO] (2025-05-08 18:35:16) Closing program

@@ -2,6 +2,7 @@
 #include "controller.h"
 #include "deichain.h"
 #include "miner.h"
+#include "pow.h"
 #include "statistics.h"
 #include "transaction.h"
 #include "validator.h"
@@ -19,7 +20,7 @@
 #include <unistd.h>
 #include <wait.h>
 #define BUFFER_SIZE 16
-#define DEBUG
+#define DEBUG 0
 #define PIPE_NAME "VALIDATOR_INPUT"
 
 int pids[3];
@@ -31,7 +32,6 @@ int create_validator_process();
 int create_statistics_process();
 int create_pipe();
 Config processFile(char *filename);
-int miner_should_exit = 0;
 
 pthread_condattr_t cattr;
 pthread_mutexattr_t mattr;
@@ -51,8 +51,8 @@ void terminate() {
   sem_close(transactions_pool->tp_access_pool);
   sem_unlink("/top_access_pool");
 
-  // pthread_cond_destroy(&transactions_pool->cond_min);
-  // pthread_mutex_destroy(&transactions_pool->mt_min);
+  sem_close(block_ledger->ledger_sem);
+  sem_unlink("/ledger_sem");
 
   write_logfile("Destroying mutex", "TERMINATE");
   unlink(PIPE_NAME);
@@ -73,8 +73,6 @@ void terminate() {
 void sighandler(int sig) {
   if (sig == SIGINT) {
     write_logfile("SIGINT received", "DEBUG");
-    miner_should_exit = 1;
-    pthread_cond_broadcast(&transactions_pool->cond_min);
 
     for (int i = 0; i < 3; i++) {
       if (pids[i] > 0) {
@@ -88,27 +86,19 @@ void sighandler(int sig) {
         waitpid(pids[i], &status, 0);
       }
     }
-    printf("All children terminated\n");
-    if (transactions_pool->atual > 0) {
-      printf("Transactions : \n");
-      sem_wait(transactions_pool->transaction_pool_sem);
-      for (unsigned int i = 0; i < transactions_pool->atual; i++) {
-        print_transaction(transactions[i]);
-      }
-      sem_post(transactions_pool->transaction_pool_sem);
-    }
     terminate();
     write_logfile("Closing program", "INFO");
     printf("Closing program\n");
     exit(0);
   }
-  // TODO: verify if we are iterating in the correct way
   if (sig == SIGUSR1) {
+    sem_wait(block_ledger->ledger_sem);
     Block *blocks = (Block *)((char *)block_ledger + sizeof(BlockchainLedger));
     for (int i = 0; i < block_ledger->num_blocks; i++) {
       blocks = blocks + (sizeof(BlockchainLedger) +
                          sizeof(Transaction) * config.transactions_per_block);
     }
+    sem_post(block_ledger->ledger_sem);
   }
 }
 
@@ -151,6 +141,7 @@ void init() {
   // init shared memory
   // transaction pool
   key_t key = ftok("config.cfg", 65);
+  key_t key_ledger = ftok("config.cfg", 66);
   shmid = shmget(key,
                  sizeof(TransactionPool) + sizeof(TransactionPoolEntry) *
                                                config.transactions_per_block,
@@ -176,7 +167,7 @@ void init() {
 
   // block ledger
   shmid_ledger = shmget(
-      IPC_PRIVATE,
+      key_ledger,
       sizeof(BlockchainLedger) + sizeof(Block) * config.blockchain_blocks +
           sizeof(Transaction) * config.transactions_per_block *
               config.blockchain_blocks,
@@ -199,7 +190,7 @@ void init() {
          sizeof(TransactionPool) +
              sizeof(TransactionPoolEntry) * config.transactions_per_block);
   memset(block_ledger, 0,
-         sizeof(*block_ledger) + sizeof(Block) * config.blockchain_blocks +
+         sizeof(BlockchainLedger) + sizeof(Block) * config.blockchain_blocks +
              sizeof(Transaction) * config.transactions_per_block *
                  config.blockchain_blocks);
 
@@ -220,7 +211,13 @@ void init() {
     perror("sem_open");
     exit(1);
   }
-
+  block_ledger->ledger_sem = sem_open("/ledger_sem", O_CREAT, 0666, 1);
+  if (block_ledger->ledger_sem == SEM_FAILED) {
+    perror("sem_open");
+    exit(1);
+  }
+  block_ledger->num_blocks = 0;
+  strcpy(block_ledger->hash_atual, INITIAL_HASH);
   transactions_pool->max_size = config.tx_pool_size;
 
   // DONT REMOVE THIS LINE !!!
@@ -261,7 +258,6 @@ int create_miner_process(int nt) {
     write_logfile("Error creating miner process", "ERROR");
     return 1;
   } else if (pid == 0) {
-    signal(SIGINT, SIG_IGN);
     write_logfile("Miner process created", "INIT");
     printf("Miner process created\n");
     // function that starts all miner threads
@@ -270,6 +266,7 @@ int create_miner_process(int nt) {
     exit(0);
   }
   pids[0] = pid;
+
   return 0;
 }
 
@@ -282,7 +279,6 @@ int create_statistics_process() {
     write_logfile("Error creating statistics process", "ERROR");
     return 1;
   } else if (pid == 0) {
-    signal(SIGINT, SIG_IGN);
     write_logfile("Statistics process created", "INIT");
     printf("Statistics process created\n");
     print_statistics();
@@ -301,7 +297,6 @@ int create_validator_process() {
     write_logfile("Error creating validator process", "ERROR");
     return 1;
   } else if (pid == 0) {
-    signal(SIGINT, SIG_IGN);
     write_logfile("Validator process created", "INIT");
     printf("Validator process created\n");
     validator();

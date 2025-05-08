@@ -2,7 +2,6 @@
 
 #include "deichain.h"
 #include "pow.h"
-#include <errno.h>
 #include <fcntl.h>
 #include <openssl/sha.h>
 #include <pthread.h>
@@ -16,9 +15,10 @@
 #include <time.h>
 #include <unistd.h>
 int cnt = 0;
+volatile sig_atomic_t miner_should_exit = 0;
 
 void handle_sigterm(int signum) {
-  if (signum == SIGTERM) {
+  if (signum == SIGTERM || signum == SIGINT) {
     miner_should_exit = 1;
     pthread_cond_broadcast(&transactions_pool->cond_min);
   }
@@ -60,16 +60,11 @@ int check_difficulty(const char *hash, const int reward) {
 
   return 0;
 }
-static inline size_t get_transaction_block_size() {
-  if (config.transactions_per_block == 0) {
-    perror("Must set the 'transactions_per_block' variable before using!\n");
-    exit(-1);
-  }
-  return sizeof(Block) + config.transactions_per_block * sizeof(Transaction);
-}
 
 unsigned char *serialize_block(const Block *block, size_t *sz_buf) {
-  *sz_buf = get_transaction_block_size();
+  // We must subtract the size of the pointer, the static block does not have
+  // the pointer
+  *sz_buf = get_transaction_block_size() - sizeof(Transaction *);
 
   unsigned char *buffer = malloc(*sz_buf);
   if (!buffer)
@@ -88,9 +83,10 @@ unsigned char *serialize_block(const Block *block, size_t *sz_buf) {
   memcpy(p, &block->timestamp, sizeof(time_t));
   p += sizeof(time_t);
 
-  Transaction *t = (Transaction *)((char *)block + sizeof(Block));
+  Transaction *tx = (Transaction *)((char *)block + sizeof(Block));
+
   for (size_t i = 0; i < config.transactions_per_block; ++i) {
-    memcpy(p, &t[i], sizeof(Transaction));
+    memcpy(p, &tx[i], sizeof(Transaction));
     p += sizeof(Transaction);
   }
 
@@ -102,8 +98,10 @@ unsigned char *serialize_block(const Block *block, size_t *sz_buf) {
 
 void compute_sha256(const Block *block, char *output) {
   unsigned char hash[SHA256_DIGEST_LENGTH];
+  // create a static buffer to copy data
   size_t buffer_sz;
 
+  // since the Block has a pointer we must serialize the block to a buffer
   unsigned char *buffer = serialize_block(block, &buffer_sz);
 
   SHA256(buffer, buffer_sz, hash);
@@ -185,11 +183,18 @@ void *mine(void *idp) {
 
     printf("Miner %d waiting for transactions\n", *((int *)idp));
     pthread_mutex_lock(&transactions_pool->mt_min);
-    printf("Miner %d got it\n", *((int *)idp));
-    while (transactions_pool->atual < config.transactions_per_block) {
-      pthread_mutex_unlock(&transactions_pool->mt_min);
-      continue;
+
+    while (transactions_pool->atual < config.transactions_per_block &&
+           !miner_should_exit) {
+      pthread_cond_wait(&transactions_pool->cond_min,
+                        &transactions_pool->mt_min);
     }
+
+    if (miner_should_exit) {
+      pthread_mutex_unlock(&transactions_pool->mt_min);
+      return NULL;
+    }
+
     printf("Miner %d has enough transactions\n", *((int *)idp));
     pthread_mutex_unlock(&transactions_pool->mt_min);
     Block *new_block = malloc(get_transaction_block_size());
@@ -197,10 +202,11 @@ void *mine(void *idp) {
       printf("Erro ao alocar memoria");
     }
     unsigned int tid = (*((int *)idp));
+    sem_wait(block_ledger->ledger_sem);
     snprintf(new_block->block_id, TX_ID_LEN, "BLOCK-%lu-%d", (unsigned long)tid,
              block_ledger->num_blocks);
-    memset(new_block->previous_hash, '0', HASH_SIZE);
-
+    memcpy(new_block->previous_hash, block_ledger->hash_atual, HASH_SIZE);
+    sem_post(block_ledger->ledger_sem);
     int s = (transactions_pool->atual > transactions_pool->max_size)
                 ? transactions_pool->max_size
                 : transactions_pool->atual;
@@ -212,26 +218,29 @@ void *mine(void *idp) {
       if (transactions[i].occupied) {
         memcpy(&transactions_block[numm], &transactions[i].transaction,
                sizeof(Transaction));
+        numm++;
       }
     }
 
     printf("Miner %d creating block\n", *((int *)idp));
     transactions_block = (Transaction *)((char *)new_block + sizeof(Block));
     int max_reward = 0;
-    for (int i = 0; i < (int)config.transactions_per_block; i++)
+    for (unsigned int i = 0; i < config.transactions_per_block; i++)
       if (transactions_block[i].reward > max_reward)
         max_reward = transactions_block[i].reward;
     size_t sz;
     unsigned char *buffer = serialize_block(new_block, &sz);
-    printf("BLoco serializado\n");
+    printf("Bloco serializado\n");
     PoWResult result;
     do {
+      printf("before proof\n");
       result = proof_of_work(new_block);
+      printf("after proof\n");
       new_block->timestamp = time(NULL);
     } while (result.error == 1);
-    showBlock(new_block);
     printf("Enviar por pipe\n");
     int pipe_fd = open("VALIDATOR_INPUT", O_WRONLY);
+
     if (pipe_fd == -1) {
       perror("Erro ao abrir o pipe");
       return NULL;
@@ -247,14 +256,22 @@ void *mine(void *idp) {
 }
 
 void initminers(int num) {
+  struct sigaction sa;
+  sa.sa_handler = handle_sigterm;
+  sigemptyset(&sa.sa_mask);
+  sa.sa_flags = 0;
+  sigaction(SIGTERM, &sa, NULL);
   pthread_t thread_miners[num];
   int id[num];
   int i;
   char msg[256];
 
   key_t key = ftok("config.cfg", 65);
+  key_t key_ledger = ftok("config.cfg", 66);
   int shmid = shmget(key, 0, 0666);
   transactions_pool = shmat(shmid, NULL, 0);
+  int shmid_ledger = shmget(key_ledger, 0, 0666);
+  block_ledger = shmat(shmid_ledger, NULL, 0);
 
   // creates threads
   for (i = 0; i < num; i++) {
@@ -272,4 +289,6 @@ void initminers(int num) {
     write_logfile(msg, "INFO");
     printf("%s\n", msg);
   }
+  pthread_cond_destroy(&transactions_pool->cond_min);
+  pthread_mutex_destroy(&transactions_pool->mt_min);
 }

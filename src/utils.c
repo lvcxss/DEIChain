@@ -7,7 +7,7 @@
 pthread_mutex_t logfilemutex = PTHREAD_MUTEX_INITIALIZER;
 
 void showBlock(Block *block) {
-  printf("Block : %s", block->block_id);
+  printf("Block : %s\n", block->block_id);
   printf("Previous Block : %s\n", block->previous_hash);
   printf("Nonce : %d\n", block->nonce);
   printf("Timestamp: %ld\n", block->timestamp);

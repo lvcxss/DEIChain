@@ -3,6 +3,8 @@
 
 #include <semaphore.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #define HASH_SIZE 65
 #define TX_ID_LEN 64
@@ -47,10 +49,18 @@ typedef struct {
 } Block;
 
 typedef struct {
-  sem_t ledger_sem;
+  sem_t *ledger_sem;
   int total_blocks;
   int num_blocks;
+  char hash_atual[HASH_SIZE];
 } BlockchainLedger;
+
+typedef struct {
+  long int result;
+  int time_taken;
+  long int miner_id;
+  long int block_credit;
+} ValidationMessage;
 
 extern int shmid;
 extern int shmidtransactions;
@@ -58,7 +68,6 @@ extern int shmidledger;
 extern int shmidblockindex;
 extern int *transactionid;
 extern int *block_index;
-extern int miner_should_exit;
 extern Config config;
 extern pthread_mutex_t logfilemutex;
 extern TransactionPool *transactions_pool;
@@ -67,4 +76,11 @@ extern BlockchainLedger *block_ledger;
 
 int write_logfile(char *message, char *typemsg);
 void showBlock(Block *block);
+static inline size_t get_transaction_block_size() {
+  if (config.transactions_per_block == 0) {
+    perror("Must set the 'transactions_per_block' variable before using!\n");
+    exit(-1);
+  }
+  return sizeof(Block) + config.transactions_per_block * sizeof(Transaction);
+}
 #endif

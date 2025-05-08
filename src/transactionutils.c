@@ -17,7 +17,7 @@ Transaction create_transaction(int reward, int value) {
                    .receiver_id = rand() % 1000,
                    .value = value,
                    .timestamp = time(NULL)};
-  snprintf(t.transaction_id, TX_ID_LEN, "TX-%d-%d", getpid(), a);
+  snprintf(t.transaction_id, TX_ID_LEN, "TX-%d-%d", getpid(), a++);
 
   // como o transaction_id é a soma do pid do processo e do transactionid
   // a leitura e incrementacao da vairavel nao e algo critico, dai nao termos
