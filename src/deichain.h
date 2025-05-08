@@ -67,7 +67,7 @@ extern int *transactions_pool_index;
 extern int *block_index;
 extern Config config;
 extern pthread_mutex_t logfilemutex;
-extern TransactionPool *transactions_pool; // já é o ponteiro para as transactions ?
+extern Transaction *transactions_pool; // já é o ponteiro para as transactions ?
 extern BlockchainLedger *block_ledger; 
 
 #endif

@@ -65,7 +65,7 @@ void validator() {
     }
     index++;
     block_ledger->blocks[index];
-    sem_post(&(block_ledger->ledger_sem))
+    sem_post(&(block_ledger->ledger_sem));
 }
 
 int write_statistics(char * message,char * typemsg);
