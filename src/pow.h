@@ -27,5 +27,6 @@ PoWResult proof_of_work(Block *block);
 int verify_nonce(const Block *block);
 int check_difficulty(const char *hash, const int reward);
 DifficultyLevel getDifficultFromReward(const int reward);
-int get_max_transaction_reward(const Block *block, const int txs_per_block);
+unsigned char *serialize_block(const Block *block, size_t *sz_buf);
+
 #endif

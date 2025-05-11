@@ -25,7 +25,6 @@ Transaction create_transaction(int reward, int value) {
   char msg[256];
   sprintf(msg, "Transaction with reward : %d and value : %d created", reward,
           value);
-  // write_logfile(msg, "INFO");
   return t;
 }
 

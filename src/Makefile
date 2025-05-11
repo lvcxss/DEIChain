@@ -12,22 +12,25 @@ TRANSACTION_OBJ = txgen.o
 VALIDATOR_OBJ = validator.o
 STATISTICS_OBJ = statistics.o
 UTILS_OBJ = utils.o
+POW_OBJ = pow.o
 
 all: $(TARGET) $(TARGET2)
 
-$(TARGET): main.o $(CONTROLLER_OBJ) $(MINER_OBJ) $(TRANSACTIONGEN_OBJ) $(STATISTICS_OBJ) $(VALIDATOR_OBJ) $(UTILS_OBJ)
+$(TARGET): main.o $(CONTROLLER_OBJ) $(MINER_OBJ) $(TRANSACTIONGEN_OBJ) $(STATISTICS_OBJ) $(VALIDATOR_OBJ) $(UTILS_OBJ) $(POW_OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
 
 $(CONTROLLER_OBJ): controller.c controller.h miner.h validator.h
 	$(CC) $(CFLAGS) -c $<
 
+$(POW_OBJ) : pow.c pow.h
+	$(CC) $(CFLAGS) -c $<
 $(UTILS_OBJ): utils.c deichain.h 
 	$(CC) $(CFLAGS) -c $<
 
 $(TRANSACTIONGEN_OBJ): transactionutils.c transaction.h controller.h
 	$(CC) $(CFLAGS) -c $<
 
-$(MINER_OBJ): miner.c miner.h controller.h
+$(MINER_OBJ): miner.c miner.h pow.h controller.h
 	$(CC) $(CFLAGS) -c $<
 
 $(STATISTICS_OBJ): statistics.c statistics.h controller.h 
@@ -38,9 +41,8 @@ $(VALIDATOR_OBJ): validator.c validator.h controller.h
 
 main.o: main.c controller.h
 	$(CC) $(CFLAGS) -c $<
-$(TARGET2): $(TRANSACTIONGEN_OBJ) $(TRANSACTION_OBJ) $(UTILS_OBJ)
+$(TARGET2): $(TRANSACTIONGEN_OBJ) $(TRANSACTION_OBJ) 
 	$(CC) $(CFLAGS) -o $@ $^
-
 
 $(TRANSACTION_OBJ): txgen.c transaction.h controller.h
 	$(CC) $(CFLAGS) -c $<

@@ -13,15 +13,12 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-int write_logfile(char *message, char *typemsg);
-
 void signal_handler(int signum) {
   if (signum == SIGINT) {
     char msg[256];
     printf("Killing transaction generator\n");
     sprintf(msg, "SIGINT received on transaction generator with id: %d.",
             getpid());
-    write_logfile(msg, "INFO");
     exit(0);
   }
 }
@@ -84,9 +81,10 @@ int main(int argc, char *argv[]) {
     transactions[id] = ent;
     printf("%d", transaction_pool->atual);
     transaction_pool->atual++;
-    pthread_cond_broadcast(&transaction_pool->cond_min);
+    if (transaction_pool->atual > transaction_pool->transactions_block) {
+      pthread_cond_broadcast(&transaction_pool->cond_min);
+    }
     sem_post(sem);
-    write_logfile(msg, "INFO");
     sleep(sleepTime / 1000);
   }
   sem_close(sem);

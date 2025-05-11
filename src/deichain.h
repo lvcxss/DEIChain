@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 #define HASH_SIZE 65
+#define MAX_TX 32
 #define TX_ID_LEN 64
 // data strutcutes usued in the project
 typedef struct {
@@ -33,7 +34,7 @@ typedef struct {
 
 typedef struct {
   int id;
-  unsigned int atual, max_size;
+  unsigned int atual, max_size, transactions_block;
   sem_t *transaction_pool_sem;
   sem_t *tp_access_pool;
   // cv for minimum transactions (miner should wait for this)
@@ -56,11 +57,14 @@ typedef struct {
 } BlockchainLedger;
 
 typedef struct {
-  long int result;
-  int time_taken;
-  long int miner_id;
-  long int block_credit;
-} ValidationMessage;
+  long mtype;
+  int miner_id;
+  int valid;
+  int credits;
+  int n_tx;
+  time_t tx_ts[MAX_TX];
+  time_t block_ts;
+} StatsMsg;
 
 extern int shmid;
 extern int shmidtransactions;
@@ -68,6 +72,7 @@ extern int shmidledger;
 extern int shmidblockindex;
 extern int *transactionid;
 extern int *block_index;
+extern int stats_qid;
 extern Config config;
 extern pthread_mutex_t logfilemutex;
 extern TransactionPool *transactions_pool;

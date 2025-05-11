@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/ipc.h>
+#include <sys/msg.h>
 #include <sys/shm.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -23,7 +24,6 @@
 #define DEBUG 0
 #define PIPE_NAME "VALIDATOR_INPUT"
 
-int pids[3];
 void init();
 void terminate();
 int write_logfile(char *message, char *typemsg);
@@ -33,6 +33,8 @@ int create_statistics_process();
 int create_pipe();
 Config processFile(char *filename);
 
+int pids[3];
+int mainpid;
 pthread_condattr_t cattr;
 pthread_mutexattr_t mattr;
 int shmid, shmid_ledger;
@@ -86,24 +88,40 @@ void sighandler(int sig) {
         waitpid(pids[i], &status, 0);
       }
     }
-    terminate();
-    write_logfile("Closing program", "INFO");
-    printf("Closing program\n");
-    exit(0);
-  }
-  if (sig == SIGUSR1) {
-    sem_wait(block_ledger->ledger_sem);
-    Block *blocks = (Block *)((char *)block_ledger + sizeof(BlockchainLedger));
-    for (int i = 0; i < block_ledger->num_blocks; i++) {
-      blocks = blocks + (sizeof(BlockchainLedger) +
-                         sizeof(Transaction) * config.transactions_per_block);
+    if (getpid() == mainpid) {
+      printf("Blocks in ledger : \n");
+      Block *blocks =
+          (Block *)((char *)block_ledger + sizeof(BlockchainLedger));
+      for (int i = 0; i < block_ledger->num_blocks; i++) {
+        Transaction *blcktrans =
+            (Transaction *)((char *)blocks + sizeof(Block));
+        printf("Block %d : %d\n", i, blocks[i].nonce);
+        printf("Transactions in it :\n ");
+        for (unsigned int ii = 0; ii < config.transactions_per_block; ii++) {
+          printf("Transaction %d : %s\n", ii, blcktrans[ii].transaction_id);
+        }
+      }
+      terminate();
+      write_logfile("Closing program", "INFO");
+      printf("Closing program\n");
+      exit(0);
     }
-    sem_post(block_ledger->ledger_sem);
+    if (sig == SIGUSR1) {
+      sem_wait(block_ledger->ledger_sem);
+      Block *blocks =
+          (Block *)((char *)block_ledger + sizeof(BlockchainLedger));
+      for (int i = 0; i < block_ledger->num_blocks; i++) {
+        blocks = blocks + (sizeof(BlockchainLedger) +
+                           sizeof(Transaction) * config.transactions_per_block);
+      }
+      sem_post(block_ledger->ledger_sem);
+    }
   }
 }
-
 void init() {
+  mainpid = getpid();
   signal(SIGCHLD, SIG_IGN);
+
   struct sigaction sa_int;
   sa_int.sa_handler = sighandler;
   sigemptyset(&sa_int.sa_mask);
@@ -155,8 +173,8 @@ void init() {
     perror("shmat");
     exit(1);
   }
-  // index transaction pool (unused by now but the logic would be something like
-  // fill the transaction pool and iterate throw it from
+  // index transaction pool (unused by now but the logic would be something
+  // like fill the transaction pool and iterate throw it from
   // 0-TRANSACTION_POOL_SIZE, and repeat => index= ++index %
   // TRANSACTION_POOL_SIZE)
   // cv for miners
@@ -217,9 +235,10 @@ void init() {
     exit(1);
   }
   block_ledger->num_blocks = 0;
+  block_ledger->total_blocks = config.blockchain_blocks;
   strcpy(block_ledger->hash_atual, INITIAL_HASH);
   transactions_pool->max_size = config.tx_pool_size;
-
+  transactions_pool->transactions_block = config.transactions_per_block;
   // DONT REMOVE THIS LINE !!!
   // problem : whenever a child process is created, the son gets a copy of the
   // parent's stdout
@@ -236,6 +255,12 @@ void init() {
   }
   if (create_pipe() == 1) {
     terminate();
+  }
+  key_t stats_key = ftok("config.cfg", 67);
+  int stats_qid = msgget(stats_key, IPC_CREAT | 0666);
+  if (stats_qid == -1) {
+    perror("msgget stats");
+    exit(1);
   }
   while (1) {
   }
@@ -326,6 +351,7 @@ Config processFile(char *filename) {
     if (found >= 4) {
       write_logfile("O ficheiro tem mais de 4 linhas", "ERROR");
       printf("O ficheiro tem mais de 4 linhas por favor corrija.\n");
+      fclose(config);
       exit(1);
     }
     slen = strlen(buffer);
@@ -335,6 +361,7 @@ Config processFile(char *filename) {
     if (num == 0 && buffer[0] != '0') {
       printf("Erro ao ler o ficheiro, deveria ter 4 linhas separadas com "
              "inteiros.\n");
+      fclose(config);
       exit(1);
     }
     // the numbers must be valid
@@ -344,6 +371,7 @@ Config processFile(char *filename) {
                     "ERROR");
       printf("O numero presente na configuracao e muito pequeno por favor "
              "corrija.\n");
+      fclose(config);
       exit(1);
     }
     // filling the config struct
@@ -367,6 +395,7 @@ Config processFile(char *filename) {
   if (found != 4) {
     write_logfile("O ficheiro tem menos de 4 linhas", "ERROR");
     printf("Erro: O ficheiro de configuração tem menos de 4 linhas.\n");
+    fclose(config);
     exit(1);
   }
   fclose(config);
