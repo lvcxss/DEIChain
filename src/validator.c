@@ -68,20 +68,18 @@ int validator() {
   }
 
   int fd_read = open("VALIDATOR_INPUT", O_RDONLY | O_NONBLOCK);
-  int fd_write = open("VALIDATOR_INPUT", O_WRONLY); // descritor “dummy”
   while (!should_exit) {
     ssize_t r = read(fd_read, raw, block_sz);
     if (should_exit) {
       break;
     }
-    printf("R1 \n");
     ssize_t rr = read(fd_read, results, sizeof(PoWResult));
-    printf("R2 \n");
     if (should_exit) {
       break;
     }
     if (r == 0 || rr == 0) {
-      break;
+      sleep(1);
+      continue;
     } else if (r < 0) {
       if (errno == EINTR || errno == EAGAIN) {
         sleep(1);
@@ -201,18 +199,9 @@ int validator() {
     }
   }
   close(fd_read);
-  close(fd_write);
   free(raw);
   free(results);
-  sem_close(transactions_pool->transaction_pool_sem);
-  sem_close(transactions_pool->tp_access_pool);
-  sem_close(block_ledger->ledger_sem);
-  sem_close(log_file_mutex);
   log_file_mutex = NULL;
-  shmdt(transactions_pool);
-  shmdt(block_ledger);
-  shmctl(shmidledger, IPC_RMID, NULL);
-  shmctl(shmid, IPC_RMID, NULL);
 
   printf("Validator terminating cleanly.\n");
   return 0;

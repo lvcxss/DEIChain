@@ -136,7 +136,10 @@ PoWResult proof_of_work(Block *block) {
 
   while (1) {
     compute_sha256(block, hash);
-
+    if (clock() - start > CLOCKS_PER_SEC * 10) {
+      result.error = 1;
+      return result;
+    }
     if (check_difficulty(hash, reward)) {
       result.elapsed_time = (double)(clock() - start) / CLOCKS_PER_SEC;
       strcpy(result.hash, hash);

@@ -85,11 +85,14 @@ int main(int argc, char *argv[]) {
     printf("%d", transaction_pool->atual);
     transaction_pool->atual++;
     transaction_pool->available++;
-    if (transaction_pool->atual > transaction_pool->transactions_block) {
+    if (transaction_pool->atual > transaction_pool->transactions_block ||
+        transaction_pool->available >= transaction_pool->transactions_block) {
       pthread_cond_broadcast(&transaction_pool->cond_min);
     }
+    pthread_cond_signal(&transaction_pool->cond_vc);
+
     sem_post(sem);
-    sleep(sleepTime / 1000);
+    usleep(sleepTime * 1000);
   }
   sem_close(sem);
   return 1;

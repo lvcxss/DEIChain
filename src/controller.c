@@ -35,8 +35,8 @@ Config processFile(char *filename);
 
 int pids[3];
 int mainpid;
-pthread_condattr_t cattr;
-pthread_mutexattr_t mattr;
+pthread_condattr_t cattr, cattrvc;
+pthread_mutexattr_t mattr, mattrvc;
 sem_t *log_file_mutex;
 
 int shmid, shmidledger;
@@ -252,6 +252,14 @@ void init() {
   strcpy(block_ledger->hash_atual, INITIAL_HASH);
   transactions_pool->max_size = config.tx_pool_size;
   transactions_pool->transactions_block = config.transactions_per_block;
+
+  pthread_mutexattr_init(&mattrvc);
+  pthread_mutexattr_setpshared(&mattrvc, PTHREAD_PROCESS_SHARED);
+
+  pthread_mutex_init(&transactions_pool->mt_vc, &mattrvc);
+  pthread_condattr_init(&cattrvc);
+  pthread_condattr_setpshared(&cattrvc, PTHREAD_PROCESS_SHARED);
+  pthread_cond_init(&transactions_pool->cond_vc, &cattrvc);
   // DONT REMOVE THIS LINE !!!
   // problem : whenever a child process is created, the son gets a copy of the
   // parent's stdout
@@ -340,7 +348,7 @@ int create_validator_process() {
     signal(SIGINT, SIG_IGN);
     write_logfile("Validator process created", "INIT");
     printf("Validator process created : %d\n", getpid());
-    validator();
+    validator_controller();
     write_logfile("Validator process terminated", "TERMINATE");
     exit(0);
   }
