@@ -28,7 +28,7 @@ void handle_sigtermstats(int signum) {
 
 void print_current_stats() {
   printf("\n=== Estatísticas (SIGUSR1) ===\n");
-  for (int i = 0; i < config.num_miners; i++) {
+  for (unsigned int i = 0; i < config.num_miners; i++) {
     printf("Minerador %d:\n", i + 1);
     printf("  Blocos válidos: %d\n", miners_stats[i].valid_blocks);
     printf("  Blocos inválidos: %d\n", miners_stats[i].invalid_blocks);
@@ -84,7 +84,7 @@ void print_statistics() {
     }
 
     int miner_id = msg.miner_id - 1;
-    if (miner_id < 0 || miner_id >= config.num_miners) {
+    if (miner_id < 0 || miner_id >= (int)config.num_miners) {
       fprintf(stderr, "ID de minerador inválido: %d\n", miner_id);
       continue;
     }

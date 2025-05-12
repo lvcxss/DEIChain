@@ -67,7 +67,7 @@ int validator() {
     return 1;
   }
 
-  int fd_read = open("VALIDATOR_INPUT", O_RDONLY);
+  int fd_read = open("VALIDATOR_INPUT", O_RDONLY | O_NONBLOCK);
   int fd_write = open("VALIDATOR_INPUT", O_WRONLY); // descritor “dummy”
   while (!should_exit) {
     ssize_t r = read(fd_read, raw, block_sz);
@@ -83,7 +83,7 @@ int validator() {
     if (r == 0 || rr == 0) {
       break;
     } else if (r < 0) {
-      if (errno == EINTR) {
+      if (errno == EINTR || errno == EAGAIN) {
         sleep(1);
         continue;
       }
@@ -200,17 +200,13 @@ int validator() {
       perror("msgsnd to stats");
     }
   }
-
   close(fd_read);
   close(fd_write);
   free(raw);
   free(results);
   sem_close(transactions_pool->transaction_pool_sem);
-
   sem_close(transactions_pool->tp_access_pool);
-
   sem_close(block_ledger->ledger_sem);
-
   sem_close(log_file_mutex);
   log_file_mutex = NULL;
   shmdt(transactions_pool);
