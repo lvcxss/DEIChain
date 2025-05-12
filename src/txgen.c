@@ -13,12 +13,15 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+sem_t *sem;
 void signal_handler(int signum) {
   if (signum == SIGINT) {
     char msg[256];
     printf("Killing transaction generator\n");
     sprintf(msg, "SIGINT received on transaction generator with id: %d.",
             getpid());
+    sem_close(sem);
+
     exit(0);
   }
 }
@@ -29,7 +32,7 @@ int main(int argc, char *argv[]) {
     printf("Usage: %s <reward> <sleep time>\n", argv[0]);
     return 1;
   }
-  sem_t *sem = sem_open("/transaction_pool_sem", O_CREAT, 0666, 1);
+  sem = sem_open("/transaction_pool_sem", O_CREAT, 0666, 1);
   key_t key = ftok("config.cfg", 65);
   int shmid = shmget(key, 0, 0666);
   TransactionPool *transaction_pool = shmat(shmid, NULL, 0);
@@ -81,6 +84,7 @@ int main(int argc, char *argv[]) {
     transactions[id] = ent;
     printf("%d", transaction_pool->atual);
     transaction_pool->atual++;
+    transaction_pool->available++;
     if (transaction_pool->atual > transaction_pool->transactions_block) {
       pthread_cond_broadcast(&transaction_pool->cond_min);
     }
@@ -88,6 +92,5 @@ int main(int argc, char *argv[]) {
     sleep(sleepTime / 1000);
   }
   sem_close(sem);
-  sem_destroy(sem);
   return 1;
 }

@@ -93,14 +93,18 @@ void sighandler(int sig) {
       }
     }
     if (getpid() == mainpid) {
-      printf("Blocks in ledger : \n");
+      printf("Dumping block ledger : \n");
       Block *blocks =
           (Block *)((char *)block_ledger + sizeof(BlockchainLedger));
       for (int i = 0; i < block_ledger->num_blocks; i++) {
-        Transaction *blcktrans =
-            (Transaction *)((char *)blocks + sizeof(Block));
-        printf("Block %d : %d\n", i, blocks[i].nonce);
-        printf("Transactions in it :\n ");
+        Block *b =
+            (Block *)((char *)blocks +
+                      (sizeof(Transaction) * config.transactions_per_block +
+                       sizeof(Block)) *
+                          i);
+        Transaction *blcktrans = (Transaction *)((char *)b + sizeof(Block));
+        printf("Block %d : %d\n", i, b->nonce);
+        printf("Transactions in it :\n");
         for (unsigned int ii = 0; ii < config.transactions_per_block; ii++) {
           printf("Transaction %d : %s\n", ii, blcktrans[ii].transaction_id);
         }
@@ -292,8 +296,9 @@ int create_miner_process(int nt) {
     write_logfile("Error creating miner process", "ERROR");
     return 1;
   } else if (pid == 0) {
+    signal(SIGINT, SIG_IGN);
     write_logfile("Miner process created", "INIT");
-    printf("Miner process created\n");
+    printf("Miner process created : %d\n", getpid());
     // function that starts all miner threads
     initminers(nt);
     write_logfile("Miner process terminated", "TERMINATE");
@@ -313,8 +318,9 @@ int create_statistics_process() {
     write_logfile("Error creating statistics process", "ERROR");
     return 1;
   } else if (pid == 0) {
+    signal(SIGINT, SIG_IGN);
     write_logfile("Statistics process created", "INIT");
-    printf("Statistics process created\n");
+    printf("Statistics process created : %d\n", getpid());
     print_statistics();
     write_logfile("Statistics process terminated", "TERMINATE");
     exit(0);
@@ -331,8 +337,9 @@ int create_validator_process() {
     write_logfile("Error creating validator process", "ERROR");
     return 1;
   } else if (pid == 0) {
+    signal(SIGINT, SIG_IGN);
     write_logfile("Validator process created", "INIT");
-    printf("Validator process created\n");
+    printf("Validator process created : %d\n", getpid());
     validator();
     write_logfile("Validator process terminated", "TERMINATE");
     exit(0);

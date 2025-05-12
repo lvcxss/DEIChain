@@ -33,7 +33,7 @@ typedef struct {
 } TransactionPoolEntry;
 
 typedef struct {
-  int id;
+  int available;
   unsigned int atual, max_size, transactions_block;
   sem_t *transaction_pool_sem;
   sem_t *tp_access_pool;

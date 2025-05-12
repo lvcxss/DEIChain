@@ -16,9 +16,9 @@
 #include <unistd.h>
 int cnt = 0;
 
-PoWResult result;
+PoWResult result = {"", 0, 0, 0};
 int aloc = 0;
-Block *new_block;
+int exited = 0;
 volatile sig_atomic_t miner_should_exit = 0;
 
 void handle_sigterm(int signum) {
@@ -29,90 +29,85 @@ void handle_sigterm(int signum) {
 }
 
 void *mine(void *idp) {
+  Block *new_block = NULL;
+  int pipe_fd = -1;
+  unsigned int tid = *((int *)idp);
+
   while (!miner_should_exit) {
     new_block = malloc(get_transaction_block_size());
-    aloc = 1;
     if (!new_block) {
-      printf("Erro ao alocar memoria");
+      perror("Erro ao alocar memoria");
+      goto cleanup;
     }
-    unsigned int tid = (*((int *)idp));
+
     sem_wait(block_ledger->ledger_sem);
     snprintf(new_block->block_id, TX_ID_LEN, "BLOCK-%lu-%d", (unsigned long)tid,
              block_ledger->num_blocks);
     memcpy(new_block->previous_hash, block_ledger->hash_atual, HASH_SIZE);
-#ifdef DEBUG
-    printf("previous_hash %s\n", new_block->previous_hash);
-#endif
     sem_post(block_ledger->ledger_sem);
-    unsigned int i, numm = 0;
-    int lasti = 0;
+
+    unsigned int numm = 0;
     Transaction *transactions_block =
         (Transaction *)((char *)new_block + sizeof(Block));
-    while (numm < config.transactions_per_block) {
+    unsigned int it = 0;
+    do {
+      printf("Miners are waiting\n");
       unsigned int s = (transactions_pool->atual > transactions_pool->max_size)
                            ? transactions_pool->max_size
                            : transactions_pool->atual;
 
-      if (s == config.tx_pool_size) {
-        lasti = 0;
-        numm = 0;
-      }
-      for (i = lasti; i < s; i++) {
+      if (miner_should_exit)
+        break;
+      for (it = 0; it < s; it++) {
         if (numm >= config.transactions_per_block) {
           break;
         }
-        if (transactions[i].occupied) {
-          memcpy(&transactions_block[numm], &transactions[i].transaction,
+        if (transactions[it].occupied) {
+          memcpy(&transactions_block[numm], &transactions[it].transaction,
                  sizeof(Transaction));
           numm++;
         }
       }
-      lasti = i;
       if (numm < config.transactions_per_block) {
         pthread_mutex_lock(&transactions_pool->mt_min);
-#ifdef DEBUG
-        printf("Miner %d waiting for transactions\n", *((int *)idp));
-#endif
         pthread_cond_wait(&transactions_pool->cond_min,
                           &transactions_pool->mt_min);
-
-        if (miner_should_exit) {
-          pthread_mutex_unlock(&transactions_pool->mt_min);
-          return NULL;
-        }
-
         pthread_mutex_unlock(&transactions_pool->mt_min);
       }
-    }
-    transactions_block = (Transaction *)((char *)new_block + sizeof(Block));
-    int max_reward = 0;
-    for (unsigned int i = 0; i < config.transactions_per_block; i++)
-      if (transactions_block[i].reward > max_reward)
-        max_reward = transactions_block[i].reward;
+    } while (numm < config.transactions_per_block && !miner_should_exit);
+    printf("Miner %d: %d transactions\n", tid, numm);
+    if (miner_should_exit)
+      break;
+
+    /* 4) proof-of-work */
     do {
       result = proof_of_work(new_block);
       new_block->timestamp = time(NULL);
-    } while (result.error == 1);
-#ifdef DEBUG
-    printf("Enviar por pipe\n");
-#endif
-    int pipe_fd = open("VALIDATOR_INPUT", O_WRONLY);
+    } while (result.error == 1 && !miner_should_exit);
 
-    if (pipe_fd == -1) {
+    if (miner_should_exit)
+      break;
+
+    pipe_fd = open("VALIDATOR_INPUT", O_WRONLY);
+    if (pipe_fd < 0) {
       perror("Erro ao abrir o pipe");
-      return NULL;
+      goto cleanup;
     }
     write(pipe_fd, new_block, get_transaction_block_size());
-    write(pipe_fd, &result, sizeof(PoWResult));
-
+    write(pipe_fd, &result, sizeof(result));
     close(pipe_fd);
-    free(new_block);
-    aloc = 0;
-  }
-#ifdef DEBUG
+    pipe_fd = -1;
 
-  printf("Miner %d finished\n", *((int *)idp));
-#endif
+    /* 6) liberta memória e repete */
+    free(new_block);
+    new_block = NULL;
+  }
+
+cleanup:
+  if (pipe_fd >= 0)
+    close(pipe_fd);
+  if (new_block)
+    free(new_block);
   return NULL;
 }
 
@@ -124,13 +119,16 @@ void initminers(int num) {
   sigaction(SIGTERM, &sa, NULL);
   pthread_t thread_miners[num];
   int id[num];
-  int i;
+  int i = 0;
   char msg[256];
 
   key_t key = ftok("config.cfg", 65);
   key_t key_ledger = ftok("config.cfg", 66);
   int shmid = shmget(key, 0, 0666);
   transactions_pool = shmat(shmid, NULL, 0);
+  transactions = (TransactionPoolEntry *)((char *)transactions_pool +
+                                          sizeof(TransactionPool));
+
   int shmid_ledger = shmget(key_ledger, 0, 0666);
   block_ledger = shmat(shmid_ledger, NULL, 0);
 
@@ -144,14 +142,12 @@ void initminers(int num) {
 
   // waits for threads
   for (i = 0; i < num; i++) {
+    pthread_cond_signal(&transactions_pool->cond_min);
     pthread_join(thread_miners[i], NULL);
     char msg[256];
     sprintf(msg, "Miner %d finished", id[i]);
     write_logfile(msg, "INFO");
     printf("%s\n", msg);
-  }
-  if (aloc) {
-    free(new_block);
   }
   pthread_cond_destroy(&transactions_pool->cond_min);
   pthread_mutex_destroy(&transactions_pool->mt_min);
@@ -167,6 +163,6 @@ void initminers(int num) {
   shmdt(block_ledger);
   shmctl(shmidledger, IPC_RMID, NULL);
   shmctl(shmid, IPC_RMID, NULL);
-
+  printf("Exiting miners\n");
   exit(0);
 }
