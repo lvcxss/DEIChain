@@ -57,6 +57,12 @@ int validator() {
 
   const size_t block_sz = get_transaction_block_size();
   unsigned char *raw = malloc(block_sz);
+  PoWResult *results = malloc(sizeof(PoWResult));
+
+  if (!results) {
+    perror("malloc");
+    return 1;
+  }
   if (!raw) {
     perror("malloc");
     return 1;
@@ -71,6 +77,7 @@ int validator() {
 
   while (!should_exit) {
     ssize_t r = read(fd, raw, block_sz);
+    ssize_t rr = read(fd, results, sizeof(PoWResult));
     if (r == 0) {
       break;
     } else if (r < 0) {
@@ -86,6 +93,7 @@ int validator() {
     sem_wait(block_ledger->ledger_sem);
     if (block_ledger->num_blocks >= block_ledger->total_blocks) {
       printf("Bloco não pode ser escrito, limite de blocos atingido\n");
+      printf("A terminar o programa\n");
       sem_post(block_ledger->ledger_sem);
       break;
     }
@@ -130,7 +138,7 @@ int validator() {
       }
       StatsMsg msg;
       msg.mtype = 1;
-      msg.miner_id = atoi(strchr(blk->block_id, '-') + 1); // extrair Thread_ID
+      msg.miner_id = atoi(strchr(blk->block_id, '-') + 1);
       msg.valid = valid;
       msg.credits = valid ? sum_rewards(tx, config.transactions_per_block) : 0;
       msg.n_tx = config.transactions_per_block;
@@ -156,7 +164,7 @@ int validator() {
       strcpy(dest->block_id, blk->block_id);
       strcpy(dest->previous_hash, blk->previous_hash);
       block_ledger->num_blocks++;
-
+      memcpy(block_ledger->hash_atual, results->hash, HASH_SIZE);
       sem_post(block_ledger->ledger_sem);
 
       printf("Bloco escrito \n");
@@ -165,6 +173,20 @@ int validator() {
 
   close(fd);
   free(raw);
+  free(results);
+  sem_close(transactions_pool->transaction_pool_sem);
+
+  sem_close(transactions_pool->tp_access_pool);
+
+  sem_close(block_ledger->ledger_sem);
+
+  sem_close(log_file_mutex);
+  log_file_mutex = NULL;
+  shmdt(transactions_pool);
+  shmdt(block_ledger);
+  shmctl(shmidledger, IPC_RMID, NULL);
+  shmctl(shmid, IPC_RMID, NULL);
+
   printf("Validator terminating cleanly.\n");
   return 0;
 }

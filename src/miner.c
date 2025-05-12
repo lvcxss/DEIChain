@@ -15,6 +15,10 @@
 #include <time.h>
 #include <unistd.h>
 int cnt = 0;
+
+PoWResult result;
+int aloc = 0;
+Block *new_block;
 volatile sig_atomic_t miner_should_exit = 0;
 
 void handle_sigterm(int signum) {
@@ -25,8 +29,6 @@ void handle_sigterm(int signum) {
 }
 
 void *mine(void *idp) {
-  int aloc = 0;
-  Block *new_block;
   while (!miner_should_exit) {
     new_block = malloc(get_transaction_block_size());
     aloc = 1;
@@ -87,7 +89,6 @@ void *mine(void *idp) {
     for (unsigned int i = 0; i < config.transactions_per_block; i++)
       if (transactions_block[i].reward > max_reward)
         max_reward = transactions_block[i].reward;
-    PoWResult result;
     do {
       result = proof_of_work(new_block);
       new_block->timestamp = time(NULL);
@@ -102,15 +103,14 @@ void *mine(void *idp) {
       return NULL;
     }
     write(pipe_fd, new_block, get_transaction_block_size());
+    write(pipe_fd, &result, sizeof(PoWResult));
 
     close(pipe_fd);
     free(new_block);
     aloc = 0;
   }
 #ifdef DEBUG
-  if (aloc) {
-    free(new_block);
-  }
+
   printf("Miner %d finished\n", *((int *)idp));
 #endif
   return NULL;
@@ -150,7 +150,23 @@ void initminers(int num) {
     write_logfile(msg, "INFO");
     printf("%s\n", msg);
   }
+  if (aloc) {
+    free(new_block);
+  }
   pthread_cond_destroy(&transactions_pool->cond_min);
   pthread_mutex_destroy(&transactions_pool->mt_min);
+  sem_close(transactions_pool->transaction_pool_sem);
+
+  sem_close(transactions_pool->tp_access_pool);
+
+  sem_close(block_ledger->ledger_sem);
+
+  sem_close(log_file_mutex);
+  log_file_mutex = NULL;
+  shmdt(transactions_pool);
+  shmdt(block_ledger);
+  shmctl(shmidledger, IPC_RMID, NULL);
+  shmctl(shmid, IPC_RMID, NULL);
+
   exit(0);
 }

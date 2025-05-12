@@ -4,18 +4,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-pthread_mutex_t logfilemutex = PTHREAD_MUTEX_INITIALIZER;
-
 void showBlock(Block *block) {
   printf("Block : %s\n", block->block_id);
   printf("Previous Block : %s\n", block->previous_hash);
   printf("Nonce : %d\n", block->nonce);
   printf("Timestamp: %ld\n", block->timestamp);
 }
-// by now this file just has this function but it will have more general
-// functions
 int write_logfile(char *message, char *typemsg) {
   // timestamp for the logfile
+
   time_t raw = time(NULL);
   struct tm timeinfo;
   if (raw == -1) {
@@ -31,15 +28,21 @@ int write_logfile(char *message, char *typemsg) {
     return -3;
   }
   // lock only here to reduce concorrency problems
-  pthread_mutex_lock(&logfilemutex);
+  if (log_file_mutex != NULL)
+    sem_wait(log_file_mutex);
+
   FILE *logfile = fopen("DEIChain_log.txt", "a");
   if (logfile == NULL) {
     printf("Error: Could not open file logfile.txt\n");
-    pthread_mutex_unlock(&logfilemutex);
+    if (log_file_mutex != NULL)
+      sem_post(log_file_mutex);
+
     return -4;
   }
   fprintf(logfile, "[%s] (%s) %s\n", typemsg, timestamp, message);
   fclose(logfile);
-  pthread_mutex_unlock(&logfilemutex);
+  if (log_file_mutex != NULL)
+    sem_post(log_file_mutex);
+
   return 0;
 }

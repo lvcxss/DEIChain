@@ -37,7 +37,9 @@ int pids[3];
 int mainpid;
 pthread_condattr_t cattr;
 pthread_mutexattr_t mattr;
-int shmid, shmid_ledger;
+sem_t *log_file_mutex;
+
+int shmid, shmidledger;
 TransactionPool *transactions_pool;
 TransactionPoolEntry *transactions;
 Config config;
@@ -56,16 +58,18 @@ void terminate() {
   sem_close(block_ledger->ledger_sem);
   sem_unlink("/ledger_sem");
 
+  sem_close(log_file_mutex);
+  sem_unlink("/log_file_mutex");
+  log_file_mutex = NULL;
   write_logfile("Destroying mutex", "TERMINATE");
   unlink(PIPE_NAME);
-  pthread_mutex_destroy(&logfilemutex);
 
   write_logfile("Detaching shared memory", "TERMINATE");
   shmdt(transactions_pool);
   shmdt(block_ledger);
 
   write_logfile("Removing shared memory", "TERMINATE");
-  shmctl(shmid_ledger, IPC_RMID, NULL);
+  shmctl(shmidledger, IPC_RMID, NULL);
   shmctl(shmid, IPC_RMID, NULL);
 
   write_logfile("Finished terminating", "TERMINATE");
@@ -141,6 +145,11 @@ void init() {
     exit(1);
   }
   transactionid = 0;
+  sem_unlink("/log_file_mutex");
+  log_file_mutex = sem_open("/log_file_mutex", O_CREAT | O_EXCL, 0700, 1);
+  if (log_file_mutex == SEM_FAILED)
+    perror("Creating semaphore for log file");
+
   char *filename = "config.cfg";
   // read file info
   config = processFile(filename);
@@ -184,19 +193,19 @@ void init() {
   pthread_condattr_setpshared(&cattr, PTHREAD_PROCESS_SHARED);
 
   // block ledger
-  shmid_ledger = shmget(
-      key_ledger,
-      sizeof(BlockchainLedger) + sizeof(Block) * config.blockchain_blocks +
-          sizeof(Transaction) * config.transactions_per_block *
-              config.blockchain_blocks,
-      IPC_CREAT | 0700);
-  if (shmid_ledger == -1) {
+  shmidledger = shmget(key_ledger,
+                       sizeof(BlockchainLedger) +
+                           sizeof(Block) * config.blockchain_blocks +
+                           sizeof(Transaction) * config.transactions_per_block *
+                               config.blockchain_blocks,
+                       IPC_CREAT | 0700);
+  if (shmidledger == -1) {
     write_logfile("Error creating shared memory for block ledger (shmget)",
                   "ERROR");
     perror("shmget");
     exit(1);
   }
-  block_ledger = (BlockchainLedger *)shmat(shmid_ledger, NULL, 0);
+  block_ledger = (BlockchainLedger *)shmat(shmidledger, NULL, 0);
   if (block_ledger == (void *)-1) {
     write_logfile("Error attaching shared memory for block ledger (shmat)",
                   "ERROR");

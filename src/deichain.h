@@ -74,7 +74,8 @@ extern int *transactionid;
 extern int *block_index;
 extern int stats_qid;
 extern Config config;
-extern pthread_mutex_t logfilemutex;
+extern sem_t *log_file_mutex;
+
 extern TransactionPool *transactions_pool;
 extern TransactionPoolEntry *transactions;
 extern BlockchainLedger *block_ledger;
