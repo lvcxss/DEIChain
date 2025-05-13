@@ -51,7 +51,6 @@ void *mine(void *idp) {
         (Transaction *)((char *)new_block + sizeof(Block));
     unsigned int it = 0;
     do {
-      printf("Miners are waiting\n");
       unsigned int s = (transactions_pool->atual > transactions_pool->max_size)
                            ? transactions_pool->max_size
                            : transactions_pool->atual;
@@ -75,7 +74,6 @@ void *mine(void *idp) {
         pthread_mutex_unlock(&transactions_pool->mt_min);
       }
     } while (numm < config.transactions_per_block && !miner_should_exit);
-    printf("Miner %d: %d transactions\n", tid, numm);
     if (miner_should_exit)
       break;
 
