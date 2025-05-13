@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <stdio.h>
 
-void showBlock(Block *block, Transaction *t) {
+void show_block(Block *block, Transaction *t) {
   printf("Block : %s\n", block->block_id);
   printf("Previous Hash : %s\n", block->previous_hash);
   printf("Nonce : %d\n", block->nonce);
@@ -14,6 +14,8 @@ void showBlock(Block *block, Transaction *t) {
            t[i].transaction_id, t[i].reward, t[i].value, t[i].timestamp);
   }
 }
+
+void write_ledger_logfile() {}
 
 int write_logfile(char *message, char *typemsg) {
   time_t raw = time(NULL);
@@ -30,7 +32,6 @@ int write_logfile(char *message, char *typemsg) {
       0) {
     return -3;
   }
-  // lock only here to reduce concorrency problems
   if (log_file_mutex != NULL)
     sem_wait(log_file_mutex);
 

@@ -3,12 +3,12 @@
 #include <pthread.h>
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/shm.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
 #define MAX_VALIDATORS 3
-int write_logfile(char *message, char *typemsg);
 
 volatile sig_atomic_t vc_exit = 0;
 pid_t validator_pids[MAX_VALIDATORS] = {0};
@@ -38,9 +38,6 @@ int spawn_validator(int index) {
     validator_pids[index] = pid;
     current_validators++;
     printf("[ValidatorController] Validator %d criado (PID %d)\n", index, pid);
-    char msg[64];
-    sprintf(msg, "Validator %d criado", index);
-    write_logfile(msg, "Validator Controller");
     return 0;
   }
 }
@@ -63,13 +60,25 @@ int validator_controller() {
   sa.sa_flags = 0;
   sigaction(SIGTERM, &sa, NULL);
 
+  key_t key = ftok("config.cfg", 65);
+  int shmid = shmget(key, 0, 0666);
+  if (shmid == -1) {
+    perror("shmget");
+    exit(1);
+  }
+
+  transactions_pool = shmat(shmid, NULL, 0);
+  if (transactions_pool == (void *)-1) {
+    perror("shmat");
+    exit(1);
+  }
   pthread_mutex_lock(&transactions_pool->mt_vc);
   while (!vc_exit) {
-    sem_wait(transactions_pool->transaction_pool_sem);
+
     float ocupacao =
         (transactions_pool->atual * 100.0f) / transactions_pool->max_size;
-    sem_post(transactions_pool->transaction_pool_sem);
     int desired_validators = 1;
+    printf(" OCUPACAO : %f\n", ocupacao);
     if (ocupacao >= 80.0f)
       desired_validators = 3;
     else if (ocupacao >= 60.0f)
@@ -87,6 +96,7 @@ int validator_controller() {
       break;
     for (int i = desired_validators; i < MAX_VALIDATORS; i++) {
       if (validator_pids[i] > 0) {
+        printf("Killing validator : %d", i);
         kill_validator(i);
       }
     }
@@ -97,6 +107,7 @@ int validator_controller() {
   }
   pthread_mutex_unlock(&transactions_pool->mt_vc);
 
+  printf("IM EXITING\n");
   for (int i = 0; i < MAX_VALIDATORS; i++) {
     if (validator_pids[i] > 0) {
       kill_validator(i);
@@ -104,7 +115,7 @@ int validator_controller() {
   }
   pthread_cond_destroy(&transactions_pool->cond_vc);
   pthread_mutex_destroy(&transactions_pool->mt_vc);
-  write_logfile("Validator Controller terminado", "Validator Controller");
+
   printf("[ValidatorController] Terminado com sucesso.\n");
   return 0;
 }

@@ -74,7 +74,7 @@ void sighandler(int sig) {
                           i);
         Transaction *blcktrans = (Transaction *)((char *)b + sizeof(Block));
         printf("Block %d : %d\n", i, b->nonce);
-        showBlock(b, blcktrans);
+        show_block(b, blcktrans);
       }
       terminate();
       write_logfile("Closing program", "INFO");
@@ -285,15 +285,14 @@ int create_miner_process(int nt) {
   if (pid < 0) {
     perror("fork");
     printf("Error creating miner process\n");
-    write_logfile("Error creating miner process", "ERROR");
+    write_logfile("Error creating miner process", "Controller");
     return 1;
   } else if (pid == 0) {
     signal(SIGINT, SIG_IGN);
-    write_logfile("Miner process created", "INIT");
-    printf("Miner process created : %d\n", getpid());
+    write_logfile("Miner process created", "Controller");
     // function that starts all miner threads
     initminers(nt);
-    write_logfile("Miner process terminated", "TERMINATE");
+    write_logfile("Miner process terminated", "Controller");
     exit(0);
   }
   pids[0] = pid;
@@ -307,14 +306,14 @@ int create_statistics_process() {
   if (pid < 0) {
     perror("fork");
     printf("Error creating statistics process\n");
-    write_logfile("Error creating statistics process", "ERROR");
+    write_logfile("Error creating statistics process", "Statistics");
     return 1;
   } else if (pid == 0) {
     signal(SIGINT, SIG_IGN);
-    write_logfile("Statistics process created", "INIT");
-    printf("Statistics process created : %d\n", getpid());
+    write_logfile("Statistics process created", "Statistics");
+    printf("Para verificar estatisticas envie SIGUSR1 para : %d\n", getpid());
     print_statistics();
-    write_logfile("Statistics process terminated", "TERMINATE");
+    write_logfile("Statistics process terminated", "Statistics");
     exit(0);
   }
   pids[1] = pid;
@@ -326,14 +325,15 @@ int create_validator_process() {
   pid_t pid = fork();
   if (pid < 0) {
     perror("fork");
-    write_logfile("Error creating validator process", "ERROR");
+    write_logfile("Error creating validator controller process",
+                  "Validator Controller");
     return 1;
   } else if (pid == 0) {
     signal(SIGINT, SIG_IGN);
-    write_logfile("Validator process created", "INIT");
-    printf("Validator process created : %d\n", getpid());
+    write_logfile("Validator controller process created",
+                  "Validator Controller");
     validator_controller();
-    write_logfile("Validator process terminated", "TERMINATE");
+    write_logfile("Validator process terminated", "Validator Controller");
     exit(0);
   }
   pids[2] = pid;
@@ -346,10 +346,10 @@ Config processFile(char *filename) {
   FILE *config;
   char buffer[BUFFER_SIZE];
   int found = 0, slen;
-  write_logfile("Started reading configuration file", "INIT");
+  write_logfile("Started reading configuration file", "Controller");
   config = fopen(filename, "r");
   if (config == NULL) {
-    write_logfile("Could not open file", "ERROR");
+    write_logfile("Could not open file", "Controller");
     printf("Error: Could not open file %s\n", filename);
     exit(1);
   }
@@ -357,7 +357,7 @@ Config processFile(char *filename) {
   while (fgets(buffer, BUFFER_SIZE - 1, config)) {
     // if file has >4 lines, quit
     if (found >= 4) {
-      write_logfile("O ficheiro tem mais de 4 linhas", "ERROR");
+      write_logfile("O ficheiro tem mais de 4 linhas", "Controller");
       printf("O ficheiro tem mais de 4 linhas por favor corrija.\n");
       fclose(config);
       exit(1);
@@ -376,7 +376,7 @@ Config processFile(char *filename) {
     if (num <= 0) {
       write_logfile("O numero presente na configuracao e muito pequeno por "
                     "favor corrija.",
-                    "ERROR");
+                    "Controller");
       printf("O numero presente na configuracao e muito pequeno por favor "
              "corrija.\n");
       fclose(config);
@@ -401,7 +401,7 @@ Config processFile(char *filename) {
   }
   // the file must have 4 lines
   if (found != 4) {
-    write_logfile("O ficheiro tem menos de 4 linhas", "ERROR");
+    write_logfile("O ficheiro tem menos de 4 linhas", "Controller");
     printf("Erro: O ficheiro de configuração tem menos de 4 linhas.\n");
     fclose(config);
     exit(1);
@@ -411,8 +411,7 @@ Config processFile(char *filename) {
 }
 
 void terminate() {
-  printf("entered terminate");
-  write_logfile("Destroying sem", "CONTROLLER");
+  write_logfile("Destroying named semaphores", "Controller");
 
   sem_close(transactions_pool->transaction_pool_sem);
   sem_unlink("/transaction_pool_sem");
@@ -426,17 +425,17 @@ void terminate() {
   sem_close(log_file_mutex);
   sem_unlink("/log_file_mutex");
   log_file_mutex = NULL;
-  write_logfile("Destroying mutex", "CONTROLLER");
+  write_logfile("Destroying mutex", "Controller");
   unlink(PIPE_NAME);
 
-  write_logfile("Detaching shared memory", "CONTROLLER");
+  write_logfile("Detaching shared memory", "Controller");
   shmdt(transactions_pool);
   shmdt(block_ledger);
 
-  write_logfile("Removing shared memory", "CONTROLLER");
+  write_logfile("Removing shared memory", "Controller");
   shmctl(shmidledger, IPC_RMID, NULL);
   shmctl(shmid, IPC_RMID, NULL);
 
-  write_logfile("Finished terminating", "CONTROLLER");
+  write_logfile("Finished terminating", "Controller");
   printf("\nFinished terminating\n");
 }

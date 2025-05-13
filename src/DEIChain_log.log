@@ -1,0 +1,61 @@
+2025-05-13 23:52:30 INIT: Program started
+2025-05-13 23:52:30 Controller: Started reading configuration file
+2025-05-13 23:52:30 INFO: Configuration loaded :
+   Number of Miners: 2 
+   Transaction pool size: 20
+   Maximum number of blocks in the block chain: 10
+   Number of Transacions in a block: 5
+2025-05-13 23:52:30 Controller: Miner process created
+2025-05-13 23:52:30 Statistics: Statistics process created
+2025-05-13 23:52:30 Miner: Miner 1 created
+2025-05-13 23:52:30 Validator Controller: Validator controller process created
+2025-05-13 23:52:30 Miner: Miner 2 created
+2025-05-13 23:52:30 Validator Controller: Validator 0 criado
+2025-05-13 23:52:34 Miner: Miner 2 acabou de escrever um bloco
+2025-05-13 23:52:34 Miner: Miner 2 acabou de escrever um bloco
+2025-05-13 23:52:34 Miner: Miner 2 acabou de escrever um bloco
+2025-05-13 23:52:35 Validator: Bloco BLOCK-2-1932104165 inválido
+2025-05-13 23:52:35 Validator: Bloco BLOCK-2-1469704182 inválido
+2025-05-13 23:52:35 Miner: Miner 2 acabou de escrever um bloco
+2025-05-13 23:52:35 Miner: Miner 1 acabou de escrever um bloco
+2025-05-13 23:52:35 Validator: Bloco BLOCK-2-1480145018 inválido
+2025-05-13 23:52:35 Validator: Bloco BLOCK-1-1921786280 inválido
+2025-05-13 23:52:37 Miner: Miner 1 acabou de escrever um bloco
+2025-05-13 23:52:37 Miner: Miner 2 acabou de escrever um bloco
+2025-05-13 23:52:37 Validator: Bloco BLOCK-1-1478769774 inválido
+2025-05-13 23:52:37 Validator: Bloco BLOCK-2-1455312231 inválido
+2025-05-13 23:52:37 Miner: Miner 1 acabou de escrever um bloco
+2025-05-13 23:52:38 Miner: Miner 2 acabou de escrever um bloco
+2025-05-13 23:52:38 Validator: Bloco BLOCK-2-146564104 inválido
+2025-05-13 23:52:38 Miner: Miner 1 acabou de escrever um bloco
+2025-05-13 23:52:38 Validator: Bloco BLOCK-1-11957840 inválido
+2025-05-13 23:52:40 Miner: Miner 2 acabou de escrever um bloco
+2025-05-13 23:52:40 Miner: Miner 1 acabou de escrever um bloco
+2025-05-13 23:52:40 Miner: Miner 1 acabou de escrever um bloco
+2025-05-13 23:52:40 Validator: Bloco BLOCK-2-41475187 inválido
+2025-05-13 23:52:40 Validator: Bloco BLOCK-1-1882676265 inválido
+2025-05-13 23:52:40 Miner: Miner 2 acabou de escrever um bloco
+2025-05-13 23:52:40 Miner: Miner 1 acabou de escrever um bloco
+2025-05-13 23:52:40 Validator: Bloco BLOCK-2-901299403 inválido
+2025-05-13 23:52:40 Validator: Bloco BLOCK-1-2066894083 inválido
+2025-05-13 23:52:45 Miner: Miner 1 acabou de escrever um bloco
+2025-05-13 23:52:45 Miner: Miner 2 acabou de escrever um bloco
+2025-05-13 23:52:45 Miner: Miner 2 acabou de escrever um bloco
+2025-05-13 23:52:45 Validator: Bloco BLOCK-1-1277917719 inválido
+2025-05-13 23:52:45 Validator: Bloco BLOCK-2-2002488518 inválido
+2025-05-13 23:52:45 Miner: Miner 2 acabou de escrever um bloco
+2025-05-13 23:52:45 Miner: Miner 1 acabou de escrever um bloco
+2025-05-13 23:52:46 Validator: Bloco BLOCK-2-475332697 inválido
+2025-05-13 23:52:46 Validator: Bloco BLOCK-1-1578834231 inválido
+2025-05-13 23:52:48 DEBUG: SIGINT received
+2025-05-13 23:52:48 Validator: Validator terminando
+2025-05-13 23:52:48 Miner: Miner 1 finished
+2025-05-13 23:52:48 Miner: Miner 2 finished
+2025-05-13 23:52:48 Validator Controller: Validator Controller terminado
+2025-05-13 23:52:48 Validator Controller: Validator process terminated
+2025-05-13 23:52:48 Controller: Destroying named semaphores
+2025-05-13 23:52:48 Controller: Destroying mutex
+2025-05-13 23:52:48 Controller: Detaching shared memory
+2025-05-13 23:52:48 Controller: Removing shared memory
+2025-05-13 23:52:48 Controller: Finished terminating
+2025-05-13 23:52:48 INFO: Closing program

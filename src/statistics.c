@@ -27,7 +27,6 @@ void handle_sigtermstats(int signum) {
 }
 
 void print_current_stats() {
-  printf("\n=== Estatísticas ===\n");
   for (unsigned int i = 0; i < config.num_miners; i++) {
     printf("Minerador %d:\n", i + 1);
     printf("  Blocos válidos: %d\n", miners_stats[i].valid_blocks);
@@ -56,7 +55,6 @@ void print_statistics() {
   sa2.sa_flags = 0;
   sigaction(SIGTERM, &sa2, NULL);
 
-  printf("Statistics on pid : %d \n", getpid());
   miners_stats = malloc(config.num_miners * sizeof(MinerStats));
   memset(miners_stats, 0, config.num_miners * sizeof(MinerStats));
 
@@ -70,6 +68,8 @@ void print_statistics() {
   StatsMsg msg;
   while (!stats_should_exit) {
     if (usr1_received) {
+      printf("========== SIGURS1 RECEBIDO ===========\n");
+
       print_current_stats();
       usr1_received = 0;
     }
@@ -98,7 +98,7 @@ void print_statistics() {
       total_invalid_blocks++;
     }
 
-    for (int i = 0; i < msg.n_tx; i++) {
+    for (unsigned int i = 0; i < msg.n_tx; i++) {
       double processing_time = difftime(msg.block_ts, msg.tx_ts[i]);
       miners_stats[miner_id].total_processing_time += processing_time;
       miners_stats[miner_id].total_transactions++;

@@ -32,9 +32,20 @@ int main(int argc, char *argv[]) {
     printf("Usage: %s <reward> <sleep time>\n", argv[0]);
     return 1;
   }
-  sem = sem_open("/transaction_pool_sem", O_CREAT, 0666, 1);
+  sem = sem_open("/tp_access_pool", O_CREAT, 0666, 1);
+  if (sem == SEM_FAILED) {
+    printf("Para o tx generator funcionar, deverá ter executado o main "
+           "previamente\n");
+    perror("sem_open");
+    exit(1);
+  }
   key_t key = ftok("config.cfg", 65);
   int shmid = shmget(key, 0, 0666);
+  if (shmid == -1) {
+    printf("Para o tx generator funcionar, deverá ter executado o main "
+           "previamente\n");
+    exit(1);
+  }
   TransactionPool *transaction_pool = shmat(shmid, NULL, 0);
   TransactionPoolEntry *transactions =
       (TransactionPoolEntry *)((char *)transaction_pool +
@@ -65,7 +76,7 @@ int main(int argc, char *argv[]) {
   srand(time(NULL));
   int done = 0;
   while (!done) {
-    t = create_transaction(reward, rand());
+    t = create_transaction(reward, rand() / 1000);
     int found = 0;
     sprintf(msg, "Transaction with reward %d and sleep time %d pid: %d created",
             t.reward, sleepTime, getpid());

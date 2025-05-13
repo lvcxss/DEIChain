@@ -65,7 +65,7 @@ typedef struct {
   int miner_id;
   int valid;
   int credits;
-  int n_tx;
+  unsigned int n_tx;
   time_t tx_ts[MAX_TX];
   time_t block_ts;
 } StatsMsg;
@@ -85,7 +85,7 @@ extern TransactionPoolEntry *transactions;
 extern BlockchainLedger *block_ledger;
 
 int write_logfile(char *message, char *typemsg);
-void showBlock(Block *block, Transaction *t);
+void show_block(Block *block, Transaction *t);
 static inline size_t get_transaction_block_size() {
   if (config.transactions_per_block == 0) {
     perror("Must set the 'transactions_per_block' variable before using!\n");
