@@ -17,9 +17,7 @@ int current_validators = 0;
 void handle_sigtermvc(int sig) {
   (void)sig;
   vc_exit = 1;
-  pthread_mutex_lock(&transactions_pool->mt_vc);
   pthread_cond_broadcast(&transactions_pool->cond_vc);
-  pthread_mutex_unlock(&transactions_pool->mt_vc);
   for (int i = 0; i < MAX_VALIDATORS; i++) {
     if (validator_pids[i] > 0) {
       kill(validator_pids[i], SIGTERM);
@@ -76,8 +74,6 @@ int validator_controller() {
   }
   pthread_mutex_lock(&transactions_pool->mt_vc);
   while (!vc_exit) {
-    if (vc_exit)
-      break;
 
     float ocupacao =
         (transactions_pool->atual * 100.0f) / transactions_pool->max_size;
@@ -87,18 +83,24 @@ int validator_controller() {
     else if (ocupacao >= 60.0f)
       desired_validators = 2;
 
+    if (vc_exit)
+      break;
     for (int i = 0; i < desired_validators; i++) {
       if (validator_pids[i] == 0) {
         spawn_validator(i);
       }
     }
 
+    if (vc_exit)
+      break;
     for (int i = desired_validators; i < MAX_VALIDATORS; i++) {
       if (validator_pids[i] > 0) {
         kill_validator(i);
       }
     }
 
+    if (vc_exit)
+      break;
     pthread_cond_wait(&transactions_pool->cond_vc, &transactions_pool->mt_vc);
   }
   pthread_mutex_unlock(&transactions_pool->mt_vc);
@@ -112,7 +114,6 @@ int validator_controller() {
   pthread_cond_destroy(&transactions_pool->cond_vc);
   pthread_mutex_destroy(&transactions_pool->mt_vc);
 
-  shmdt(transactions_pool);
   printf("[ValidatorController] Terminado com sucesso.\n");
   return 0;
 }

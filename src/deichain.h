@@ -56,6 +56,8 @@ typedef struct {
   int total_blocks;
   int num_blocks;
   char hash_atual[HASH_SIZE];
+  pthread_mutex_t mt_ct;
+  pthread_cond_t cond_ct;
 } BlockchainLedger;
 
 typedef struct {
@@ -83,7 +85,7 @@ extern TransactionPoolEntry *transactions;
 extern BlockchainLedger *block_ledger;
 
 int write_logfile(char *message, char *typemsg);
-void showBlock(Block *block);
+void showBlock(Block *block, Transaction *t);
 static inline size_t get_transaction_block_size() {
   if (config.transactions_per_block == 0) {
     perror("Must set the 'transactions_per_block' variable before using!\n");

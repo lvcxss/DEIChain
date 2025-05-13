@@ -27,7 +27,7 @@ void handle_sigtermstats(int signum) {
 }
 
 void print_current_stats() {
-  printf("\n=== Estatísticas (SIGUSR1) ===\n");
+  printf("\n=== Estatísticas ===\n");
   for (unsigned int i = 0; i < config.num_miners; i++) {
     printf("Minerador %d:\n", i + 1);
     printf("  Blocos válidos: %d\n", miners_stats[i].valid_blocks);
@@ -116,10 +116,5 @@ void print_statistics() {
 
   sem_close(log_file_mutex);
   log_file_mutex = NULL;
-  shmdt(transactions_pool);
-  shmdt(block_ledger);
-  shmctl(shmidledger, IPC_RMID, NULL);
-  shmctl(shmid, IPC_RMID, NULL);
-
   exit(0);
 }

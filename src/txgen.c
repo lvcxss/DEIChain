@@ -62,10 +62,11 @@ int main(int argc, char *argv[]) {
   }
   char msg[256];
   Transaction t;
+  srand(time(NULL));
   int done = 0;
   while (!done) {
-    t = create_transaction(reward, 4);
-
+    t = create_transaction(reward, rand());
+    int found = 0;
     sprintf(msg, "Transaction with reward %d and sleep time %d pid: %d created",
             t.reward, sleepTime, getpid());
     TransactionPoolEntry ent;
@@ -75,16 +76,25 @@ int main(int argc, char *argv[]) {
     printf("%s\n", msg);
     sem_wait(sem);
 
-    if (transaction_pool->atual >= transaction_pool->max_size) {
-      sem_post(sem);
-      done = 1;
+    for (unsigned int ii = 0; ii < transaction_pool->atual && found == 0;
+         ii++) {
+      if (transactions[ii].occupied == 0) {
+        transactions[ii] = ent;
+        transaction_pool->available++;
+        found = 1;
+      }
     }
-    transactions[transaction_pool->atual] = ent;
-    printf("%d", transaction_pool->atual);
-    transaction_pool->atual++;
-    transaction_pool->available++;
-    if (transaction_pool->atual > transaction_pool->transactions_block ||
-        transaction_pool->available >= transaction_pool->transactions_block) {
+    if (!found) {
+      transactions[transaction_pool->atual] = ent;
+      transaction_pool->atual++;
+      transaction_pool->available++;
+      if (transaction_pool->atual >= transaction_pool->max_size) {
+        printf("A transactions pool está cheia, a encerrar este generador\n");
+        done = 1;
+      }
+    }
+
+    if (transaction_pool->atual > transaction_pool->transactions_block) {
       pthread_cond_broadcast(&transaction_pool->cond_min);
     }
     pthread_cond_signal(&transaction_pool->cond_vc);

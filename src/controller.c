@@ -35,8 +35,8 @@ Config processFile(char *filename);
 
 int pids[3];
 int mainpid;
-pthread_condattr_t cattr, cattrvc;
-pthread_mutexattr_t mattr, mattrvc;
+pthread_condattr_t cattr, cattrvc, cattrct;
+pthread_mutexattr_t mattr, mattrvc, mattrct;
 sem_t *log_file_mutex;
 
 int shmid, shmidledger;
@@ -45,42 +45,12 @@ TransactionPoolEntry *transactions;
 Config config;
 BlockchainLedger *block_ledger;
 
-void terminate() {
-  printf("entered terminate");
-  write_logfile("Destroying sem", "TERMINATE");
-
-  sem_close(transactions_pool->transaction_pool_sem);
-  sem_unlink("/transaction_pool_sem");
-
-  sem_close(transactions_pool->tp_access_pool);
-  sem_unlink("/top_access_pool");
-
-  sem_close(block_ledger->ledger_sem);
-  sem_unlink("/ledger_sem");
-
-  sem_close(log_file_mutex);
-  sem_unlink("/log_file_mutex");
-  log_file_mutex = NULL;
-  write_logfile("Destroying mutex", "TERMINATE");
-  unlink(PIPE_NAME);
-
-  write_logfile("Detaching shared memory", "TERMINATE");
-  shmdt(transactions_pool);
-  shmdt(block_ledger);
-
-  write_logfile("Removing shared memory", "TERMINATE");
-  shmctl(shmidledger, IPC_RMID, NULL);
-  shmctl(shmid, IPC_RMID, NULL);
-
-  write_logfile("Finished terminating", "TERMINATE");
-  printf("\nFinished terminating\n");
-}
-
 void sighandler(int sig) {
   if (sig == SIGINT) {
     write_logfile("SIGINT received", "DEBUG");
-
     for (int i = 0; i < 3; i++) {
+
+      pthread_cond_signal(&transactions_pool->cond_vc);
       if (pids[i] > 0) {
         kill(pids[i], SIGTERM);
       }
@@ -104,10 +74,7 @@ void sighandler(int sig) {
                           i);
         Transaction *blcktrans = (Transaction *)((char *)b + sizeof(Block));
         printf("Block %d : %d\n", i, b->nonce);
-        printf("Transactions in it :\n");
-        for (unsigned int ii = 0; ii < config.transactions_per_block; ii++) {
-          printf("Transaction %d : %s\n", ii, blcktrans[ii].transaction_id);
-        }
+        showBlock(b, blcktrans);
       }
       terminate();
       write_logfile("Closing program", "INFO");
@@ -230,18 +197,21 @@ void init() {
   transactions = (TransactionPoolEntry *)((char *)transactions_pool +
                                           sizeof(TransactionPool));
   transactions_pool->atual = 0;
+  sem_unlink("/transaction_pool_sem");
   transactions_pool->transaction_pool_sem =
       sem_open("/transaction_pool_sem", O_CREAT, 0666, 1);
   if (transactions_pool->transaction_pool_sem == SEM_FAILED) {
     perror("sem_open");
     exit(1);
   }
+  sem_unlink("/tp_access_pool");
   transactions_pool->tp_access_pool =
       sem_open("/tp_access_pool", O_CREAT, 0666, 2);
   if (transactions_pool->tp_access_pool == SEM_FAILED) {
     perror("sem_open");
     exit(1);
   }
+  sem_unlink("/ledger_sem");
   block_ledger->ledger_sem = sem_open("/ledger_sem", O_CREAT, 0666, 1);
   if (block_ledger->ledger_sem == SEM_FAILED) {
     perror("sem_open");
@@ -253,16 +223,25 @@ void init() {
   transactions_pool->max_size = config.tx_pool_size;
   transactions_pool->transactions_block = config.transactions_per_block;
 
+  // cv usada para o validator controller
   pthread_mutexattr_init(&mattrvc);
   pthread_mutexattr_setpshared(&mattrvc, PTHREAD_PROCESS_SHARED);
-
   pthread_mutex_init(&transactions_pool->mt_vc, &mattrvc);
   pthread_condattr_init(&cattrvc);
   pthread_condattr_setpshared(&cattrvc, PTHREAD_PROCESS_SHARED);
   pthread_cond_init(&transactions_pool->cond_vc, &cattrvc);
+
+  // cv usado para o controller sair quando a blockledger estiver cheia
+  pthread_mutexattr_init(&mattrct);
+  pthread_mutexattr_setpshared(&mattrct, PTHREAD_PROCESS_SHARED);
+  pthread_mutex_init(&block_ledger->mt_ct, &mattrct);
+  pthread_condattr_init(&cattrct);
+  pthread_condattr_setpshared(&cattrct, PTHREAD_PROCESS_SHARED);
+  pthread_cond_init(&block_ledger->cond_ct, &cattrct);
+
   // DONT REMOVE THIS LINE !!!
-  // problem : whenever a child process is created, the son gets a copy of the
-  // parent's stdout
+  // problem : whenever a child process is created, the son gets a copy of
+  // the parent's stdout
   fflush(stdout);
   // create processes
   if (create_miner_process(config.num_miners) == 1) {
@@ -283,8 +262,13 @@ void init() {
     perror("msgget stats");
     exit(1);
   }
-  while (1) {
+  while (block_ledger->num_blocks < block_ledger->total_blocks) {
+    pthread_mutex_lock(&block_ledger->mt_ct);
+    pthread_cond_wait(&block_ledger->cond_ct, &block_ledger->mt_ct);
+    pthread_mutex_unlock(&block_ledger->mt_ct);
   }
+  printf("Block ledger cheia, a terminar\n");
+  sighandler(SIGINT);
 }
 
 int create_pipe() {
@@ -424,4 +408,35 @@ Config processFile(char *filename) {
   }
   fclose(config);
   return cfg;
+}
+
+void terminate() {
+  printf("entered terminate");
+  write_logfile("Destroying sem", "CONTROLLER");
+
+  sem_close(transactions_pool->transaction_pool_sem);
+  sem_unlink("/transaction_pool_sem");
+
+  sem_close(transactions_pool->tp_access_pool);
+  sem_unlink("/top_access_pool");
+
+  sem_close(block_ledger->ledger_sem);
+  sem_unlink("/ledger_sem");
+
+  sem_close(log_file_mutex);
+  sem_unlink("/log_file_mutex");
+  log_file_mutex = NULL;
+  write_logfile("Destroying mutex", "CONTROLLER");
+  unlink(PIPE_NAME);
+
+  write_logfile("Detaching shared memory", "CONTROLLER");
+  shmdt(transactions_pool);
+  shmdt(block_ledger);
+
+  write_logfile("Removing shared memory", "CONTROLLER");
+  shmctl(shmidledger, IPC_RMID, NULL);
+  shmctl(shmid, IPC_RMID, NULL);
+
+  write_logfile("Finished terminating", "CONTROLLER");
+  printf("\nFinished terminating\n");
 }

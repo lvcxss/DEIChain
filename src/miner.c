@@ -50,13 +50,17 @@ void *mine(void *idp) {
     Transaction *transactions_block =
         (Transaction *)((char *)new_block + sizeof(Block));
     unsigned int it = 0;
+    int samet = 0;
     do {
+      numm = 0;
+      samet = 0;
       unsigned int s = (transactions_pool->atual > transactions_pool->max_size)
                            ? transactions_pool->max_size
                            : transactions_pool->atual;
 
-      if (miner_should_exit)
+      if (miner_should_exit) {
         break;
+      }
       for (it = 0; it < s; it++) {
         if (numm >= config.transactions_per_block) {
           break;
@@ -67,13 +71,29 @@ void *mine(void *idp) {
           numm++;
         }
       }
-      if (numm < config.transactions_per_block) {
+      if (numm < config.transactions_per_block &&
+          transactions_pool->available < config.transactions_per_block) {
         pthread_mutex_lock(&transactions_pool->mt_min);
         pthread_cond_wait(&transactions_pool->cond_min,
                           &transactions_pool->mt_min);
         pthread_mutex_unlock(&transactions_pool->mt_min);
       }
-    } while (numm < config.transactions_per_block && !miner_should_exit);
+
+      if (numm >= config.transactions_per_block) {
+        for (unsigned int tit = 0; tit < config.transactions_per_block; tit++) {
+          for (unsigned int tit2 = tit; tit2 < config.transactions_per_block;
+               tit2++) {
+            if (strcmp(transactions_block[tit].transaction_id,
+                       transactions_block[tit2].transaction_id) == 0) {
+              samet = 1;
+            }
+          }
+        }
+      }
+
+    } while (numm < config.transactions_per_block && !miner_should_exit &&
+             !samet);
+
     if (miner_should_exit)
       break;
 

@@ -115,6 +115,8 @@ int validator() {
     unsigned int s = (transactions_pool->atual > transactions_pool->max_size)
                          ? transactions_pool->max_size
                          : transactions_pool->atual;
+    sem_wait(transactions_pool->tp_access_pool);
+
     for (unsigned int i = 0; i < config.transactions_per_block; i++) {
       if (should_exit) {
         break;
@@ -143,11 +145,12 @@ int validator() {
         }
       }
     }
+    sem_post(transactions_pool->tp_access_pool);
 
     printf("\n=== Recebido bloco %.*s (%s) ===\n", TX_ID_LEN, blk->block_id,
            valid ? "VÁLIDO" : "INVÁLIDO");
     if (valid) {
-
+      sem_wait(transactions_pool->tp_access_pool);
       for (unsigned int i = 0; i < config.transactions_per_block; i++) {
         for (unsigned int j = 0; j < transactions_pool->atual; j++) {
           if (strcmp(transactions_ent_pool[j].transaction.transaction_id,
@@ -157,6 +160,7 @@ int validator() {
           }
         }
       }
+      sem_post(transactions_pool->tp_access_pool);
       for (unsigned int i = 0; i < config.transactions_per_block; i++) {
         printf("  - TX %2d: id=\"%s\" reward=%d\n", i, tx[i].transaction_id,
                tx[i].reward);
@@ -179,6 +183,7 @@ int validator() {
           transactions_pool->available - config.transactions_per_block;
       memcpy(block_ledger->hash_atual, results->hash, HASH_SIZE);
       sem_post(block_ledger->ledger_sem);
+      pthread_cond_signal(&block_ledger->cond_ct);
 
       printf("Bloco escrito \n");
     }
