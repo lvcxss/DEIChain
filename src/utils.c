@@ -35,10 +35,10 @@ int write_ledger_logfile() {
                           sizeof(Block)) *
                              i);
     Transaction *blcktrans = (Transaction *)((char *)b + sizeof(Block));
-    fprintf(logfile, "Block : %s\n", blocks[i].block_id);
-    fprintf(logfile, "Previous Hash : %s\n", blocks[i].previous_hash);
-    fprintf(logfile, "Nonce : %d\n", blocks[i].nonce);
-    fprintf(logfile, "Timestamp: %ld\n", blocks[i].timestamp);
+    fprintf(logfile, "Block : %s\n", b->block_id);
+    fprintf(logfile, "Previous Hash : %s\n", b->previous_hash);
+    fprintf(logfile, "Nonce : %d\n", b->nonce);
+    fprintf(logfile, "Timestamp: %ld\n", b->timestamp);
     fprintf(logfile, "Transactions :\n");
     for (unsigned int ii = 0; ii < config.transactions_per_block; ii++) {
       fprintf(logfile,

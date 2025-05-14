@@ -17,7 +17,7 @@
 Transaction *tx;
 int stats_qid;
 volatile sig_atomic_t should_exit = 0;
-
+int validator_id;
 void handle_term(int sig) {
   if (sig)
     should_exit = 1;
@@ -57,6 +57,8 @@ int validator() {
     return 1;
   }
 
+  char valbuf[128];
+  sprintf(valbuf, "Validator %d", validator_id);
   while (!should_exit) {
     ssize_t r = read(fd_read, raw, block_sz);
     ssize_t rr = read(fd_read, results, sizeof(*results));
@@ -146,6 +148,7 @@ int validator() {
     char st[128];
     if (valid) {
       sprintf(st, "Bloco %.*s válido", TX_ID_LEN, blk->block_id);
+      write_logfile(st, valbuf);
       printf("\n=== Recebido bloco %.*s: VÁLIDO ===\n", TX_ID_LEN,
              blk->block_id);
       sem_wait(block_ledger->ledger_sem);
@@ -173,7 +176,8 @@ int validator() {
       pthread_cond_signal(&block_ledger->cond_ct);
     } else {
       sprintf(st, "Bloco %.*s inválido", TX_ID_LEN, blk->block_id);
-      write_logfile(st, "Validator");
+      sprintf(valbuf, "Validator %d", validator_id);
+      write_logfile(st, valbuf);
       printf("\n=== Recebido bloco %.*s: INVÁLIDO ===\n", TX_ID_LEN,
              blk->block_id);
     }
@@ -193,7 +197,7 @@ int validator() {
   close(fd_read);
   free(raw);
   free(results);
-  write_logfile("Validator terminando", "Validator");
+  write_logfile("Validator terminado ", valbuf);
   printf("Validator terminando.\n");
   return 0;
 }

@@ -43,7 +43,7 @@ void *mine(void *idp) {
 
     sem_wait(block_ledger->ledger_sem);
     snprintf(new_block->block_id, TX_ID_LEN, "BLOCK-%lu-%d", (unsigned long)tid,
-             rand());
+             rand() / 1000);
     memcpy(new_block->previous_hash, block_ledger->hash_atual, HASH_SIZE);
     sem_post(block_ledger->ledger_sem);
 

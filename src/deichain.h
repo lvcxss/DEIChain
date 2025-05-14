@@ -67,14 +67,11 @@ typedef struct {
   time_t block_ts;
 } StatsMsg;
 
-extern int shmid;
-extern int shmidtransactions;
-extern int shmidledger;
-extern int shmidblockindex;
 extern int *transactionid;
 extern int *block_index;
 extern int stats_qid;
 extern Config config;
+extern int validator_id;
 extern sem_t *log_file_mutex;
 
 extern TransactionPool *transactions_pool;

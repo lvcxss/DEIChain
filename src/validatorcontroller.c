@@ -31,16 +31,18 @@ int spawn_validator(int index) {
     perror("Erro ao criar validator");
     return -1;
   } else if (pid == 0) {
+    validator_id = index + 1;
+    char msg[64];
+    sprintf(msg, "Validator %d criado", validator_id);
+    write_logfile(msg, "Validator Controller");
     int ret = validator();
     _exit(ret);
 
   } else {
     validator_pids[index] = pid;
     current_validators++;
-    printf("[ValidatorController] Validator %d criado (PID %d)\n", index, pid);
-    char msg[64];
-    sprintf(msg, "Validator %d criado", index);
-    write_logfile(msg, "Validator Controller");
+    printf("[ValidatorController] Validator %d criado (PID %d)\n", index + 1,
+           pid);
     return 0;
   }
 }
