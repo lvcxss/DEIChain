@@ -14,6 +14,7 @@ volatile sig_atomic_t vc_exit = 0;
 pid_t validator_pids[MAX_VALIDATORS] = {0};
 int current_validators = 0;
 
+// signal handlers
 void handle_sigtermvc(int sig) {
   (void)sig;
   vc_exit = 1;
@@ -25,6 +26,7 @@ void handle_sigtermvc(int sig) {
   }
 }
 
+// spawning a validator proccess
 int spawn_validator(int index) {
   pid_t pid = fork();
   if (pid < 0) {
@@ -47,6 +49,7 @@ int spawn_validator(int index) {
   }
 }
 
+// killing a validator proccess
 void kill_validator(int index) {
   if (validator_pids[index] > 0) {
     kill(validator_pids[index], SIGTERM);
@@ -68,10 +71,19 @@ int validator_controller() {
   pthread_mutex_lock(&transactions_pool->mt_vc);
   while (!vc_exit) {
     sem_wait(transactions_pool->tp_access_pool);
-    float ocupacao =
-        (transactions_pool->atual * 100.0f) / transactions_pool->max_size;
+    // count number of occupied and check if more validators are needed
+    float ocupacao = 0;
+    for (unsigned int itt = 0; itt < transactions_pool->atual; itt++) {
+      if (transactions[itt].occupied) {
+        ocupacao++;
+      }
+    }
+    // get the % of occupied
+    ocupacao *= 100.0f;
+    ocupacao = ocupacao / transactions_pool->max_size;
     sem_post(transactions_pool->tp_access_pool);
     int desired_validators = 1;
+    // check if any more are needed
     if (ocupacao >= 80.0f)
       desired_validators = 3;
     else if (ocupacao >= 60.0f)
@@ -104,6 +116,7 @@ int validator_controller() {
       kill_validator(i);
     }
   }
+  // destroy here the mutex and cond to avoid deadlocks
   pthread_cond_destroy(&transactions_pool->cond_vc);
   pthread_mutex_destroy(&transactions_pool->mt_vc);
   write_logfile("Validator Controller terminado", "Validator Controller");

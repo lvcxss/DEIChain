@@ -58,13 +58,6 @@ void print_statistics() {
   miners_stats = malloc(config.num_miners * sizeof(MinerStats));
   memset(miners_stats, 0, config.num_miners * sizeof(MinerStats));
 
-  key_t key = ftok("config.cfg", 67);
-  int stats_qid = msgget(key, 0666);
-  if (stats_qid == -1) {
-    perror("msgget em Statistics");
-    exit(1);
-  }
-
   StatsMsg msg;
   while (!stats_should_exit) {
     if (usr1_received) {

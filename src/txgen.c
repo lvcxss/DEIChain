@@ -82,6 +82,12 @@ int main(int argc, char *argv[]) {
   srand(time(NULL));
   int done = 0;
   unsigned int prev = transaction_pool->max_size;
+  // this cycle does:
+  // checks for an empty block and places a transaction in it
+  // if not places it in the end
+  // lets miners work if the max index of the array is greater then the number
+  // of transactions in a block
+  //
   while (!done) {
     if (transaction_pool->max_size != prev) {
       printf("O processo principal terminou, a matar txgen\n");

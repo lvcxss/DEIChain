@@ -1,2 +1,0 @@
-# DEIChain
-Operative Systems project

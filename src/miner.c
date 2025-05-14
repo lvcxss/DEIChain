@@ -19,6 +19,7 @@ int cnt = 0;
 PoWResult result = {"", 0, 0, 0};
 volatile sig_atomic_t miner_should_exit = 0;
 
+// signal handler
 void handle_sigterm(int signum) {
   if (signum == SIGTERM || signum == SIGINT) {
     miner_should_exit = 1;
@@ -34,13 +35,14 @@ void *mine(void *idp) {
   int pipe_fd;
   srand(time(NULL) ^ (uintptr_t)pthread_self());
 
+  // cycle for mining blocks
   while (!miner_should_exit) {
     new_block = malloc(get_transaction_block_size());
     if (!new_block) {
       perror("Erro ao alocar memoria");
       break;
     }
-
+    // craeting the id with the thread id and a random number
     sem_wait(block_ledger->ledger_sem);
     snprintf(new_block->block_id, TX_ID_LEN, "BLOCK-%lu-%d", (unsigned long)tid,
              rand() / 1000);
@@ -50,9 +52,11 @@ void *mine(void *idp) {
     Transaction *transactions_block =
         (Transaction *)((char *)new_block + sizeof(Block));
 
-    // --- Seleção aleatória de transações ---
+    // i chose random selection
     sem_wait(transactions_pool->tp_access_pool);
 
+    // limit, no need to iterate through all transactions if the max index
+    // occupied is less than the max size
     unsigned int limit =
         (transactions_pool->atual > transactions_pool->max_size)
             ? transactions_pool->max_size
@@ -62,7 +66,7 @@ void *mine(void *idp) {
       if (transactions[i].occupied)
         occ++;
     }
-    // caso nao haja transacoes suficientes espera
+    // in case there are no transactions no need to mine
     if (occ < config.transactions_per_block) {
       usleep(500000);
       sem_post(transactions_pool->tp_access_pool);
@@ -71,6 +75,7 @@ void *mine(void *idp) {
       continue;
     }
 
+    // choose random indexes for transactions
     unsigned int indices[occ];
     unsigned int k = 0;
     for (unsigned int i = 0; i < limit; i++) {
@@ -92,12 +97,13 @@ void *mine(void *idp) {
              sizeof(Transaction));
     }
 
-    // sinaliza se ainda restam transactionss
+    // in case there are still enough transactions
     if (occ - config.transactions_per_block >= config.transactions_per_block) {
       sem_post(transactions_pool->sem_min_tx);
     }
     sem_post(transactions_pool->tp_access_pool);
 
+    // try doing proof of work
     do {
       result = proof_of_work(new_block);
       new_block->timestamp = time(NULL);
@@ -135,6 +141,7 @@ void initminers(int num) {
 
   pthread_t thread_miners[num];
   int id[num];
+  // start threads
   for (int i = 0; i < num; i++) {
     id[i] = i + 1;
     pthread_create(&thread_miners[i], NULL, mine, &id[i]);
@@ -142,7 +149,7 @@ void initminers(int num) {
     sprintf(msg, "Miner %d created", id[i]);
     write_logfile(msg, "Miner");
   }
-
+  // wait for threads to finish
   for (int i = 0; i < num; i++) {
     pthread_join(thread_miners[i], NULL);
     char msg[128];

@@ -246,7 +246,7 @@ void init() {
   // problem : whenever a child process is created, the son gets a copy of
   // the parent's stdout
   fflush(stdout);
-  // create processes
+  // create processesm
   if (create_miner_process(config.num_miners) == 1) {
     terminate();
   }
@@ -259,6 +259,7 @@ void init() {
   if (create_pipe() == 1) {
     terminate();
   }
+  // creation of queue
   key_t stats_key = ftok("config.cfg", 67);
   int stats_qid = msgget(stats_key, IPC_CREAT | 0666);
   if (stats_qid == -1) {
@@ -274,6 +275,7 @@ void init() {
   sighandler(SIGINT);
 }
 
+// creating named pipe
 int create_pipe() {
   if ((mkfifo(PIPE_NAME, O_CREAT | O_EXCL | 0600) < 0) && (errno != EEXIST)) {
     perror("Cannot create pie: ");
@@ -417,10 +419,10 @@ void terminate() {
   write_logfile("Destroying named semaphores", "Controller");
 
   sem_close(transactions_pool->sem_min_tx);
-  sem_unlink("/transaction_pool_sem");
+  sem_unlink("/sem_min_tx");
 
   sem_close(transactions_pool->tp_access_pool);
-  sem_unlink("/top_access_pool");
+  sem_unlink("/tp_access_pool");
 
   sem_close(block_ledger->ledger_sem);
   sem_unlink("/ledger_sem");

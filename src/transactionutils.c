@@ -11,6 +11,7 @@
 int a = 0;
 int *transactionid = &a;
 
+// funcion to create a transaction
 Transaction create_transaction(int reward, int value) {
   Transaction t = {.reward = reward,
                    .sender_id = getpid(),

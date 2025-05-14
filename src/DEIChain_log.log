@@ -123,3 +123,358 @@ Transactions :
 2025-05-14 11:38:28 Controller: Removing shared memory
 2025-05-14 11:38:28 Controller: Finished terminating
 2025-05-14 11:38:28 INFO: Closing program
+2025-05-14 13:38:16 INIT: Program started
+2025-05-14 13:38:16 Controller: Started reading configuration file
+2025-05-14 13:38:16 INFO: Configuration loaded :
+   Number of Miners: 5 
+   Transaction pool size: 20
+   Maximum number of blocks in the block chain: 10
+   Number of Transacions in a block: 5
+2025-05-14 13:38:16 Controller: Miner process created
+2025-05-14 13:38:16 Statistics: Statistics process created
+2025-05-14 13:38:16 Miner: Miner 1 created
+2025-05-14 13:38:16 Miner: Miner 2 created
+2025-05-14 13:38:16 Validator Controller: Validator controller process created
+2025-05-14 13:38:16 Miner: Miner 3 created
+2025-05-14 13:38:16 Miner: Miner 4 created
+2025-05-14 13:38:16 Miner: Miner 5 created
+2025-05-14 13:38:16 Validator Controller: Validator 1 criado
+2025-05-14 13:38:18 Miner: Miner 2 acabou de escrever um bloco
+2025-05-14 13:38:18 Miner: Miner 2 acabou de escrever um bloco
+2025-05-14 13:38:18 Validator 1: Bloco BLOCK-2-644588 inválido
+2025-05-14 13:38:18 Validator 1: Bloco BLOCK-2-339405 válido
+2025-05-14 13:38:18 Miner: Miner 2 acabou de escrever um bloco
+2025-05-14 13:38:18 Miner: Miner 3 acabou de escrever um bloco
+2025-05-14 13:38:19 Validator 1: Bloco BLOCK-2-225067 inválido
+2025-05-14 13:38:19 Validator 1: Bloco BLOCK-3-1665593 inválido
+2025-05-14 13:38:19 Validator 1: Validator terminado 
+2025-05-14 13:38:19 Miner: Miner 1 finished
+2025-05-14 13:38:19 Miner: Miner 2 finished
+2025-05-14 13:38:19 Controller: SIGINT received
+2025-05-14 13:38:19 Miner: Miner 3 finished
+2025-05-14 13:38:19 Miner: Miner 4 finished
+2025-05-14 13:38:19 Miner: Miner 5 finished
+2025-05-14 13:38:19 Validator Controller: Validator Controller terminado
+2025-05-14 13:38:19 Validator Controller: Validator process terminated
+Block : BLOCK-2-339405
+Previous Hash : 00006a8e76f31ba74e21a092cca1015a418c9d5f4375e7a4fec676e1d2ec1436
+Nonce : 32463
+Timestamp: 1747226298
+Transactions :
+       [0] ID: TX-26183-2 | Reward: 1 | Value: 156385.000000 | Timestamp: 1747226298
+       [0] ID: TX-26183-1 | Reward: 1 | Value: 2057746.000000 | Timestamp: 1747226297
+       [0] ID: TX-26183-3 | Reward: 1 | Value: 1799918.000000 | Timestamp: 1747226298
+       [0] ID: TX-26183-0 | Reward: 1 | Value: 717297.000000 | Timestamp: 1747226297
+       [0] ID: TX-26183-5 | Reward: 1 | Value: 1999101.000000 | Timestamp: 1747226298
+2025-05-14 13:38:19 Controller: Destroying named semaphores
+2025-05-14 13:38:19 Controller: Destroying mutex
+2025-05-14 13:38:19 Controller: Detaching shared memory
+2025-05-14 13:38:19 Controller: Removing shared memory
+2025-05-14 13:38:19 Controller: Finished terminating
+2025-05-14 13:38:19 INFO: Closing program
+2025-05-14 13:38:23 INIT: Program started
+2025-05-14 13:38:23 Controller: Started reading configuration file
+2025-05-14 13:38:23 INFO: Configuration loaded :
+   Number of Miners: 5 
+   Transaction pool size: 20
+   Maximum number of blocks in the block chain: 10
+   Number of Transacions in a block: 5
+2025-05-14 13:38:23 Controller: Miner process created
+2025-05-14 13:38:23 Miner: Miner 1 created
+2025-05-14 13:38:23 Statistics: Statistics process created
+2025-05-14 13:38:23 Miner: Miner 2 created
+2025-05-14 13:38:23 Validator Controller: Validator controller process created
+2025-05-14 13:38:23 Miner: Miner 3 created
+2025-05-14 13:38:23 Miner: Miner 4 created
+2025-05-14 13:38:23 Miner: Miner 5 created
+2025-05-14 13:38:23 Validator Controller: Validator 1 criado
+2025-05-14 13:38:25 Miner: Miner 1 acabou de escrever um bloco
+2025-05-14 13:38:26 Miner: Miner 1 acabou de escrever um bloco
+2025-05-14 13:38:26 Miner: Miner 2 acabou de escrever um bloco
+2025-05-14 13:38:26 Miner: Miner 1 acabou de escrever um bloco
+2025-05-14 13:38:26 Miner: Miner 2 acabou de escrever um bloco
+2025-05-14 13:38:26 Miner: Miner 2 acabou de escrever um bloco
+2025-05-14 13:38:26 Validator 1: Bloco BLOCK-1-382286 inválido
+2025-05-14 13:38:26 Validator 1: Bloco BLOCK-1-1256626 inválido
+2025-05-14 13:38:26 Validator 1: Bloco BLOCK-2-1946776 inválido
+2025-05-14 13:38:26 Validator 1: Bloco BLOCK-1-424977 válido
+2025-05-14 13:38:26 Validator 1: Bloco BLOCK-2-1154663 inválido
+2025-05-14 13:38:26 Validator 1: Bloco BLOCK-2-282538 inválido
+2025-05-14 13:38:26 Miner: Miner 2 acabou de escrever um bloco
+2025-05-14 13:38:26 Miner: Miner 1 acabou de escrever um bloco
+2025-05-14 13:38:26 Validator 1: Bloco BLOCK-2-20771 inválido
+2025-05-14 13:38:26 Validator 1: Bloco BLOCK-1-47822 inválido
+2025-05-14 13:38:27 Miner: Miner 5 acabou de escrever um bloco
+2025-05-14 13:38:27 Validator 1: Bloco BLOCK-5-920480 inválido
+2025-05-14 13:38:27 Miner: Miner 5 acabou de escrever um bloco
+2025-05-14 13:38:27 Validator 1: Bloco BLOCK-5-1195620 válido
+2025-05-14 13:38:27 Miner: Miner 3 acabou de escrever um bloco
+2025-05-14 13:38:27 Validator 1: Bloco BLOCK-3-937833 inválido
+2025-05-14 13:38:28 Miner: Miner 5 acabou de escrever um bloco
+2025-05-14 13:38:28 Controller: SIGINT received
+2025-05-14 13:38:28 Validator 1: Validator terminado 
+2025-05-14 13:38:28 Miner: Miner 1 finished
+2025-05-14 13:38:28 Miner: Miner 2 finished
+2025-05-14 13:38:28 Miner: Miner 3 finished
+2025-05-14 13:38:28 Validator Controller: Validator Controller terminado
+2025-05-14 13:38:28 Validator Controller: Validator process terminated
+2025-05-14 13:38:28 Miner: Miner 4 finished
+2025-05-14 13:38:28 Miner: Miner 5 finished
+Block : BLOCK-1-424977
+Previous Hash : 00006a8e76f31ba74e21a092cca1015a418c9d5f4375e7a4fec676e1d2ec1436
+Nonce : 17635
+Timestamp: 1747226306
+Transactions :
+       [0] ID: TX-26294-2 | Reward: 1 | Value: 231859.000000 | Timestamp: 1747226305
+       [0] ID: TX-26294-6 | Reward: 1 | Value: 809087.000000 | Timestamp: 1747226305
+       [0] ID: TX-26294-0 | Reward: 1 | Value: 1804310.000000 | Timestamp: 1747226304
+       [0] ID: TX-26294-5 | Reward: 1 | Value: 1057712.000000 | Timestamp: 1747226305
+       [0] ID: TX-26294-4 | Reward: 1 | Value: 2024482.000000 | Timestamp: 1747226305
+Block : BLOCK-5-1195620
+Previous Hash : 00000986d1cb66df9e3236fe390b198b3a32ac3dcaa11034fe4a6a5d665f546b
+Nonce : 98061
+Timestamp: 1747226307
+Transactions :
+       [1] ID: TX-26294-9 | Reward: 1 | Value: 1207873.000000 | Timestamp: 1747226306
+       [1] ID: TX-26294-10 | Reward: 1 | Value: 972456.000000 | Timestamp: 1747226307
+       [1] ID: TX-26294-1 | Reward: 1 | Value: 162498.000000 | Timestamp: 1747226304
+       [1] ID: TX-26294-7 | Reward: 1 | Value: 702515.000000 | Timestamp: 1747226306
+       [1] ID: TX-26294-8 | Reward: 1 | Value: 259289.000000 | Timestamp: 1747226306
+2025-05-14 13:38:28 Controller: Destroying named semaphores
+2025-05-14 13:38:28 Controller: Destroying mutex
+2025-05-14 13:38:28 Controller: Detaching shared memory
+2025-05-14 13:38:28 Controller: Removing shared memory
+2025-05-14 13:38:28 Controller: Finished terminating
+2025-05-14 13:38:28 INFO: Closing program
+2025-05-14 13:43:25 INIT: Program started
+2025-05-14 13:43:25 Controller: Started reading configuration file
+2025-05-14 13:43:25 INFO: Configuration loaded :
+   Number of Miners: 5 
+   Transaction pool size: 20
+   Maximum number of blocks in the block chain: 10
+   Number of Transacions in a block: 5
+2025-05-14 13:43:25 Controller: Miner process created
+2025-05-14 13:43:25 Statistics: Statistics process created
+2025-05-14 13:43:25 Miner: Miner 1 created
+2025-05-14 13:43:25 Miner: Miner 2 created
+2025-05-14 13:43:25 Miner: Miner 3 created
+2025-05-14 13:43:25 Validator Controller: Validator controller process created
+2025-05-14 13:43:25 Miner: Miner 4 created
+2025-05-14 13:43:25 Miner: Miner 5 created
+2025-05-14 13:43:26 Validator Controller: Validator 1 criado
+2025-05-14 13:43:30 Miner: Miner 4 acabou de escrever um bloco
+2025-05-14 13:43:31 Validator 1: Bloco BLOCK-4-471625 inválido
+2025-05-14 13:43:31 Miner: Miner 4 acabou de escrever um bloco
+2025-05-14 13:43:31 Validator 1: Bloco BLOCK-4-219458 inválido
+2025-05-14 13:43:31 Miner: Miner 4 acabou de escrever um bloco
+2025-05-14 13:43:31 Validator 1: Bloco BLOCK-4-347440 válido
+2025-05-14 13:43:31 Miner: Miner 4 acabou de escrever um bloco
+2025-05-14 13:43:31 Miner: Miner 1 acabou de escrever um bloco
+2025-05-14 13:43:31 Validator 1: Bloco BLOCK-4-567179 inválido
+2025-05-14 13:43:31 Validator 1: Bloco BLOCK-1-1002733 inválido
+2025-05-14 13:43:33 Miner: Miner 3 acabou de escrever um bloco
+2025-05-14 13:43:33 Validator 1: Bloco BLOCK-3-2001239 inválido
+2025-05-14 13:43:33 Miner: Miner 3 acabou de escrever um bloco
+2025-05-14 13:43:33 Validator 1: Bloco BLOCK-3-527882 válido
+2025-05-14 13:43:33 Miner: Miner 2 acabou de escrever um bloco
+2025-05-14 13:43:34 Validator 1: Bloco BLOCK-2-394080 inválido
+2025-05-14 13:43:34 Miner: Miner 3 acabou de escrever um bloco
+2025-05-14 13:43:34 Validator 1: Bloco BLOCK-3-577134 inválido
+2025-05-14 13:43:36 Controller: SIGINT received
+2025-05-14 13:43:36 Validator 1: Validator terminado 
+2025-05-14 13:43:36 Miner: Miner 1 finished
+2025-05-14 13:43:36 Miner: Miner 2 finished
+2025-05-14 13:43:36 Miner: Miner 3 finished
+2025-05-14 13:43:36 Miner: Miner 4 finished
+2025-05-14 13:43:36 Miner: Miner 5 finished
+2025-05-14 13:43:36 Validator Controller: Validator Controller terminado
+2025-05-14 13:43:36 Validator Controller: Validator process terminated
+Block : BLOCK-4-347440
+Previous Hash : 00006a8e76f31ba74e21a092cca1015a418c9d5f4375e7a4fec676e1d2ec1436
+Nonce : 114538
+Timestamp: 1747226611
+Transactions :
+       [0] ID: TX-28768-2 | Reward: 1 | Value: 127239.000000 | Timestamp: 1747226609
+       [0] ID: TX-28768-4 | Reward: 1 | Value: 682158.000000 | Timestamp: 1747226610
+       [0] ID: TX-28768-3 | Reward: 1 | Value: 252158.000000 | Timestamp: 1747226609
+       [0] ID: TX-28768-5 | Reward: 1 | Value: 1891330.000000 | Timestamp: 1747226610
+       [0] ID: TX-28768-1 | Reward: 1 | Value: 178532.000000 | Timestamp: 1747226608
+Block : BLOCK-3-527882
+Previous Hash : 0000209d1ebb46f5e05bbee98642340a9eebeeb4c7ce1348b54abc557bc5ac59
+Nonce : 143071
+Timestamp: 1747226613
+Transactions :
+       [1] ID: TX-28768-0 | Reward: 1 | Value: 1699852.000000 | Timestamp: 1747226608
+       [1] ID: TX-28768-6 | Reward: 1 | Value: 823246.000000 | Timestamp: 1747226611
+       [1] ID: TX-28768-7 | Reward: 1 | Value: 1690499.000000 | Timestamp: 1747226611
+       [1] ID: TX-28768-9 | Reward: 1 | Value: 1779304.000000 | Timestamp: 1747226612
+       [1] ID: TX-28768-8 | Reward: 1 | Value: 1823112.000000 | Timestamp: 1747226612
+2025-05-14 13:43:36 Controller: Destroying named semaphores
+2025-05-14 13:43:36 Controller: Destroying mutex
+2025-05-14 13:43:36 Controller: Detaching shared memory
+2025-05-14 13:43:36 Controller: Removing shared memory
+2025-05-14 13:43:36 Controller: Finished terminating
+2025-05-14 13:43:36 INFO: Closing program
+2025-05-14 13:46:58 INIT: Program started
+2025-05-14 13:46:58 Controller: Started reading configuration file
+2025-05-14 13:46:58 INFO: Configuration loaded :
+   Number of Miners: 5 
+   Transaction pool size: 20
+   Maximum number of blocks in the block chain: 10
+   Number of Transacions in a block: 5
+2025-05-14 13:46:58 Controller: Miner process created
+2025-05-14 13:46:58 Statistics: Statistics process created
+2025-05-14 13:46:58 Validator Controller: Validator controller process created
+2025-05-14 13:46:58 Miner: Miner 1 created
+2025-05-14 13:46:58 Miner: Miner 2 created
+2025-05-14 13:46:58 Miner: Miner 3 created
+2025-05-14 13:46:58 Miner: Miner 4 created
+2025-05-14 13:46:58 Miner: Miner 5 created
+2025-05-14 13:46:58 Validator Controller: Validator 1 criado
+2025-05-14 13:47:00 Controller: SIGINT received
+2025-05-14 13:47:00 Miner: Miner 1 finished
+2025-05-14 13:47:00 Miner: Miner 2 finished
+2025-05-14 13:47:00 Miner: Miner 3 finished
+2025-05-14 13:47:00 Miner: Miner 4 finished
+2025-05-14 13:47:00 Validator 1: Validator terminado 
+2025-05-14 13:47:00 Miner: Miner 5 finished
+2025-05-14 13:47:00 Validator Controller: Validator Controller terminado
+2025-05-14 13:47:00 Validator Controller: Validator process terminated
+2025-05-14 13:47:00 Controller: Destroying named semaphores
+2025-05-14 13:47:00 Controller: Destroying mutex
+2025-05-14 13:47:00 Controller: Detaching shared memory
+2025-05-14 13:47:00 Controller: Removing shared memory
+2025-05-14 13:47:00 Controller: Finished terminating
+2025-05-14 13:47:00 INFO: Closing program
+2025-05-14 13:47:01 INIT: Program started
+2025-05-14 13:47:01 Controller: Started reading configuration file
+2025-05-14 13:47:01 INFO: Configuration loaded :
+   Number of Miners: 5 
+   Transaction pool size: 20
+   Maximum number of blocks in the block chain: 10
+   Number of Transacions in a block: 5
+2025-05-14 13:47:01 Controller: Miner process created
+2025-05-14 13:47:01 Statistics: Statistics process created
+2025-05-14 13:47:01 Miner: Miner 1 created
+2025-05-14 13:47:01 Validator Controller: Validator controller process created
+2025-05-14 13:47:01 Miner: Miner 2 created
+2025-05-14 13:47:01 Miner: Miner 3 created
+2025-05-14 13:47:01 Miner: Miner 4 created
+2025-05-14 13:47:01 Miner: Miner 5 created
+2025-05-14 13:47:01 Validator Controller: Validator 1 criado
+2025-05-14 13:47:06 Miner: Miner 1 acabou de escrever um bloco
+2025-05-14 13:47:06 Validator 1: Bloco BLOCK-1-278041 inválido
+2025-05-14 13:47:06 Miner: Miner 1 acabou de escrever um bloco
+2025-05-14 13:47:06 Validator 1: Bloco BLOCK-1-542320 válido
+2025-05-14 13:47:06 Miner: Miner 1 acabou de escrever um bloco
+2025-05-14 13:47:06 Validator 1: Bloco BLOCK-1-436519 inválido
+2025-05-14 13:47:07 Miner: Miner 2 acabou de escrever um bloco
+2025-05-14 13:47:07 Validator 1: Bloco BLOCK-2-279149 inválido
+2025-05-14 13:47:08 Miner: Miner 3 acabou de escrever um bloco
+2025-05-14 13:47:08 Validator 1: Bloco BLOCK-3-1923930 inválido
+2025-05-14 13:47:08 Miner: Miner 3 acabou de escrever um bloco
+2025-05-14 13:47:08 Miner: Miner 3 acabou de escrever um bloco
+2025-05-14 13:47:08 Validator 1: Bloco BLOCK-3-1016723 válido
+2025-05-14 13:47:08 Validator 1: Bloco BLOCK-3-1631232 inválido
+2025-05-14 13:47:08 Miner: Miner 3 acabou de escrever um bloco
+2025-05-14 13:47:09 Validator 1: Bloco BLOCK-3-327731 inválido
+2025-05-14 13:47:11 Miner: Miner 4 acabou de escrever um bloco
+2025-05-14 13:47:11 Validator 1: Bloco BLOCK-4-1329976 inválido
+2025-05-14 13:47:11 Miner: Miner 4 acabou de escrever um bloco
+2025-05-14 13:47:11 Validator 1: Bloco BLOCK-4-209452 válido
+2025-05-14 13:47:11 Miner: Miner 4 acabou de escrever um bloco
+2025-05-14 13:47:11 Validator 1: Bloco BLOCK-4-1280664 inválido
+2025-05-14 13:47:11 Miner: Miner 5 acabou de escrever um bloco
+2025-05-14 13:47:12 Validator 1: Bloco BLOCK-5-175973 inválido
+2025-05-14 13:47:14 Controller: SIGINT received
+2025-05-14 13:47:14 Validator 1: Validator terminado 
+2025-05-14 13:47:14 Miner: Miner 1 finished
+2025-05-14 13:47:14 Miner: Miner 2 finished
+2025-05-14 13:47:14 Miner: Miner 3 finished
+2025-05-14 13:47:14 Miner: Miner 4 finished
+2025-05-14 13:47:14 Miner: Miner 5 finished
+2025-05-14 13:47:14 Validator Controller: Validator Controller terminado
+2025-05-14 13:47:14 Validator Controller: Validator process terminated
+Block : BLOCK-1-542320
+Previous Hash : 00006a8e76f31ba74e21a092cca1015a418c9d5f4375e7a4fec676e1d2ec1436
+Nonce : 79874
+Timestamp: 1747226826
+Transactions :
+       [0] ID: TX-31361-0 | Reward: 1 | Value: 726779.000000 | Timestamp: 1747226823
+       [0] ID: TX-31361-2 | Reward: 1 | Value: 792426.000000 | Timestamp: 1747226824
+       [0] ID: TX-31361-3 | Reward: 1 | Value: 1568173.000000 | Timestamp: 1747226824
+       [0] ID: TX-31361-5 | Reward: 1 | Value: 1948882.000000 | Timestamp: 1747226825
+       [0] ID: TX-31361-1 | Reward: 1 | Value: 1390079.000000 | Timestamp: 1747226823
+Block : BLOCK-3-1016723
+Previous Hash : 0000bcc23a92b917a4c50395043ae2ecf26a97c962e973d694946a5020994fcb
+Nonce : 116699
+Timestamp: 1747226828
+Transactions :
+       [1] ID: TX-31361-8 | Reward: 1 | Value: 828920.000000 | Timestamp: 1747226827
+       [1] ID: TX-31361-6 | Reward: 1 | Value: 337438.000000 | Timestamp: 1747226826
+       [1] ID: TX-31361-4 | Reward: 1 | Value: 1056474.000000 | Timestamp: 1747226825
+       [1] ID: TX-31361-10 | Reward: 1 | Value: 1119164.000000 | Timestamp: 1747226828
+       [1] ID: TX-31361-7 | Reward: 1 | Value: 2094811.000000 | Timestamp: 1747226826
+Block : BLOCK-4-209452
+Previous Hash : 00009a69c11790184af45049c1198a724417ad282cebc9972d8f1a5debc9ad9a
+Nonce : 133680
+Timestamp: 1747226831
+Transactions :
+       [2] ID: TX-31361-11 | Reward: 1 | Value: 1625793.000000 | Timestamp: 1747226828
+       [2] ID: TX-31361-15 | Reward: 1 | Value: 1450175.000000 | Timestamp: 1747226830
+       [2] ID: TX-31361-9 | Reward: 1 | Value: 1871085.000000 | Timestamp: 1747226827
+       [2] ID: TX-31361-12 | Reward: 1 | Value: 974679.000000 | Timestamp: 1747226829
+       [2] ID: TX-31361-14 | Reward: 1 | Value: 1291381.000000 | Timestamp: 1747226830
+2025-05-14 13:47:14 Controller: Destroying named semaphores
+2025-05-14 13:47:14 Controller: Destroying mutex
+2025-05-14 13:47:14 Controller: Detaching shared memory
+2025-05-14 13:47:14 Controller: Removing shared memory
+2025-05-14 13:47:14 Controller: Finished terminating
+2025-05-14 13:47:14 INFO: Closing program
+2025-05-14 13:48:03 INIT: Program started
+2025-05-14 13:48:03 Controller: Started reading configuration file
+2025-05-14 13:48:03 INFO: Configuration loaded :
+   Number of Miners: 5 
+   Transaction pool size: 20
+   Maximum number of blocks in the block chain: 10
+   Number of Transacions in a block: 5
+2025-05-14 13:48:03 Controller: Miner process created
+2025-05-14 13:48:03 Miner: Miner 1 created
+2025-05-14 13:48:03 Statistics: Statistics process created
+2025-05-14 13:48:03 Validator Controller: Validator controller process created
+2025-05-14 13:48:03 Miner: Miner 2 created
+2025-05-14 13:48:03 Miner: Miner 3 created
+2025-05-14 13:48:03 Miner: Miner 4 created
+2025-05-14 13:48:03 Miner: Miner 5 created
+2025-05-14 13:48:03 Validator Controller: Validator 1 criado
+2025-05-14 13:48:06 Miner: Miner 1 acabou de escrever um bloco
+2025-05-14 13:48:06 Miner: Miner 1 acabou de escrever um bloco
+2025-05-14 13:48:06 Validator 1: Bloco BLOCK-1-530863 inválido
+2025-05-14 13:48:06 Validator 1: Bloco BLOCK-1-85164 válido
+2025-05-14 13:48:07 Miner: Miner 1 acabou de escrever um bloco
+2025-05-14 13:48:07 Validator 1: Bloco BLOCK-1-765616 inválido
+2025-05-14 13:48:20 Controller: SIGINT received
+2025-05-14 13:48:20 Validator 1: Validator terminado 
+2025-05-14 13:48:20 Miner: Miner 1 finished
+2025-05-14 13:48:20 Miner: Miner 2 finished
+2025-05-14 13:48:20 Miner: Miner 3 finished
+2025-05-14 13:48:20 Miner: Miner 4 finished
+2025-05-14 13:48:20 Miner: Miner 5 finished
+2025-05-14 13:48:20 Validator Controller: Validator Controller terminado
+2025-05-14 13:48:20 Validator Controller: Validator process terminated
+Block : BLOCK-1-85164
+Previous Hash : 00006a8e76f31ba74e21a092cca1015a418c9d5f4375e7a4fec676e1d2ec1436
+Nonce : 8948
+Timestamp: 1747226886
+Transactions :
+       [0] ID: TX-32195-3 | Reward: 1 | Value: 1621040.000000 | Timestamp: 1747226885
+       [0] ID: TX-32195-1 | Reward: 1 | Value: 236803.000000 | Timestamp: 1747226884
+       [0] ID: TX-32195-4 | Reward: 1 | Value: 1351425.000000 | Timestamp: 1747226886
+       [0] ID: TX-32195-0 | Reward: 1 | Value: 432286.000000 | Timestamp: 1747226884
+       [0] ID: TX-32195-2 | Reward: 1 | Value: 1818628.000000 | Timestamp: 1747226885
+2025-05-14 13:48:20 Controller: Destroying named semaphores
+2025-05-14 13:48:20 Controller: Destroying mutex
+2025-05-14 13:48:20 Controller: Detaching shared memory
+2025-05-14 13:48:20 Controller: Removing shared memory
+2025-05-14 13:48:20 Controller: Finished terminating
+2025-05-14 13:48:20 INFO: Closing program

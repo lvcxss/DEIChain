@@ -18,11 +18,13 @@ Transaction *tx;
 int stats_qid;
 volatile sig_atomic_t should_exit = 0;
 int validator_id;
+// sighandler that manages flag
 void handle_term(int sig) {
   if (sig)
     should_exit = 1;
 }
 
+// sum rewards, used for the statistics
 int sum_rewards(Transaction *tx, unsigned int num) {
   int sum = 0;
   for (unsigned int i = 0; i < num; i++)
@@ -36,12 +38,6 @@ int validator() {
   sa.sa_flags = 0;
   sigaction(SIGTERM, &sa, NULL);
   sigaction(SIGINT, &sa, NULL);
-
-  block_ledger->ledger_sem = sem_open("/ledger_sem", 0);
-  if (block_ledger->ledger_sem == SEM_FAILED) {
-    perror("sem_open /ledger_sem");
-    return 1;
-  }
 
   const size_t block_sz = get_transaction_block_size();
   unsigned char *raw = malloc(block_sz);
