@@ -85,6 +85,7 @@ extern TransactionPoolEntry *transactions;
 extern BlockchainLedger *block_ledger;
 
 int write_logfile(char *message, char *typemsg);
+int write_ledger_logfile();
 void show_block(Block *block, Transaction *t);
 static inline size_t get_transaction_block_size() {
   if (config.transactions_per_block == 0) {

@@ -76,6 +76,8 @@ void sighandler(int sig) {
         printf("Block %d : %d\n", i, b->nonce);
         show_block(b, blcktrans);
       }
+
+      write_ledger_logfile();
       terminate();
       write_logfile("Closing program", "INFO");
       printf("Closing program\n");

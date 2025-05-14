@@ -15,7 +15,43 @@ void show_block(Block *block, Transaction *t) {
   }
 }
 
-void write_ledger_logfile() {}
+int write_ledger_logfile() {
+  if (log_file_mutex != NULL)
+    sem_wait(log_file_mutex);
+
+  FILE *logfile = fopen("DEIChain_log.log", "a");
+  if (logfile == NULL) {
+    printf("Error: Could not open file logfile.txt\n");
+    if (log_file_mutex != NULL)
+      sem_post(log_file_mutex);
+
+    return -4;
+  }
+
+  Block *blocks = (Block *)((char *)block_ledger + sizeof(BlockchainLedger));
+  for (int i = 0; i < block_ledger->num_blocks; i++) {
+    Block *b = (Block *)((char *)blocks +
+                         (sizeof(Transaction) * config.transactions_per_block +
+                          sizeof(Block)) *
+                             i);
+    Transaction *blcktrans = (Transaction *)((char *)b + sizeof(Block));
+    fprintf(logfile, "Block : %s\n", blocks[i].block_id);
+    fprintf(logfile, "Previous Hash : %s\n", blocks[i].previous_hash);
+    fprintf(logfile, "Nonce : %d\n", blocks[i].nonce);
+    fprintf(logfile, "Timestamp: %ld\n", blocks[i].timestamp);
+    fprintf(logfile, "Transactions :\n");
+    for (unsigned int ii = 0; ii < config.transactions_per_block; ii++) {
+      fprintf(logfile,
+              "       [%d] ID: %s | Reward: %d | Value: %f | Timestamp: %ld\n",
+              i, blcktrans[ii].transaction_id, blcktrans[ii].reward,
+              blcktrans[ii].value, blcktrans[ii].timestamp);
+    }
+    if (log_file_mutex != NULL)
+      sem_post(log_file_mutex);
+  }
+  fclose(logfile);
+  return 0;
+}
 
 int write_logfile(char *message, char *typemsg) {
   time_t raw = time(NULL);
