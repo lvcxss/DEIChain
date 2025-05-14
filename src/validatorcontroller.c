@@ -65,10 +65,10 @@ int validator_controller() {
 
   pthread_mutex_lock(&transactions_pool->mt_vc);
   while (!vc_exit) {
-    sem_wait(transactions_pool->transaction_pool_sem);
+    sem_wait(transactions_pool->tp_access_pool);
     float ocupacao =
         (transactions_pool->atual * 100.0f) / transactions_pool->max_size;
-    sem_post(transactions_pool->transaction_pool_sem);
+    sem_post(transactions_pool->tp_access_pool);
     int desired_validators = 1;
     if (ocupacao >= 80.0f)
       desired_validators = 3;

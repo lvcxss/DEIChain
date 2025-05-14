@@ -108,7 +108,6 @@ void print_statistics() {
   printf("\n=== Estatísticas Finais ===\n");
   print_current_stats();
   free(miners_stats);
-  sem_close(transactions_pool->transaction_pool_sem);
 
   sem_close(transactions_pool->tp_access_pool);
 

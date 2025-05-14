@@ -47,9 +47,10 @@ BlockchainLedger *block_ledger;
 
 void sighandler(int sig) {
   if (sig == SIGINT) {
-    write_logfile("SIGINT received", "DEBUG");
-    for (int i = 0; i < 3; i++) {
+    write_logfile("SIGINT received", "Controller");
 
+    transactions_pool->max_size = 0;
+    for (int i = 0; i < 3; i++) {
       pthread_cond_signal(&transactions_pool->cond_vc);
       if (pids[i] > 0) {
         kill(pids[i], SIGTERM);
@@ -63,21 +64,23 @@ void sighandler(int sig) {
       }
     }
     if (getpid() == mainpid) {
-      printf("Dumping block ledger : \n");
-      Block *blocks =
-          (Block *)((char *)block_ledger + sizeof(BlockchainLedger));
-      for (int i = 0; i < block_ledger->num_blocks; i++) {
-        Block *b =
-            (Block *)((char *)blocks +
-                      (sizeof(Transaction) * config.transactions_per_block +
-                       sizeof(Block)) *
-                          i);
-        Transaction *blcktrans = (Transaction *)((char *)b + sizeof(Block));
-        printf("Block %d : %d\n", i, b->nonce);
-        show_block(b, blcktrans);
-      }
+      if (block_ledger->num_blocks > 0) {
+        printf("Dumping block ledger : \n");
+        Block *blocks =
+            (Block *)((char *)block_ledger + sizeof(BlockchainLedger));
+        for (int i = 0; i < block_ledger->num_blocks; i++) {
+          Block *b =
+              (Block *)((char *)blocks +
+                        (sizeof(Transaction) * config.transactions_per_block +
+                         sizeof(Block)) *
+                            i);
+          Transaction *blcktrans = (Transaction *)((char *)b + sizeof(Block));
+          printf("Block %d : %d\n", i, b->nonce);
+          show_block(b, blcktrans);
+        }
 
-      write_ledger_logfile();
+        write_ledger_logfile();
+      }
       terminate();
       write_logfile("Closing program", "INFO");
       printf("Closing program\n");
@@ -194,18 +197,16 @@ void init() {
              sizeof(Transaction) * config.transactions_per_block *
                  config.blockchain_blocks);
 
-  pthread_mutex_init(&transactions_pool->mt_min, &mattr);
-  pthread_cond_init(&transactions_pool->cond_min, &cattr);
   transactions = (TransactionPoolEntry *)((char *)transactions_pool +
                                           sizeof(TransactionPool));
-  transactions_pool->atual = 0;
-  sem_unlink("/transaction_pool_sem");
-  transactions_pool->transaction_pool_sem =
-      sem_open("/transaction_pool_sem", O_CREAT, 0666, 1);
-  if (transactions_pool->transaction_pool_sem == SEM_FAILED) {
-    perror("sem_open");
+
+  sem_unlink("/sem_min_tx");
+  transactions_pool->sem_min_tx = sem_open("/sem_min_tx", O_CREAT, 0666, 0);
+  if (transactions_pool->sem_min_tx == SEM_FAILED) {
+    perror("sem_open /sem_min_tx");
     exit(1);
   }
+  transactions_pool->atual = 0;
   sem_unlink("/tp_access_pool");
   transactions_pool->tp_access_pool =
       sem_open("/tp_access_pool", O_CREAT, 0666, 2);
@@ -415,7 +416,7 @@ Config processFile(char *filename) {
 void terminate() {
   write_logfile("Destroying named semaphores", "Controller");
 
-  sem_close(transactions_pool->transaction_pool_sem);
+  sem_close(transactions_pool->sem_min_tx);
   sem_unlink("/transaction_pool_sem");
 
   sem_close(transactions_pool->tp_access_pool);

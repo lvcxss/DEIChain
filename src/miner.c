@@ -22,7 +22,9 @@ volatile sig_atomic_t miner_should_exit = 0;
 void handle_sigterm(int signum) {
   if (signum == SIGTERM || signum == SIGINT) {
     miner_should_exit = 1;
-    pthread_cond_broadcast(&transactions_pool->cond_min);
+    for (unsigned int i = 0; i < config.num_miners; i++) {
+      sem_post(transactions_pool->sem_min_tx);
+    }
   }
 }
 
@@ -64,10 +66,7 @@ void *mine(void *idp) {
     if (occ < config.transactions_per_block) {
       usleep(500000);
       sem_post(transactions_pool->tp_access_pool);
-      pthread_mutex_lock(&transactions_pool->mt_min);
-      pthread_cond_wait(&transactions_pool->cond_min,
-                        &transactions_pool->mt_min);
-      pthread_mutex_unlock(&transactions_pool->mt_min);
+      sem_wait(transactions_pool->sem_min_tx);
       free(new_block);
       continue;
     }
@@ -95,7 +94,7 @@ void *mine(void *idp) {
 
     // sinaliza se ainda restam transactionss
     if (occ - config.transactions_per_block >= config.transactions_per_block) {
-      pthread_cond_signal(&transactions_pool->cond_min);
+      sem_post(transactions_pool->sem_min_tx);
     }
     sem_post(transactions_pool->tp_access_pool);
 
@@ -145,7 +144,6 @@ void initminers(int num) {
   }
 
   for (int i = 0; i < num; i++) {
-    pthread_cond_signal(&transactions_pool->cond_min);
     pthread_join(thread_miners[i], NULL);
     char msg[128];
     sprintf(msg, "Miner %d finished", id[i]);
@@ -153,8 +151,6 @@ void initminers(int num) {
     printf("%s\n", msg);
   }
 
-  pthread_cond_destroy(&transactions_pool->cond_min);
-  pthread_mutex_destroy(&transactions_pool->mt_min);
   log_file_mutex = NULL;
 
   printf("Exiting miners\n");

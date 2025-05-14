@@ -13,7 +13,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-sem_t *sem;
+sem_t *sem, *sem_min_tx;
 void signal_handler(int signum) {
   if (signum == SIGINT) {
     char msg[256];
@@ -39,6 +39,12 @@ int main(int argc, char *argv[]) {
     perror("sem_open");
     exit(1);
   }
+  sem_min_tx = sem_open("/sem_min_tx", 0);
+  if (sem_min_tx == SEM_FAILED) {
+    perror("sem_open /sem_min_tx");
+    exit(1);
+  }
+
   key_t key = ftok("config.cfg", 65);
   int shmid = shmget(key, 0, 0666);
   if (shmid == -1) {
@@ -75,7 +81,12 @@ int main(int argc, char *argv[]) {
   Transaction t;
   srand(time(NULL));
   int done = 0;
+  unsigned int prev = transaction_pool->max_size;
   while (!done) {
+    if (transaction_pool->max_size != prev) {
+      printf("O processo principal terminou, a matar txgen\n");
+      return 0;
+    }
     t = create_transaction(reward, rand() / 1000);
     int found = 0;
     sprintf(msg, "Transaction with reward %d and sleep time %d pid: %d created",
@@ -91,14 +102,12 @@ int main(int argc, char *argv[]) {
          ii++) {
       if (transactions[ii].occupied == 0) {
         transactions[ii] = ent;
-        transaction_pool->available++;
         found = 1;
       }
     }
     if (!found) {
       transactions[transaction_pool->atual] = ent;
       transaction_pool->atual++;
-      transaction_pool->available++;
       if (transaction_pool->atual >= transaction_pool->max_size) {
         printf("A transactions pool está cheia, a encerrar este generador\n");
         done = 1;
@@ -106,7 +115,7 @@ int main(int argc, char *argv[]) {
     }
 
     if (transaction_pool->atual > transaction_pool->transactions_block) {
-      pthread_cond_broadcast(&transaction_pool->cond_min);
+      sem_post(sem_min_tx);
     }
     pthread_cond_signal(&transaction_pool->cond_vc);
 

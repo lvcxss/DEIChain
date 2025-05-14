@@ -33,12 +33,9 @@ typedef struct {
 } TransactionPoolEntry;
 
 typedef struct {
-  unsigned int atual, available, max_size, transactions_block;
-  sem_t *transaction_pool_sem;
+  unsigned int atual, max_size, transactions_block;
   sem_t *tp_access_pool;
-  // cv for minimum transactions (miner should wait for this)
-  pthread_mutex_t mt_min;
-  pthread_cond_t cond_min;
+  sem_t *sem_min_tx;
   // cv for validator controller
   pthread_mutex_t mt_vc;
   pthread_cond_t cond_vc;

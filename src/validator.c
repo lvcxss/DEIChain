@@ -134,7 +134,6 @@ int validator() {
               memmove(&ent[j], &ent[j + 1], sizeof(*ent) * tail);
             }
             transactions_pool->atual--;
-            transactions_pool->available--;
             removed++;
             break;
           }
